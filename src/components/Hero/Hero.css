@@ -133,16 +133,21 @@
 
 .hero__qr-badges {
     display: flex;
-    gap: var(--space-3);
-    font-size: var(--font-size-xs);
-    color: var(--color-text-secondary);
-    font-weight: 600;
+    flex-direction: column;
+    gap: var(--space-2);
+    align-items: center;
 }
 
-.hero__qr-badges span {
-    display: flex;
-    align-items: center;
-    gap: 4px;
+.hero__qr-store-badge {
+    height: 30px;
+    width: auto;
+    display: block;
+    opacity: 0.75;
+    transition: opacity var(--transition-base);
+}
+
+.hero__qr-store-badge:hover {
+    opacity: 1;
 }
 
 /* Orbs decorativos */

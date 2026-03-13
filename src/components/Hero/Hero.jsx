@@ -123,8 +123,16 @@ export default function Hero() {
                         </div>
                         <p className="hero__qr-sublabel">Disponível para iOS e Android</p>
                         <div className="hero__qr-badges">
-                            <span>🍎 App Store</span>
-                            <span>▶ Google Play</span>
+                            <img
+                                src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                                alt="App Store"
+                                className="hero__qr-store-badge"
+                            />
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                                alt="Google Play"
+                                className="hero__qr-store-badge"
+                            />
                         </div>
                     </div>
                     {/* orbs decorativos */}

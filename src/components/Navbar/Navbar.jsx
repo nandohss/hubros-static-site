@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import HubrosLogo from '../Logo/HubrosLogo'
 import './Navbar.css'
 
 export default function Navbar() {
@@ -14,7 +15,6 @@ export default function Navbar() {
     const navLinks = [
         { label: 'Para Coworkers', href: '#features' },
         { label: 'Para Hosts', href: '#how-it-works' },
-        { label: 'Espaços', href: '#spaces' },
         { label: 'Sobre', href: '#about' },
     ]
 
@@ -23,7 +23,7 @@ export default function Navbar() {
             <div className="container navbar__inner">
 
                 <a href="/" className="navbar__logo" aria-label="Hubros">
-                    <span className="navbar__logo-icon">⬡</span>
+                    <HubrosLogo size={36} />
                     <span className="navbar__logo-text">Hubros</span>
                 </a>
 

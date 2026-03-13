@@ -1,3 +1,4 @@
+import HubrosLogo from '../Logo/HubrosLogo'
 import './CTA.css'
 
 export default function CTA() {
@@ -16,24 +17,24 @@ export default function CTA() {
                             hoje mesmo
                         </h2>
                         <p className="cta__subtitle">
-                            Mais de 12.000 profissionais já usam a Hubros.
-                            Junte-se à comunidade e transforme sua forma de trabalhar.
+                            O Hubros está chegando. Seja um dos primeiros a descobrir
+                            espaços de coworking incríveis e transformar a sua forma de trabalhar.
                         </p>
 
                         <div className="cta__badges">
                             <a href="#" className="cta__badge" id="cta-appstore" aria-label="Baixar na App Store">
-                                <div className="cta__badge-icon">🍎</div>
-                                <div className="cta__badge-info">
-                                    <span className="cta__badge-label">Disponível na</span>
-                                    <span className="cta__badge-store">App Store</span>
-                                </div>
+                                <img
+                                    src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                                    alt="Download on the App Store"
+                                    className="cta__store-badge"
+                                />
                             </a>
                             <a href="#" className="cta__badge" id="cta-googleplay" aria-label="Baixar no Google Play">
-                                <div className="cta__badge-icon">▶</div>
-                                <div className="cta__badge-info">
-                                    <span className="cta__badge-label">Disponível no</span>
-                                    <span className="cta__badge-store">Google Play</span>
-                                </div>
+                                <img
+                                    src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                                    alt="Get it on Google Play"
+                                    className="cta__store-badge"
+                                />
                             </a>
                         </div>
 
@@ -43,10 +44,7 @@ export default function CTA() {
                     </div>
 
                     <div className="cta__visual" aria-hidden="true">
-                        <div className="cta__badge-large">
-                            <span>⬡</span>
-                            <span>Hubros</span>
-                        </div>
+                        <HubrosLogo size={120} className="cta__logo-large" />
                     </div>
                 </div>
             </div>

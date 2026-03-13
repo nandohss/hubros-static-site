@@ -1,3 +1,4 @@
+import HubrosLogo from '../Logo/HubrosLogo'
 import './Footer.css'
 
 const footerLinks = {
@@ -16,7 +17,7 @@ export default function Footer() {
                 <div className="footer__inner">
                     <div className="footer__brand">
                         <a href="/" className="footer__logo">
-                            <span className="footer__logo-icon">⬡</span>
+                            <HubrosLogo size={28} />
                             <span className="footer__logo-text">Hubros</span>
                         </a>
                         <p className="footer__tagline">
