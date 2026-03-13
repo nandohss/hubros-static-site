@@ -78,8 +78,8 @@
     transform: translateY(-2px);
 }
 
-/* Cols */
-.footer__col {}
+
+
 
 .footer__col-title {
     font-size: var(--font-size-sm);
@@ -133,8 +133,42 @@
 }
 
 @media (max-width: 640px) {
+
+    /* Brand ocupa linha inteira acima das colunas */
     .footer__inner {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .footer__brand {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer__logo {
+        justify-content: center;
+    }
+
+    .footer__tagline {
+        max-width: 100%;
+    }
+
+    .footer__social {
+        justify-content: center;
+    }
+
+    /* Cada coluna de links: título e itens centralizados */
+    .footer__col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer__col-links {
+        align-items: center;
     }
 
     .footer__bottom {

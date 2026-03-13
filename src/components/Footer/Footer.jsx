@@ -56,7 +56,7 @@ export default function Footer() {
                         © {year} Hubros. Todos os direitos reservados.
                     </p>
                     <p className="footer__made">
-                        Feito com ❤️ no Brasil 🇧🇷
+                        Feito com ❤️ por Team Hubros
                     </p>
                 </div>
             </div>

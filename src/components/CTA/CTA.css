@@ -153,4 +153,13 @@
     .cta__title {
         font-size: var(--font-size-2xl);
     }
+
+    .cta__content {
+        align-items: center;
+        text-align: center;
+    }
+
+    .cta__badges {
+        justify-content: center;
+    }
 }

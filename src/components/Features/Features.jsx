@@ -10,7 +10,7 @@ const features = [
     {
         icon: '📅',
         title: 'Reserva Instantânea',
-        description: 'Reserve por hora, dia ou mês com apenas alguns toques. Confirmação imediata e sem burocracia.',
+        description: 'Reserve por hora ou dia com apenas alguns toques. Confirmação imediata e sem burocracia.',
         color: 'rgba(255,255,255,0.12)',
     },
     {
