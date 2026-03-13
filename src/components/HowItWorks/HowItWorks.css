@@ -1,0 +1,88 @@
+.hiw {
+    background: var(--color-bg);
+}
+
+.hiw__header {
+    max-width: 680px;
+    margin-bottom: var(--space-16);
+}
+
+.hiw__steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    position: relative;
+}
+
+/* Linha conectora entre steps */
+.hiw__steps::before {
+    content: '';
+    position: absolute;
+    top: 36px;
+    left: calc(12.5% + 20px);
+    right: calc(12.5% + 20px);
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    z-index: 0;
+}
+
+.hiw__step {
+    position: relative;
+    z-index: 1;
+}
+
+.hiw__step-number {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--gradient-hero);
+    color: #fff;
+    font-size: var(--font-size-xl);
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-6);
+    box-shadow: var(--shadow-glow-primary);
+    position: relative;
+}
+
+.hiw__step-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    text-align: center;
+    height: calc(100% - 72px - var(--space-6));
+}
+
+.hiw__step-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.hiw__step-title {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+}
+
+.hiw__step-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+    .hiw__steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hiw__steps::before {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .hiw__steps {
+        grid-template-columns: 1fr;
+    }
+}
