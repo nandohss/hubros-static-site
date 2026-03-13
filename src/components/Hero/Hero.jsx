@@ -14,14 +14,14 @@ export default function Hero() {
                     </div>
 
                     <h1 className="hero__title">
-                        Seu próximo escritório{' '}
+                        Seu próximo espaço{' '}
                         <span className="text-gradient">está a um clique</span>{' '}
                         de distância
                     </h1>
 
                     <p className="hero__subtitle">
-                        Encontre, reserve e trabalhe em espaços incríveis de coworking.
-                        Conectamos profissionais a espaços únicos em todo o país.
+                        Encontre e reserve escritórios, clínicas, salões, estúdios e muito mais.
+                        Conectamos pessoas a espaços incríveis em todo o Brasil.
                     </p>
 
                     <div className="hero__actions">

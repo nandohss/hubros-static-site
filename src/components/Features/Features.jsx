@@ -4,13 +4,13 @@ const features = [
     {
         icon: '🔍',
         title: 'Busca Inteligente',
-        description: 'Filtre por localização, capacidade, amenidades e disponibilidade em tempo real. Encontre o espaço ideal em segundos.',
+        description: 'Filtre por localização, categoria, capacidade e disponibilidade em tempo real. Encontre o espaço ideal em segundos.',
         color: 'rgba(255,255,255,0.15)',
     },
     {
         icon: '📅',
         title: 'Reserva Instantânea',
-        description: 'Reserve por hora, dia ou mês com apenas alguns toques. Confirmação imediata sem burocracia.',
+        description: 'Reserve por hora, dia ou mês com apenas alguns toques. Confirmação imediata e sem burocracia.',
         color: 'rgba(255,255,255,0.12)',
     },
     {
@@ -22,7 +22,7 @@ const features = [
     {
         icon: '⭐',
         title: 'Avaliações Reais',
-        description: 'Leia avaliações autênticas de outros profissionais. Escolha com confiança.',
+        description: 'Leia avaliações autênticas de quem já usou o espaço. Escolha com confiança.',
         color: 'rgba(255,255,255,0.10)',
     },
     {
@@ -51,7 +51,7 @@ export default function Features() {
                     </h2>
                     <p className="section-subtitle">
                         Do descobrimento à reserva, passando pelo check-in e avaliação.
-                        A Hubros cobre toda a jornada do profissional moderno.
+                        A Hubros cobre toda a jornada — seja para trabalhar, atender ou criar.
                     </p>
                 </div>
 

@@ -11,7 +11,7 @@ const steps = [
         number: '02',
         icon: '🔍',
         title: 'Encontre seu Espaço',
-        description: 'Use filtros avançados: localização, tipo de espaço, capacidade, preço e amenidades.',
+        description: 'Filtre por categoria, localização, capacidade, preço e disponibilidade em tempo real.',
     },
     {
         number: '03',
@@ -21,9 +21,9 @@ const steps = [
     },
     {
         number: '04',
-        icon: '🚀',
-        title: 'Trabalhe & Avalie',
-        description: 'Faça check-in pelo app, aproveite o espaço e avalie sua experiência para ajudar a comunidade.',
+        icon: '✅',
+        title: 'Use & Avalie',
+        description: 'Faça check-in pelo app, aproveite o espaço e deixe sua avaliação para ajudar outros usuários.',
     },
 ]
 
@@ -34,12 +34,12 @@ export default function HowItWorks() {
                 <div className="hiw__header">
                     <div className="section-tag">💡 Como Funciona</div>
                     <h2 className="section-title">
-                        De 0 a trabalhando em{' '}
+                        Reserve o espaço certo em{' '}
                         <span className="text-gradient">4 passos simples</span>
                     </h2>
                     <p className="section-subtitle">
                         Sem complicação, sem burocracia. Encontre e reserve o espaço
-                        perfeito de forma rápida e intuitiva.
+                        perfeito para o que você precisar.
                     </p>
                 </div>
 

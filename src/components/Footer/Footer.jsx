@@ -28,7 +28,7 @@ export default function Footer() {
                             <span className="footer__logo-text">Hubros</span>
                         </a>
                         <p className="footer__tagline">
-                            A plataforma que conecta profissionais a espaços incríveis de coworking por todo o Brasil.
+                            A plataforma que conecta pessoas a espaços incríveis por todo o Brasil.
                         </p>
                         <div className="footer__social">
                             <a href="https://www.instagram.com/hubros.app" target="_blank" rel="noopener noreferrer" className="footer__social-btn" aria-label="Instagram Hubros">
