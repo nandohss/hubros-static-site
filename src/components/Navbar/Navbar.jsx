@@ -13,9 +13,9 @@ export default function Navbar() {
     }, [])
 
     const navLinks = [
-        { label: 'Para Coworkers', href: '#features' },
-        { label: 'Para Hosts', href: '#how-it-works' },
-        { label: 'Sobre', href: '#about' },
+        { label: 'Para Coworkers', href: '/#features' },
+        { label: 'Para Hosts', href: '/#how-it-works' },
+        { label: 'Sobre', href: '/sobre' },
     ]
 
     return (

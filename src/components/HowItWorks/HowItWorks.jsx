@@ -1,27 +1,31 @@
+import { SmartSearchIcon } from '../Icons/SmartSearchIcon'
+import { DownloadIcon } from '../Icons/DownloadIcon'
+import { InstantReservationIcon } from '../Icons/InstantReservationIcon'
+import { CheckmarkIcon } from '../Icons/CheckmarkIcon'
 import './HowItWorks.css'
 
 const steps = [
     {
         number: '01',
-        icon: '📲',
+        icon: <DownloadIcon size="1em" />,
         title: 'Baixe o App',
         description: 'Disponível gratuitamente na App Store e Google Play. Crie sua conta em menos de 2 minutos.',
     },
     {
         number: '02',
-        icon: '🔍',
+        icon: <SmartSearchIcon size="1em" />,
         title: 'Encontre seu Espaço',
         description: 'Filtre por categoria, localização, capacidade, preço e disponibilidade em tempo real.',
     },
     {
         number: '03',
-        icon: '📅',
+        icon: <InstantReservationIcon size="1em" />,
         title: 'Reserve Online',
         description: 'Escolha data, horário e duração. Pague de forma segura diretamente pelo app.',
     },
     {
         number: '04',
-        icon: '✅',
+        icon: <CheckmarkIcon size="1em" />,
         title: 'Use & Avalie',
         description: 'Faça check-in pelo app, aproveite o espaço e deixe sua avaliação para ajudar outros usuários.',
     },
@@ -32,7 +36,7 @@ export default function HowItWorks() {
         <section className="hiw section" id="how-it-works">
             <div className="container">
                 <div className="hiw__header">
-                    <div className="section-tag">💡 Como Funciona</div>
+                    <div className="section-tag">Como Funciona</div>
                     <h2 className="section-title">
                         Reserve o espaço certo em{' '}
                         <span className="text-gradient">4 passos simples</span>

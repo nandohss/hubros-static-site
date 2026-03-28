@@ -1,12 +1,6 @@
+import { Link } from 'react-router-dom'
 import HubrosLogo from '../Logo/HubrosLogo'
 import './Footer.css'
-
-const footerLinks = {
-    'Produto': ['Para Coworkers', 'Para Hosts', 'Como Funciona', 'Vouchers'],
-    'Empresa': ['Sobre Nós', 'Contato'],
-    'Suporte': ['Central de Ajuda', 'Fale Conosco'],
-    'Legal': ['Termos de Uso', 'Privacidade', 'Cookies'],
-}
 
 // SVG do Instagram
 const InstagramIcon = () => (
@@ -37,18 +31,36 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    {Object.entries(footerLinks).map(([group, links]) => (
-                        <div key={group} className="footer__col">
-                            <h4 className="footer__col-title">{group}</h4>
-                            <ul className="footer__col-links">
-                                {links.map(link => (
-                                    <li key={link}>
-                                        <a href="#" className="footer__link">{link}</a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
+                    <div className="footer__col">
+                        <h4 className="footer__col-title">Produto</h4>
+                        <ul className="footer__col-links">
+                            <li><Link to="/#features" className="footer__link">Para Coworkers</Link></li>
+                            <li><Link to="/#features" className="footer__link">Para Hosts</Link></li>
+                        </ul>
+                    </div>
+
+                    <div className="footer__col">
+                        <h4 className="footer__col-title">Legal</h4>
+                        <ul className="footer__col-links">
+                            <li><Link to="/" className="footer__link">Termos de Uso</Link></li>
+                            <li><Link to="/" className="footer__link">Privacidade</Link></li>
+                            <li><Link to="/cookies" className="footer__link">Cookies</Link></li>
+                        </ul>
+                    </div>
+
+                    <div className="footer__col">
+                        <h4 className="footer__col-title">Suporte</h4>
+                        <ul className="footer__col-links">
+                            <li><Link to="/ajuda" className="footer__link">Central de Ajuda</Link></li>
+                        </ul>
+                    </div>
+
+                    <div className="footer__col">
+                        <h4 className="footer__col-title">Empresa</h4>
+                        <ul className="footer__col-links">
+                            <li><Link to="/sobre" className="footer__link">Sobre Nós</Link></li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div className="footer__bottom">

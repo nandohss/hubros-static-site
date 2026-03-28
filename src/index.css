@@ -13,18 +13,17 @@
   --color-accent: #E0E0E0;
   --color-accent-light: #F0F0F0;
 
-  /* Neutros */
-  --color-bg: #0A0A0A;
-  /* Preto puro */
-  --color-surface: #111111;
-  --color-surface-2: #1A1A1A;
-  --color-surface-3: #242424;
-  --color-border: rgba(255, 255, 255, 0.08);
+  /* Neutros - Suavizados para um Dark Gray (Graphite/Titanium) Premium */
+  --color-bg: #111113;
+  --color-surface: #18181B;
+  --color-surface-2: #202024;
+  --color-surface-3: #2B2B30;
+  --color-border: rgba(255, 255, 255, 0.06);
 
-  /* Textos */
-  --color-text-primary: #F5F5F5;
-  --color-text-secondary: #888888;
-  --color-text-muted: #555555;
+  /* Textos - Suavizando contraste absoluto */
+  --color-text-primary: #FAFAFA;
+  --color-text-secondary: #A1A1AA;
+  --color-text-muted: #71717A;
 
   /* Gradientes */
   --gradient-hero: linear-gradient(135deg, #FFFFFF 0%, #888888 100%);
@@ -93,6 +92,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -103,6 +103,13 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  /* Malha estrutural sutil (Charme Estético) */
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-attachment: fixed;
 }
 
 img,
@@ -195,8 +202,8 @@ button {
 }
 
 .btn-primary {
-  background: #FFFFFF;
-  color: #0A0A0A;
+  background: #FAFAFA;
+  color: #111113;
   box-shadow: var(--shadow-glow-primary);
 }
 

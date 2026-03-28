@@ -9,7 +9,7 @@ export default function AppPreview() {
 
                     {/* ── Coluna esquerda — texto ── */}
                     <div className="ap__copy">
-                        <div className="section-tag">📱 O App em Ação</div>
+                        <div className="section-tag">O App em Ação</div>
                         <h2 className="section-title">
                             Encontre e reserve{' '}
                             <span className="text-gradient">com poucos toques</span>
@@ -21,21 +21,18 @@ export default function AppPreview() {
 
                         <div className="ap__features">
                             <div className="ap__feat">
-                                <span className="ap__feat-icon">🔍</span>
                                 <div>
                                     <strong>Busca por região</strong>
                                     <p>Encontre espaços disponíveis perto de você em tempo real.</p>
                                 </div>
                             </div>
                             <div className="ap__feat">
-                                <span className="ap__feat-icon">🏷️</span>
                                 <div>
                                     <strong>Filtre por categoria</strong>
                                     <p>Saúde, coworking, eventos e muito mais.</p>
                                 </div>
                             </div>
                             <div className="ap__feat">
-                                <span className="ap__feat-icon">💰</span>
                                 <div>
                                     <strong>Preço transparente</strong>
                                     <p>Valor por hora ou dia antes de qualquer clique.</p>

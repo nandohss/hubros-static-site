@@ -5,7 +5,7 @@
 .ap {
     background: var(--color-surface);
     position: relative;
-    overflow: visible;
+    overflow: hidden;
 }
 
 /* Orb 1 — canto superior esquerdo */
