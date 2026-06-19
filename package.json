@@ -5,16 +5,20 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
+        "build": "vite build && node scripts/prerender.mjs",
+        "build:nossg": "vite build",
+        "prerender": "node scripts/prerender.mjs",
         "preview": "vite preview"
     },
     "dependencies": {
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
+        "react-helmet-async": "^2.0.5",
         "react-router-dom": "^7.13.2"
     },
     "devDependencies": {
         "@vitejs/plugin-react": "^4.3.4",
+        "puppeteer-core": "^24.43.1",
         "vite": "^6.0.5"
     }
 }

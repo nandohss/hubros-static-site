@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
+import Seo from './components/Seo'
 import ScrollToTop from './components/ScrollToTop'
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
@@ -63,6 +64,11 @@ function App() {
                 <Routes>
                     <Route path="/" element={
                         <>
+                            <Seo
+                                path="/"
+                                title="Hubros — Seu Espaço de Trabalho Ideal"
+                                description="Encontre e reserve espaços de coworking, salas e estúdios com facilidade. A plataforma que conecta profissionais a espaços incríveis."
+                            />
                             <Hero />
                             <Spaces />
                             <HowItWorks />
@@ -71,12 +77,42 @@ function App() {
                             <CTA />
                         </>
                     } />
-                    <Route path="/ajuda" element={<HelpCenter />} />
-                    <Route path="/sobre" element={<About />} />
-                    <Route path="/cookies" element={<Cookies />} />
-                    <Route path="/termos" element={<Terms />} />
-                    <Route path="/privacidade" element={<Privacy />} />
-                    <Route path="/lista-de-espera" element={<Waitlist />} />
+                    <Route path="/ajuda" element={
+                        <>
+                            <Seo path="/ajuda/" title="Central de Ajuda — Hubros" description="Tire suas dúvidas e fale com o time da Hubros. Suporte para encontrar e reservar espaços de trabalho." />
+                            <HelpCenter />
+                        </>
+                    } />
+                    <Route path="/sobre" element={
+                        <>
+                            <Seo path="/sobre/" title="Sobre a Hubros — Redefinindo o espaço de trabalho" description="Conheça a Hubros: conectamos profissionais e empresas a ambientes de trabalho inspiradores, de forma rápida, flexível e sem burocracia." />
+                            <About />
+                        </>
+                    } />
+                    <Route path="/cookies" element={
+                        <>
+                            <Seo path="/cookies/" title="Política de Cookies — Hubros" description="Saiba como a Hubros utiliza cookies para melhorar a sua experiência na plataforma." />
+                            <Cookies />
+                        </>
+                    } />
+                    <Route path="/termos" element={
+                        <>
+                            <Seo path="/termos/" title="Termos de Uso — Hubros" description="Termos de uso da plataforma Hubros." />
+                            <Terms />
+                        </>
+                    } />
+                    <Route path="/privacidade" element={
+                        <>
+                            <Seo path="/privacidade/" title="Política de Privacidade — Hubros" description="Política de privacidade e tratamento de dados da Hubros." />
+                            <Privacy />
+                        </>
+                    } />
+                    <Route path="/lista-de-espera" element={
+                        <>
+                            <Seo path="/lista-de-espera/" title="Lista de Espera — Hubros" description="Entre na lista de espera da Hubros e seja avisado quando lançarmos espaços perto de você." />
+                            <Waitlist />
+                        </>
+                    } />
                 </Routes>
             </main>
             <Footer />
