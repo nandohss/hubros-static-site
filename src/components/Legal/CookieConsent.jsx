@@ -32,7 +32,7 @@ export default function CookieConsent() {
     return (
         <div className={`cookie-consent ${isVisible ? 'visible' : ''}`}>
             <div className="cookie-consent__header">
-                <span className="cookie-consent__icon">🍪</span>
+
                 <span className="cookie-consent__title">Sua privacidade importa!</span>
             </div>
             

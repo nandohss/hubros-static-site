@@ -1,50 +1,5 @@
-import { SmartSearchIcon } from '../Icons/SmartSearchIcon'
-import { InstantReservationIcon } from '../Icons/InstantReservationIcon'
-import { VoucherIcon } from '../Icons/VoucherIcon'
-import { RealReviewsIcon } from '../Icons/RealReviewsIcon'
-import { SecurePaymentIcon } from '../Icons/SecurePaymentIcon'
-import { ForHostsIcon } from '../Icons/ForHostsIcon'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 import './Features.css'
-
-const features = [
-    {
-        icon: <SmartSearchIcon size="1em" />,
-        title: 'Busca Inteligente',
-        description: 'Filtre por localização, categoria, capacidade e disponibilidade em tempo real. Encontre o espaço ideal em segundos.',
-        color: 'rgba(255,255,255,0.15)',
-    },
-    {
-        icon: <InstantReservationIcon size="1em" />,
-        title: 'Reserva Instantânea',
-        description: 'Reserve por hora ou dia com apenas alguns toques. Confirmação imediata e sem burocracia.',
-        color: 'rgba(255,255,255,0.12)',
-    },
-    {
-        icon: <VoucherIcon size="1em" />,
-        title: 'Vouchers & Cupons',
-        description: 'Aproveite descontos exclusivos com nosso sistema de vouchers. Economize em cada reserva.',
-        color: 'rgba(255,255,255,0.18)',
-    },
-    {
-        icon: <RealReviewsIcon size="1em" />,
-        title: 'Avaliações Reais',
-        description: 'Leia avaliações autênticas de quem já usou o espaço. Escolha com confiança.',
-        color: 'rgba(255,255,255,0.10)',
-    },
-    {
-        icon: <SecurePaymentIcon size="1em" />,
-        title: 'Pagamento Seguro',
-        description: 'Transações protegidas com criptografia. Sua segurança financeira é nossa prioridade.',
-        color: 'rgba(255,255,255,0.14)',
-    },
-    {
-        icon: <ForHostsIcon size="1em" />,
-        title: 'Para Hosts',
-        description: 'Monetize seu espaço ocioso. Cadastre, configure preços e receba pagamentos automaticamente.',
-        color: 'rgba(255,255,255,0.16)',
-    },
-]
 
 export default function Features() {
     const revealRef = useScrollReveal({ threshold: 0.1 });
@@ -53,26 +8,50 @@ export default function Features() {
         <section className="features section" id="features">
             <div className="container">
                 <div className="features__header">
-                    <div className="section-tag">Funcionalidades</div>
-                    <h2 className="section-title">
-                        Tudo que você precisa{' '}
-                        <span className="text-gradient">em um só app</span>
+                    <div className="section-tag reveal">O App em Ação</div>
+                    <h2 className="section-title reveal" style={{ transitionDelay: '0.1s' }}>
+                        Encontre e reserve{' '}
+                        <span className="text-gradient">com poucos toques</span>
                     </h2>
-                    <p className="section-subtitle">
-                        Do descobrimento à reserva, passando pelo check-in e avaliação.
-                        A Hubros cobre toda a jornada — seja para trabalhar, atender ou criar.
-                    </p>
                 </div>
 
-                <div className="features__grid" ref={revealRef}>
-                    {features.map((feature, i) => (
-                        <div key={i} className="features__card card reveal" style={{ '--accent': feature.color, transitionDelay: `${i * 0.15}s` }}>
-                            <div className="features__icon">{feature.icon}</div>
-                            <h3 className="features__card-title">{feature.title}</h3>
-                            <p className="features__card-desc">{feature.description}</p>
-                            <div className="features__card-glow" aria-hidden="true" />
+                <div className="bento-grid" ref={revealRef}>
+                    {/* Card 1 (Large) */}
+                    <div className="bento-card bento-large reveal" style={{ transitionDelay: '0.2s' }}>
+                        <div className="bento-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.5">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
                         </div>
-                    ))}
+                        <h3>Busca por região</h3>
+                        <p>Encontre espaços disponíveis perto de você em tempo real, filtrando facilmente no mapa interativo.</p>
+                    </div>
+
+                    {/* Card 2 */}
+                    <div className="bento-card reveal" style={{ transitionDelay: '0.3s' }}>
+                        <div className="bento-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.5">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <h3>Filtre por categoria</h3>
+                        <p>Saúde, coworking, estética, eventos e muito mais. Ache o nicho exato para o seu momento.</p>
+                    </div>
+
+                    {/* Card 3 */}
+                    <div className="bento-card reveal" style={{ transitionDelay: '0.4s' }}>
+                        <div className="bento-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <h3>Preço transparente</h3>
+                        <p>Valor por hora ou dia antes de qualquer clique. Sem surpresas ou taxas escondidas.</p>
+                    </div>
                 </div>
             </div>
         </section>

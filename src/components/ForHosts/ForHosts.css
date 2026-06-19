@@ -1,0 +1,197 @@
+.forhosts {
+    background: #1C1A14;
+    position: relative;
+    z-index: 1;
+    color: #FFFFFF;
+}
+
+.forhosts .section-tag {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.forhosts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+}
+
+.forhosts-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+}
+
+.forhosts-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-4);
+    color: #FFFFFF;
+}
+
+.forhosts-desc {
+    font-size: var(--font-size-lg);
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
+    margin-bottom: var(--space-8);
+}
+
+.forhosts-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+}
+
+.forhosts-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.forhosts-list li svg {
+    color: #FFFFFF;
+    flex-shrink: 0;
+}
+
+/* Metrics column */
+.forhosts-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 0;
+}
+
+.metric-card {
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6) var(--space-8);
+    color: #FFFFFF;
+    transition: transform var(--transition-base), background var(--transition-base);
+}
+
+.metric-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.metric-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-4);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.metric-value {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: var(--space-2);
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+}
+
+.metric-label {
+    font-size: var(--font-size-base);
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 500;
+}
+
+/* Chart card */
+.metric-chart-title {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-6);
+}
+
+.metric-chart-item {
+    margin-bottom: var(--space-4);
+}
+
+.metric-chart-item:last-child {
+    margin-bottom: 0;
+}
+
+.metric-chart-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 6px;
+}
+
+.metric-chart-bg {
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.metric-chart-fill {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: var(--radius-full);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .forhosts-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-12);
+    }
+}
+
+@media (max-width: 640px) {
+    .forhosts-grid {
+        gap: var(--space-8);
+    }
+
+    .forhosts-title {
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+    }
+
+    .forhosts-desc {
+        font-size: var(--font-size-base);
+    }
+
+    .forhosts-metrics {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .metric-card {
+        padding: var(--space-6) var(--space-6);
+        border-radius: var(--radius-md);
+    }
+
+    .metric-value {
+        font-size: 2rem;
+    }
+
+    .metric-icon {
+        width: 40px;
+        height: 40px;
+        margin-bottom: var(--space-4);
+    }
+}

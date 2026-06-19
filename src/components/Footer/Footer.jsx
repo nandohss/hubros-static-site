@@ -13,19 +13,25 @@ export default function Footer() {
     const year = new Date().getFullYear()
     return (
         <footer className="footer" id="about">
-            <div className="footer__top-border" aria-hidden="true" />
             <div className="container">
-                <div className="footer__inner">
+                <div className="footer__glass-panel">
+                    <div className="footer__inner">
                     <div className="footer__brand">
                         <a href="/" className="footer__logo">
                             <HubrosLogo size={28} />
                             <span className="footer__logo-text">Hubros</span>
                         </a>
                         <p className="footer__tagline">
-                            A plataforma que conecta pessoas a espaços incríveis por todo o Brasil.
+                            A plataforma que conecta pessoas a espaços incríveis por todo o Brasil.<br />
                         </p>
                         <div className="footer__social">
-                            <a href="https://www.instagram.com/hubros.app" target="_blank" rel="noopener noreferrer" className="footer__social-btn" aria-label="Instagram Hubros">
+                            <a
+                                href="https://www.instagram.com/hubros.app"
+                                className="footer__social-btn"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Instagram"
+                            >
                                 <InstagramIcon />
                             </a>
                         </div>
@@ -34,16 +40,16 @@ export default function Footer() {
                     <div className="footer__col">
                         <h4 className="footer__col-title">Produto</h4>
                         <ul className="footer__col-links">
-                            <li><Link to="/#features" className="footer__link">Para Coworkers</Link></li>
-                            <li><Link to="/#features" className="footer__link">Para Hosts</Link></li>
+                            <li><Link to="/#spaces" className="footer__link">Para Coworkers</Link></li>
+                            <li><Link to="/#hosts" className="footer__link">Para Hosts</Link></li>
                         </ul>
                     </div>
 
                     <div className="footer__col">
                         <h4 className="footer__col-title">Legal</h4>
                         <ul className="footer__col-links">
-                            <li><Link to="/" className="footer__link">Termos de Uso</Link></li>
-                            <li><Link to="/" className="footer__link">Privacidade</Link></li>
+                            <li><Link to="/termos" className="footer__link">Termos de Uso</Link></li>
+                            <li><Link to="/privacidade" className="footer__link">Privacidade</Link></li>
                             <li><Link to="/cookies" className="footer__link">Cookies</Link></li>
                         </ul>
                     </div>
@@ -65,11 +71,12 @@ export default function Footer() {
 
                 <div className="footer__bottom">
                     <p className="footer__copy">
-                        © {year} Hubros. Todos os direitos reservados.
+                        © 2026 HUB DE COWORKING INOVA SIMPLES (I.S.).
                     </p>
                     <p className="footer__made">
                         Feito com ❤️ por Team Hubros
                     </p>
+                    </div>
                 </div>
             </div>
         </footer>

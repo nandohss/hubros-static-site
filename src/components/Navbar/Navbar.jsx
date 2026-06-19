@@ -14,7 +14,7 @@ export default function Navbar() {
 
     const navLinks = [
         { label: 'Para Coworkers', href: '/#features' },
-        { label: 'Para Hosts', href: '/#how-it-works' },
+        { label: 'Para Hosts', href: '/#hosts' },
         { label: 'Sobre', href: '/sobre' },
     ]
 
@@ -28,20 +28,22 @@ export default function Navbar() {
                 </a>
 
                 <nav className={`navbar__links ${menuOpen ? 'navbar__links--open' : ''}`}>
-                    {navLinks.map(link => (
-                        <a
-                            key={link.href}
-                            href={link.href}
-                            className="navbar__link"
-                            onClick={() => setMenuOpen(false)}
-                        >
-                            {link.label}
-                        </a>
-                    ))}
+                    <div className="nav-pill">
+                        {navLinks.map(link => (
+                            <a
+                                key={link.href}
+                                href={link.href}
+                                className="navbar__link"
+                                onClick={() => setMenuOpen(false)}
+                            >
+                                {link.label}
+                            </a>
+                        ))}
+                    </div>
                 </nav>
 
                 <div className="navbar__actions">
-                    <a href="#download" className="btn btn-primary">
+                    <a href="https://apps.apple.com/br/app/hubros/id6762576263" className="btn btn-primary">
                         Baixar App
                     </a>
                     <button

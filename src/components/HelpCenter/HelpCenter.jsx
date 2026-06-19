@@ -43,7 +43,7 @@ export default function HelpCenter() {
 
     if (status === 'success') {
         return (
-            <section className="help-center-page section" id="ajuda">
+            <section className="help-center-page" id="ajuda">
                 <div className="container help-center-page__container">
                     <div className="help-center-page__box help-center-success">
                         <div className="help-center-success__icon">✅</div>
@@ -64,10 +64,10 @@ export default function HelpCenter() {
     }
 
     return (
-        <section className="help-center-page section" id="ajuda">
+        <section className="help-center-page" id="ajuda">
             <div className="container help-center-page__container">
                 <div className="help-center-page__header">
-                    <div className="section-tag">🎧 Central de Ajuda</div>
+                    <div className="section-tag">Central de Ajuda</div>
                     <h2 className="help-center-page__title">
                         Como podemos <span className="text-gradient">ajudar?</span>
                     </h2>

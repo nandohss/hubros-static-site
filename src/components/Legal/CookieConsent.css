@@ -46,9 +46,10 @@
 }
 
 .cookie-consent__text a {
-    color: var(--color-primary);
+    color: var(--color-text-primary);
     text-decoration: underline;
     text-underline-offset: 2px;
+    font-weight: 600;
 }
 
 .cookie-consent__actions {
@@ -67,13 +68,14 @@
 }
 
 .cookie-consent__btn--primary {
-    background: var(--color-primary);
-    color: var(--color-bg);
+    background: #1C1A14;
+    color: #FFFFFF;
 }
 
 .cookie-consent__btn--primary:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-glow-primary);
+    background: #000000;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .cookie-consent__btn--secondary {

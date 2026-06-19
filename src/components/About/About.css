@@ -1,10 +1,11 @@
 .about-page {
-    background: var(--color-bg);
-    padding-top: calc(var(--header-height, 80px) + var(--space-20));
+    background: transparent;
+    padding-top: calc(var(--nav-height, 72px) + var(--space-16));
     padding-bottom: var(--space-20);
     min-height: 100vh;
 }
 
+/* Hero */
 .about__hero {
     text-align: center;
     max-width: 800px;
@@ -26,12 +27,16 @@
     margin: 0 auto;
 }
 
+/* Vision */
 .about__vision {
     background: var(--color-surface);
-    border-radius: var(--radius-lg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-xl);
     padding: var(--space-12) var(--space-8);
     margin-bottom: var(--space-20);
     border: 1px solid var(--color-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
     position: relative;
     overflow: hidden;
 }
@@ -43,7 +48,7 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);
 }
 
 .about__vision-content {
@@ -54,7 +59,9 @@
 }
 
 .about__vision-content h3 {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
     margin-bottom: var(--space-6);
     color: var(--color-text-primary);
 }
@@ -75,6 +82,7 @@
     font-weight: 600;
 }
 
+/* Pillars */
 .about__pillars {
     margin-bottom: var(--space-20);
 }
@@ -97,53 +105,51 @@
     height: 100%;
 }
 
-.about__pillar-icon {
-    font-size: 2.5rem;
-    color: var(--color-primary);
-    margin-bottom: var(--space-2);
-}
-
 .about__pillar-title {
     font-size: var(--font-size-lg);
     font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.01em;
 }
 
 .about__pillar-desc {
     color: var(--color-text-secondary);
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
-/* Statement moderno */
+/* Statement */
 .about__statement {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: var(--space-12) 0;
     text-align: center;
-    position: relative;
 }
 
 .about__statement-content {
     max-width: 700px;
-    padding: var(--space-12) var(--space-6);
-    position: relative;
+    width: 100%;
+    padding: var(--space-12) var(--space-8);
     border-radius: var(--radius-xl);
-    background: linear-gradient(135deg, rgba(88,101,242,0.05) 0%, rgba(133,92,238,0.02) 100%);
-    border: 1px solid rgba(88,101,242,0.15);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
     backdrop-filter: blur(20px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
 }
 
 .about__statement h2 {
     font-size: clamp(2.5rem, 5vw, 4rem);
     line-height: 1.1;
+    letter-spacing: -0.03em;
     margin-bottom: var(--space-8);
 }
 
 .about__statement-line {
     width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-text-primary), var(--color-text-secondary));
+    opacity: 0.25;
     margin: 0 auto var(--space-8);
     border-radius: 2px;
 }
@@ -151,9 +157,10 @@
 .about__statement p {
     font-size: var(--font-size-lg);
     color: var(--color-text-secondary);
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
+/* Responsive */
 @media (max-width: 1024px) {
     .about__pillars-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -164,8 +171,12 @@
     .about__pillars-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .about__vision {
+        padding: var(--space-8) var(--space-4);
+    }
+
+    .about__statement-content {
         padding: var(--space-8) var(--space-4);
     }
 }
