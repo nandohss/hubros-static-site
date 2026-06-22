@@ -8,7 +8,9 @@ import puppeteer from 'puppeteer-core'
 const PORT = 4178
 const ORIGIN = `http://localhost:${PORT}`
 const DIST = fileURLToPath(new URL('../dist', import.meta.url))
-const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+// Caminho do Chrome: configurável via CHROME_PATH (usado no CI/GitHub Actions),
+// com fallback para o Chrome do macOS no ambiente local.
+const CHROME = process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 const BLOG_DIR = fileURLToPath(new URL('../src/data/blog', import.meta.url))
 
 // Busca dinamicamente os posts do blog
