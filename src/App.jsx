@@ -18,6 +18,24 @@ import Terms from './components/Legal/Terms'
 import Privacy from './components/Legal/Privacy'
 import CookieConsent from './components/Legal/CookieConsent'
 import Footer from './components/Footer/Footer'
+import BlogIndex from './components/Blog/BlogIndex'
+import BlogPost from './components/Blog/BlogPost'
+
+const ORG_SCHEMA = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Hubros',
+    url: 'https://hubros.com.br',
+    logo: 'https://hubros.com.br/favicon.png',
+    sameAs: ['https://www.instagram.com/hubros.app'],
+}
+
+const WEBSITE_SCHEMA = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Hubros',
+    url: 'https://hubros.com.br',
+}
 
 function App() {
     const location = useLocation();
@@ -68,6 +86,7 @@ function App() {
                                 path="/"
                                 title="Hubros — Seu Espaço de Trabalho Ideal"
                                 description="Encontre e reserve espaços de coworking, salas e estúdios com facilidade. A plataforma que conecta profissionais a espaços incríveis."
+                                schema={[ORG_SCHEMA, WEBSITE_SCHEMA]}
                             />
                             <Hero />
                             <Spaces />
@@ -77,6 +96,8 @@ function App() {
                             <CTA />
                         </>
                     } />
+                    <Route path="/blog" element={<BlogIndex />} />
+                    <Route path="/blog/:slug" element={<BlogPost />} />
                     <Route path="/ajuda" element={
                         <>
                             <Seo path="/ajuda/" title="Central de Ajuda — Hubros" description="Tire suas dúvidas e fale com o time da Hubros. Suporte para encontrar e reservar espaços de trabalho." />

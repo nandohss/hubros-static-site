@@ -15,6 +15,7 @@ export default function Navbar() {
     const navLinks = [
         { label: 'Para Coworkers', href: '/#features' },
         { label: 'Para Hosts', href: '/#hosts' },
+        { label: 'Blog', href: '/blog' },
         { label: 'Sobre', href: '/sobre' },
     ]
 

@@ -1,4 +1,5 @@
 import screenshotSrc from '../../assets/screenshot_marketplace.png'
+import IPhone3D from '../IPhone3D/IPhone3D'
 import './AppPreview.css'
 
 export default function AppPreview() {
@@ -44,23 +45,9 @@ export default function AppPreview() {
                     {/* ── Coluna direita — iPhone 17 ── */}
                     <div className="ap__phone-wrap" aria-hidden="true">
 
-                        {/* Botões físicos esquerda */}
-                        <div className="ap__btn ap__btn--action" />
-                        <div className="ap__btn ap__btn--vol-up" />
-                        <div className="ap__btn ap__btn--vol-down" />
-                        {/* Camera Control direita */}
-                        <div className="ap__btn ap__btn--camera" />
-
-                        {/* Corpo do iPhone */}
-                        <div className="ap__phone">
-                            {/* Screenshot ocupa todo o frame */}
-                            <img
-                                src={screenshotSrc}
-                                alt="Tela do marketplace no app Hubros"
-                                className="ap__screen"
-                            />
-                            {/* Dynamic Island sobreposto à tela */}
-                            <div className="ap__dynamic-island" />
+                        {/* Corpo do iPhone 3D */}
+                        <div style={{ position: 'relative', width: '420px', height: '650px', zIndex: 2 }}>
+                            <IPhone3D screenshotSrc={screenshotSrc} />
                         </div>
 
                         {/* Badges abaixo e ao lado do frame, sem tampar a tela */}

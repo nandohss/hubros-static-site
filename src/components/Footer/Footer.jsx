@@ -65,6 +65,7 @@ export default function Footer() {
                         <h4 className="footer__col-title">Empresa</h4>
                         <ul className="footer__col-links">
                             <li><Link to="/sobre" className="footer__link">Sobre Nós</Link></li>
+                            <li><Link to="/blog" className="footer__link">Blog</Link></li>
                         </ul>
                     </div>
                 </div>

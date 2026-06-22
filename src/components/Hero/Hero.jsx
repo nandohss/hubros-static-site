@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import screenshotSrc from '../../assets/screenshot_marketplace.png'
+import IPhone3D from '../IPhone3D/IPhone3D'
 import './Hero.css'
 
 const HERO_PHRASES = [
@@ -76,11 +77,8 @@ export default function Hero() {
                         <div className="fc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><path d="M12 18V6"></path></svg></div>
                         <div className="fc-text"><strong>R$ 20,00 / hora</strong><span>Pagamento Seguro</span></div>
                     </div>
-                    <div className="ap-phone-wrap">
-                        <div className="ap-phone">
-                            <img src={screenshotSrc} alt="App Hubros Interface" className="ap-screen" />
-                            <div className="ap-island"></div>
-                        </div>
+                    <div className="ap-phone-wrap" style={{ position: 'relative', width: '420px', height: '650px', zIndex: 2 }}>
+                        <IPhone3D screenshotSrc={screenshotSrc} />
                     </div>
                 </div>
             </div>
