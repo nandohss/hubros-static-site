@@ -118,12 +118,12 @@ export default function IPhone3D({ screenshotSrc }) {
     const screenH = screenW / 0.4613; // ≈ 6.94
     const bodyW = screenW + 0.16;
     const bodyH = screenH + 0.16;
-    const depth = 0.40;
-    const frontZ = depth / 2 + 0.08;
+    const depth = 0.24;
+    const frontZ = depth / 2 + 0.05;
 
     const bodyGeo = new THREE.ExtrudeGeometry(makeRoundedRectShape(bodyW, bodyH, 0.46), {
       depth,
-      bevelEnabled: true, bevelThickness: 0.08, bevelSize: 0.08,
+      bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.05,
       bevelSegments: 10,  curveSegments: 32,
     });
     bodyGeo.center();
