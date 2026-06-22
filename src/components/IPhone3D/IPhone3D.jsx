@@ -147,7 +147,7 @@ export default function IPhone3D({ screenshotSrc }) {
         tex.dispose();
         const screen = new THREE.Mesh(
           new THREE.PlaneGeometry(screenW, screenH),
-          new THREE.MeshBasicMaterial({ map: roundedTex, transparent: true }),
+          new THREE.MeshBasicMaterial({ map: roundedTex, transparent: true, toneMapped: false }),
         );
         screen.position.z = frontZ + 0.002;
         phone.add(screen);
