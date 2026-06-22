@@ -28,4 +28,4 @@ Um hábito transformador é a **Segmentação Geográfica**: use o home office p
 **Lembre-se:** A constância e a rotina são os juros compostos da sua carreira. Construa sistemas simples e confie no processo.
 
 > **Precisa de um ambiente focado para o seu Deep Work da semana?**  
-> O **App Hubros** te conecta às melhores salas silenciosas e coworkings da sua cidade. Alugue por hora, apenas quando precisar produzir. Baixe o app e experimente trabalhar sem distrações.
+> O **App Hubros** te conecta às melhores salas silenciosas e coworkings da sua cidade. Alugue por hora ou por dia, apenas quando precisar produzir. Baixe o app e experimente trabalhar sem distrações.
