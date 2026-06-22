@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "480984255530.com.exemplo.coworking",
+        "paths": ["*"]
+      }
+    ]
+  }
+}

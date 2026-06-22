@@ -1,151 +1,86 @@
+import { useState, useEffect } from 'react'
+import screenshotSrc from '../../assets/screenshot_marketplace.png'
+import IPhone3D from '../IPhone3D/IPhone3D'
 import './Hero.css'
+
+const HERO_PHRASES = [
+    { line1: 'O espaço certo,', line2: 'na hora certa.' },
+    { line1: 'Trabalhe onde', line2: 'quiser, hoje.' },
+    { line1: 'Reserve em', line2: 'segundos.' },
+    { line1: 'Sua produtividade,', line2: 'sem contrato.' },
+]
+
+function RotatingTitle() {
+    const [index, setIndex] = useState(0)
+    const [visible, setVisible] = useState(true)
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setVisible(false)
+            setTimeout(() => {
+                setIndex(prev => (prev + 1) % HERO_PHRASES.length)
+                setVisible(true)
+            }, 500)
+        }, 3500)
+        return () => clearInterval(interval)
+    }, [])
+
+    const phrase = HERO_PHRASES[index]
+
+    return (
+        <h1
+            className={`hero__title hero__title--animated ${visible ? 'hero__title--visible' : 'hero__title--hidden'}`}
+            style={{ transitionDelay: '0.1s' }}
+        >
+            {phrase.line1}<br />{phrase.line2}
+        </h1>
+    )
+}
 
 export default function Hero() {
     return (
         <section className="hero" id="hero">
-            {/* Glow de fundo */}
-            <div className="hero__glow" aria-hidden="true" />
-            <div className="hero__glow hero__glow--2" aria-hidden="true" />
-
-            <div className="container hero__inner">
-                <div className="hero__content">
-                    <div className="section-tag">
-                        <span>🚀</span> Lançamento — Disponível na App Store
-                    </div>
-
-                    <h1 className="hero__title">
-                        Seu próximo espaço{' '}
-                        <span className="text-gradient">está a um clique</span>{' '}
-                        de distância
-                    </h1>
-
-                    <p className="hero__subtitle">
-                        Encontre e reserve escritórios, clínicas, salões, estúdios e muito mais.
-                        Conectamos pessoas a espaços incríveis em todo o Brasil.
-                    </p>
-
-                    <div className="hero__actions">
-                        <a href="#download" className="btn btn-primary btn-lg" id="hero-cta-appstore">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                            </svg>
-                            App Store
-                        </a>
-                        <a href="#download" className="btn btn-secondary btn-lg" id="hero-cta-googleplay">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3.18 23.76c.38.21.82.22 1.22.04l11.64-6.57-2.55-2.55-10.31 9.08zM.5 1.98C.18 2.33 0 2.88 0 3.6v16.8c0 .72.18 1.27.51 1.62l.08.08 9.41-9.41v-.22L.58 1.9l-.08.08zM20.49 10.14l-2.64-1.49-2.87 2.87 2.87 2.87 2.65-1.5c.76-.43.76-1.32-.01-1.75zM4.4.24L16.04 6.81l-2.55 2.55L3.18.28C3.58.1 4.02.11 4.4.24z" />
-                            </svg>
-                            Google Play
-                        </a>
+            <div className="container">
+                <div className="hero__badge reveal">
+                    <span className="hero__badge-tag">Lançamento</span>
+                    Disponível na App Store
+                </div>
+                
+                <RotatingTitle />
+                
+                <p className="hero__subtitle reveal" style={{ transitionDelay: '0.2s' }}>
+                    Encontre e reserve escritórios, clínicas, salões, estúdios e muito mais. Conectamos pessoas a espaços incríveis em todo o Brasil.
+                </p>
+                
+                <div className="hero__cta-group reveal" style={{ transitionDelay: '0.3s' }}>
+                    <a href="https://apps.apple.com/br/app/hubros/id6762576263" className="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        App Store
+                    </a>
+                    <div className="btn btn-secondary" style={{ opacity: 0.6, cursor: 'not-allowed' }}>
+                        Google Play <span className="btn-inline-tag">Em breve</span>
                     </div>
                 </div>
 
-                {/* QR Code + visual */}
-                <div className="hero__visual" aria-hidden="false">
-                    <div className="hero__qr-card">
-                        <p className="hero__qr-label">Escaneie para baixar</p>
-                        {/* QR Code representativo */}
-                        <div className="hero__qr-frame">
-                            <svg
-                                viewBox="0 0 200 200"
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="hero__qr-svg"
-                            >
-                                {/* Fundo branco */}
-                                <rect width="200" height="200" fill="white" rx="12" />
-                                {/* Módulos do QR — padrão de marcadores de posição */}
-                                {/* Canto superior esquerdo */}
-                                <rect x="10" y="10" width="56" height="56" rx="4" fill="black" />
-                                <rect x="18" y="18" width="40" height="40" rx="2" fill="white" />
-                                <rect x="26" y="26" width="24" height="24" rx="1" fill="black" />
-                                {/* Canto superior direito */}
-                                <rect x="134" y="10" width="56" height="56" rx="4" fill="black" />
-                                <rect x="142" y="18" width="40" height="40" rx="2" fill="white" />
-                                <rect x="150" y="26" width="24" height="24" rx="1" fill="black" />
-                                {/* Canto inferior esquerdo */}
-                                <rect x="10" y="134" width="56" height="56" rx="4" fill="black" />
-                                <rect x="18" y="142" width="40" height="40" rx="2" fill="white" />
-                                <rect x="26" y="150" width="24" height="24" rx="1" fill="black" />
-                                {/* Módulos de dados centrais */}
-                                <rect x="76" y="10" width="8" height="8" fill="black" />
-                                <rect x="92" y="10" width="8" height="8" fill="black" />
-                                <rect x="108" y="10" width="8" height="8" fill="black" />
-                                <rect x="124" y="10" width="8" height="8" fill="black" />
-                                <rect x="76" y="26" width="8" height="8" fill="black" />
-                                <rect x="108" y="26" width="8" height="8" fill="black" />
-                                <rect x="76" y="42" width="8" height="8" fill="black" />
-                                <rect x="92" y="42" width="8" height="8" fill="black" />
-                                <rect x="124" y="42" width="8" height="8" fill="black" />
-                                <rect x="76" y="58" width="8" height="8" fill="black" />
-                                <rect x="108" y="58" width="8" height="8" fill="black" />
-                                {/* Coluna central esquerda */}
-                                <rect x="10" y="76" width="8" height="8" fill="black" />
-                                <rect x="26" y="76" width="8" height="8" fill="black" />
-                                <rect x="58" y="76" width="8" height="8" fill="black" />
-                                <rect x="76" y="76" width="8" height="8" fill="black" />
-                                <rect x="92" y="76" width="8" height="8" fill="black" />
-                                <rect x="108" y="76" width="8" height="8" fill="black" />
-                                <rect x="124" y="76" width="8" height="8" fill="black" />
-                                <rect x="140" y="76" width="8" height="8" fill="black" />
-                                <rect x="156" y="76" width="8" height="8" fill="black" />
-                                <rect x="182" y="76" width="8" height="8" fill="black" />
-                                {/* Bloco central */}
-                                <rect x="76" y="92" width="8" height="8" fill="black" />
-                                <rect x="108" y="92" width="8" height="8" fill="black" />
-                                <rect x="124" y="92" width="8" height="8" fill="black" />
-                                <rect x="156" y="92" width="8" height="8" fill="black" />
-                                <rect x="76" y="108" width="8" height="8" fill="black" />
-                                <rect x="92" y="108" width="8" height="8" fill="black" />
-                                <rect x="140" y="108" width="8" height="8" fill="black" />
-                                <rect x="172" y="108" width="8" height="8" fill="black" />
-                                <rect x="76" y="124" width="8" height="8" fill="black" />
-                                <rect x="108" y="124" width="8" height="8" fill="black" />
-                                <rect x="124" y="124" width="8" height="8" fill="black" />
-                                <rect x="156" y="124" width="8" height="8" fill="black" />
-                                <rect x="76" y="140" width="8" height="8" fill="black" />
-                                <rect x="92" y="140" width="8" height="8" fill="black" />
-                                <rect x="108" y="140" width="8" height="8" fill="black" />
-                                <rect x="140" y="140" width="8" height="8" fill="black" />
-                                <rect x="172" y="140" width="8" height="8" fill="black" />
-                                <rect x="76" y="156" width="8" height="8" fill="black" />
-                                <rect x="124" y="156" width="8" height="8" fill="black" />
-                                <rect x="140" y="156" width="8" height="8" fill="black" />
-                                <rect x="156" y="156" width="8" height="8" fill="black" />
-                                <rect x="76" y="172" width="8" height="8" fill="black" />
-                                <rect x="92" y="172" width="8" height="8" fill="black" />
-                                <rect x="108" y="172" width="8" height="8" fill="black" />
-                                <rect x="124" y="172" width="8" height="8" fill="black" />
-                                <rect x="172" y="172" width="8" height="8" fill="black" />
-                                <rect x="76" y="188" width="8" height="8" fill="black" />
-                                <rect x="108" y="188" width="8" height="8" fill="black" />
-                                <rect x="156" y="188" width="8" height="8" fill="black" />
-                            </svg>
-                        </div>
-                        <p className="hero__qr-sublabel">Disponível para iOS e Android</p>
-                        <div className="hero__qr-badges">
-                            <img
-                                src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-                                alt="App Store"
-                                className="hero__qr-store-badge"
-                            />
-                            <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                                alt="Google Play"
-                                className="hero__qr-store-badge"
-                            />
-                        </div>
-                    </div>
-                    {/* orbs decorativos */}
-                    <div className="hero__orb hero__orb--1" />
-                    <div className="hero__orb hero__orb--2" />
+                <div className="hero__trust reveal" style={{ transitionDelay: '0.4s' }}>
+                    <div className="hero__trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Pagamento seguro</div>
+                    <div className="hero__trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg> Confirmação imediata</div>
+                    <div className="hero__trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Cancele quando quiser</div>
                 </div>
-            </div>
 
-            {/* Wave */}
-            <div className="hero__wave" aria-hidden="true">
-                <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                    <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,20 1440,40 L1440,80 L0,80 Z" fill="#111111" />
-                </svg>
+                <div className="showcase reveal" style={{ transitionDelay: '0.5s' }}>
+                    <div className="floating-card fc-left">
+                        <div className="fc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                        <div className="fc-text"><strong>Reserva confirmada!</strong><span>Hubros App</span></div>
+                    </div>
+                    <div className="floating-card fc-right">
+                        <div className="fc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><path d="M12 18V6"></path></svg></div>
+                        <div className="fc-text"><strong>R$ 20,00 / hora</strong><span>Pagamento Seguro</span></div>
+                    </div>
+                    <div className="ap-phone-wrap" style={{ position: 'relative', width: '420px', height: '650px', zIndex: 2 }}>
+                        <IPhone3D screenshotSrc={screenshotSrc} />
+                    </div>
+                </div>
             </div>
         </section>
     )

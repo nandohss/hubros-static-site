@@ -6,11 +6,8 @@ export default function CTA() {
         <section className="cta section" id="download">
             <div className="container">
                 <div className="cta__box">
-                    <div className="cta__glow" aria-hidden="true" />
-                    <div className="cta__glow cta__glow--2" aria-hidden="true" />
-
                     <div className="cta__content">
-                        <div className="section-tag">📱 Baixe Agora</div>
+                        <div className="section-tag">Baixe Agora</div>
                         <h2 className="cta__title">
                             Comece a trabalhar no{' '}
                             <span className="text-gradient">espaço dos seus sonhos</span>{' '}
@@ -22,20 +19,23 @@ export default function CTA() {
                         </p>
 
                         <div className="cta__badges">
-                            <a href="#" className="cta__badge" id="cta-appstore" aria-label="Baixar na App Store">
+                            <a href="https://apps.apple.com/br/app/hubros/id6762576263" className="cta__badge" id="cta-appstore" aria-label="Baixar na App Store">
                                 <img
                                     src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
                                     alt="Download on the App Store"
                                     className="cta__store-badge"
                                 />
                             </a>
-                            <a href="#" className="cta__badge" id="cta-googleplay" aria-label="Baixar no Google Play">
-                                <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                                    alt="Get it on Google Play"
-                                    className="cta__store-badge"
-                                />
-                            </a>
+                            <div className="cta__badge-container">
+                                <div className="cta__badge-overlay">Em breve</div>
+                                <div className="cta__badge cta__badge--disabled" id="cta-googleplay" aria-label="Google Play (Em breve)">
+                                    <img
+                                        src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                                        alt="Get it on Google Play"
+                                        className="cta__store-badge"
+                                    />
+                                </div>
+                            </div>
                         </div>
 
                         <p className="cta__disclaimer">

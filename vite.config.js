@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// base: './' garante que os assets funcionem corretamente no S3 static hosting
+// base: '/' (absoluto) para os assets resolverem a partir de qualquer rota,
+// inclusive as pré-renderizadas em subdiretório (ex.: /sobre/).
 export default defineConfig({
     plugins: [react()],
-    base: './',
+    base: '/',
     build: {
         outDir: 'dist',
         assetsDir: 'assets',
