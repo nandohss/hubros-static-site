@@ -94,6 +94,42 @@
     opacity: 1;
 }
 
+/* Selos Founders Club */
+.footer__selos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    /* Área de proteção do selo: metade da altura (80px / 2 = 40px). */
+    padding: 40px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.footer__selos-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #1C1A14;
+    opacity: 0.5;
+}
+
+.footer__selos-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Mantém a margem de segurança entre os dois selos. */
+    gap: 40px;
+}
+
+/* Altura fixa (mínimo de 80px do guia) e largura automática para
+   não distorcer a proporção original do selo. */
+.footer__selo {
+    height: 80px;
+    width: auto;
+    display: block;
+}
+
 /* Bottom */
 .footer__bottom {
     display: flex;

@@ -94,7 +94,9 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  overflow-x: hidden;
+  /* clip (em vez de hidden) evita criar um container de rolagem,
+     o que quebraria o position: sticky do índice do blog. */
+  overflow-x: clip;
 }
 
 body {
@@ -102,7 +104,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text-primary);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -179,16 +181,11 @@ button {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
   font-size: var(--font-size-sm);
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-full);
   margin-bottom: var(--space-4);
 }
 

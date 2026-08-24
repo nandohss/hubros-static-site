@@ -44,7 +44,7 @@ export default function Navbar() {
                 </nav>
 
                 <div className="navbar__actions">
-                    <a href="https://apps.apple.com/br/app/hubros/id6762576263" className="btn btn-primary">
+                    <a href="/#download" className="btn btn-primary">
                         Baixar App
                     </a>
                     <button

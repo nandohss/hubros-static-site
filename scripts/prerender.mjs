@@ -71,10 +71,16 @@ async function main() {
             console.log(`✓ prerender ${route} → ${outPath.replace(DIST, 'dist')}`)
         }
 
-        // Gera o sitemap.xml automaticamente
+        // Gera o sitemap.xml automaticamente.
+        // ROUTES são as rotas do React (pré-renderizadas acima). STATIC_PAGES são
+        // páginas HTML avulsas servidas direto de public/ — não passam pelo
+        // prerender, mas precisam entrar no sitemap para o Google achá-las, já
+        // que nenhum link do site aponta para elas.
+        const STATIC_PAGES = ['/espacos']
+        const allUrls = [...ROUTES, ...STATIC_PAGES]
         const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${ROUTES.map(route => `  <url>
+${allUrls.map(route => `  <url>
     <loc>https://hubros.com.br${route === '/' ? '' : route}/</loc>
     <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
     <changefreq>${route.startsWith('/blog') ? 'weekly' : 'monthly'}</changefreq>
@@ -82,7 +88,7 @@ ${ROUTES.map(route => `  <url>
   </url>`).join('\n')}
 </urlset>`
         await writeFile(join(DIST, 'sitemap.xml'), sitemap, 'utf8')
-        console.log(`✓ sitemap.xml gerado com sucesso com ${ROUTES.length} rotas`)
+        console.log(`✓ sitemap.xml gerado com sucesso com ${allUrls.length} rotas`)
 
         await browser.close()
     } finally {

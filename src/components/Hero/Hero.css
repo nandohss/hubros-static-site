@@ -1,6 +1,6 @@
 .hero { padding-top: calc(var(--nav-height) + 5rem); padding-bottom: 5rem; text-align: center; background: transparent; }
-.hero__badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.8); padding: 6px 16px; border-radius: var(--radius-full); font-size: var(--font-size-sm); font-weight: 600; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.02); color: var(--color-text-secondary); }
-.hero__badge-tag { background: #1C1A14; color: #FFF; padding: 2px 8px; border-radius: var(--radius-full); font-size: var(--font-size-xs); text-transform: uppercase; }
+.hero__badge { display: inline-flex; align-items: center; gap: 8px; font-size: var(--font-size-sm); font-weight: 600; letter-spacing: 0.02em; margin-bottom: 2rem; color: var(--color-text-secondary); }
+.hero__badge-tag { color: var(--color-text-primary); font-weight: 700; text-transform: uppercase; font-size: var(--font-size-xs); letter-spacing: 0.08em; }
 .hero__title { font-size: clamp(3.5rem, 8vw, 6rem); font-weight: 800; line-height: 1.05; margin-bottom: 1.5rem; max-width: 1000px; margin-left: auto; margin-right: auto; }
 .hero__title--animated { transition: opacity 0.5s ease, transform 0.5s ease; }
 .hero__title--visible { opacity: 1; transform: translateY(0); }

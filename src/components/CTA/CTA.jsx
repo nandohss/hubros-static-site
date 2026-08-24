@@ -26,16 +26,13 @@ export default function CTA() {
                                     className="cta__store-badge"
                                 />
                             </a>
-                            <div className="cta__badge-container">
-                                <div className="cta__badge-overlay">Em breve</div>
-                                <div className="cta__badge cta__badge--disabled" id="cta-googleplay" aria-label="Google Play (Em breve)">
-                                    <img
-                                        src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                                        alt="Get it on Google Play"
-                                        className="cta__store-badge"
-                                    />
-                                </div>
-                            </div>
+                            <a href="https://play.google.com/store/apps/details?id=br.com.hubros.hubros_app" className="cta__badge" id="cta-googleplay" aria-label="Baixar no Google Play" target="_blank" rel="noopener noreferrer">
+                                <img
+                                    src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                                    alt="Get it on Google Play"
+                                    className="cta__store-badge"
+                                />
+                            </a>
                         </div>
 
                         <p className="cta__disclaimer">
