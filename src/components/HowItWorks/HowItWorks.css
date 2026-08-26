@@ -29,22 +29,21 @@
 }
 
 .step-card {
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--glass);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.8);
     border-radius: var(--radius-2xl);
     padding: var(--space-12) var(--space-8);
     text-align: left;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.03);
+    box-shadow: var(--glass-shadow);
     color: var(--color-text-primary);
     transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .step-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 48px rgba(0,0,0,0.06);
-    background: var(--color-surface-2);
+    box-shadow: var(--glass-shadow-hover);
 }
 
 .step-number {

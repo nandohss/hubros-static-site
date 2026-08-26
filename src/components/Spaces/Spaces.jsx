@@ -32,7 +32,7 @@ export default function Spaces() {
         <section className="spaces section" id="spaces">
             <div className="container">
                 <div className="spaces__header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                    <h2 className="section-title" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', color: '#1C1A14', letterSpacing: '-0.04em' }}>
+                    <h2 className="section-title" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', color: 'var(--color-text-primary)', letterSpacing: '-0.04em' }}>
                         Espaços incríveis perto de você
                     </h2>
                     <p className="section-subtitle" style={{ margin: '0 auto' }}>
@@ -46,7 +46,7 @@ export default function Spaces() {
                         <div key={i} className="spaces__card">
                             <div className="spaces__card-img" style={{ background: space.gradient }}>
                                 <span className="spaces__card-rating" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="#1C1A14" stroke="#1C1A14" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                                     </svg>
                                     {space.rating}

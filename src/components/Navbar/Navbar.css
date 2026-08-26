@@ -1,29 +1,49 @@
+/* O <header> deixa de ser posicionado: quem flutua é a pill.
+   Isso não é preferência, é requisito do backdrop-filter no WebKit — um
+   ancestral fixed/sticky vira "backdrop root" e o Safari pinta o filtro na
+   caixa DELE (largura total da tela), desenhando uma faixa atrás da pill.
+   Com a pill sendo ela mesma o elemento fixed, o filtro fica na pill. */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    height: calc(var(--nav-height) + env(safe-area-inset-top));
-    padding-top: env(safe-area-inset-top);
-    background: rgba(245, 243, 237, 0.6);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    transition: all var(--transition-base);
-}
-
-.navbar--scrolled {
-    background: rgba(245, 243, 237, 0.85);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    position: static;
+    background: transparent;
+    border-bottom: none;
 }
 
 .navbar__inner {
+    position: fixed;
+    top: calc(26px + env(safe-area-inset-top));
+    left: 0;
+    right: 0;
+    z-index: 100;
+    width: calc(100% - 32px);
+    max-width: var(--container-max);
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    gap: var(--space-8);
+    gap: var(--space-6);
+    height: 60px;
+    padding: 0 10px 0 20px;
+    border-radius: var(--radius-full);
+    background: var(--glass);
+    /* A borda quase branca mais os dois inset highlights são o que desenha o
+       vidro. Só a borda deixa a pill chapada. */
+    border: 1px solid rgba(255, 255, 255, 0.92);
+    box-shadow:
+        0 18px 46px rgba(var(--color-ink-shadow), 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.40);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    transition: background var(--transition-base), box-shadow var(--transition-base);
+}
+
+/* Ao rolar, o vidro fecha em vez de trocar a cor de fundo. */
+.navbar--scrolled .navbar__inner {
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.58) 100%);
+    box-shadow:
+        0 22px 56px rgba(var(--color-ink-shadow), 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.40);
 }
 
 /* Logo */
@@ -47,25 +67,25 @@
     color: var(--color-text-primary);
 }
 
-/* Links - Nav Pill */
+/* Links encostam à direita e o pill interno some: o vidro agora é a barra. */
 .navbar__links {
     display: flex;
     align-items: center;
-    gap: var(--space-8);
-    flex: 1;
-    justify-content: center;
+    margin-left: auto;
+    flex: 0 0 auto;
+    justify-content: flex-end;
 }
 
 .nav-pill {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: var(--radius-full);
-    padding: 4px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    gap: 2px;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 .navbar__link {
@@ -124,17 +144,26 @@
 
 /* Mobile */
 @media (max-width: 768px) {
+    .navbar__inner {
+        top: calc(8px + env(safe-area-inset-top));
+    }
+
     .navbar__links {
         position: fixed;
-        top: calc(var(--nav-height) + env(safe-area-inset-top));
-        left: 0;
-        right: 0;
-        background: rgba(245, 243, 237, 0.95);
+        top: calc(var(--nav-height) + 10px + env(safe-area-inset-top));
+        left: 16px;
+        right: 16px;
+        /* Painel de menu não é enfeite: precisa ser legível sobre o conteúdo.
+           O --glass (.72 → .44) deixava o título do hero atravessar os links. */
+        background: linear-gradient(150deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 255, 255, 0.94) 100%);
         backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
         gap: 0;
         padding: var(--space-4) 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.92);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--glass-shadow);
         transform: translateY(-110%);
         opacity: 0;
         transition: all var(--transition-base);

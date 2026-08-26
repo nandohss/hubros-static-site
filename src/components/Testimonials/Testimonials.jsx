@@ -44,7 +44,7 @@ export default function Testimonials() {
                         <div key={i} className="testimonials__card card reveal" style={{ transitionDelay: `${i * 0.15}s` }}>
                             <div className="testimonials__stars" style={{ display: 'flex', gap: '4px', marginBottom: '16px' }}>
                                 {[...Array(t.rating)].map((_, j) => (
-                                    <svg key={j} width="16" height="16" viewBox="0 0 24 24" fill="#1C1A14" stroke="#1C1A14" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <svg key={j} width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                                     </svg>
                                 ))}

@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import HubrosLogo from '../Logo/HubrosLogo'
+import seloMembroPrime from '../../assets/founders-club-membro-prime.png'
+import seloStartupVerificada from '../../assets/founders-club-startup-verificada.png'
 import './Footer.css'
 
 // SVG do Instagram
@@ -67,6 +69,31 @@ export default function Footer() {
                             <li><Link to="/sobre" className="footer__link">Sobre Nós</Link></li>
                             <li><Link to="/blog" className="footer__link">Blog</Link></li>
                         </ul>
+                    </div>
+                </div>
+
+                {/* Selos Founders Club. Guia de marca: Membro Prime sempre primeiro,
+                    altura mínima de 80px em tela e área de proteção livre ao redor
+                    igual à metade da altura do selo — sem sombra, filtro ou recorte. */}
+                <div className="footer__selos">
+                    <p className="footer__selos-title">Reconhecimento</p>
+                    <div className="footer__selos-list">
+                        <img
+                            src={seloMembroPrime}
+                            alt="Selo Membro Prime do Founders Club"
+                            className="footer__selo"
+                            width="966"
+                            height="546"
+                            loading="lazy"
+                        />
+                        <img
+                            src={seloStartupVerificada}
+                            alt="Selo Startup Verificada pelo Founders Club"
+                            className="footer__selo"
+                            width="966"
+                            height="546"
+                            loading="lazy"
+                        />
                     </div>
                 </div>
 

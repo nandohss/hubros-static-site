@@ -188,7 +188,7 @@
 .blog-post__newsletter {
     margin-top: var(--space-16);
     padding: var(--space-12) var(--space-8);
-    background: #1C1A14;
+    background: var(--color-ink-dark);
     color: #FFFFFF;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-2xl);
@@ -221,7 +221,7 @@
 
 .blog-post__newsletter .newsletter-submit {
     background: #FFFFFF;
-    color: #1C1A14;
+    color: var(--color-text-primary);
 }
 
 .blog-post__newsletter .newsletter-submit:hover {
@@ -404,6 +404,88 @@
     max-width: 760px;
 }
 
+/* Quando há índice "Nesta página", o container abre espaço para a coluna lateral. */
+.blog-post-container--with-toc {
+    max-width: 1080px;
+}
+
+/* ---- Layout Post + Índice ---- */
+.blog-post__layout {
+    display: flex;
+    gap: var(--space-12);
+    align-items: flex-start;
+}
+
+.blog-post__main {
+    flex-grow: 1;
+    min-width: 0;
+    max-width: 760px;
+}
+
+/* ---- Índice "Nesta página" ----
+   O sticky fica no PRÓPRIO item flex (a coluna), que tem a altura do artigo
+   inteiro — é isso que dá o "trilho" para ele grudar enquanto a página rola. */
+.blog-post__toc-wrap {
+    width: 260px;
+    flex-shrink: 0;
+    order: 1;
+    position: sticky;
+    top: calc(var(--nav-height) + var(--space-8));
+    align-self: flex-start;
+    max-height: calc(100vh - var(--nav-height) - var(--space-12));
+    overflow-y: auto;
+}
+
+.blog-post__toc-title {
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+}
+
+.blog-post__toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 2px solid var(--color-border);
+}
+
+.blog-post__toc-item a {
+    display: block;
+    padding: var(--space-2) 0 var(--space-2) var(--space-4);
+    margin-left: -2px;
+    border-left: 2px solid transparent;
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.blog-post__toc-item a:hover {
+    color: var(--color-text-primary);
+    border-left-color: var(--color-border);
+}
+
+.blog-post__toc-item--h3 a {
+    padding-left: var(--space-8);
+    color: var(--color-text-muted);
+}
+
+.blog-post__toc-item.is-active a {
+    color: var(--color-text-primary);
+    font-weight: 600;
+    border-left-color: var(--color-text-primary);
+}
+
+/* Compensa a navbar fixa ao rolar até uma âncora. */
+.blog-post__content h2,
+.blog-post__content h3 {
+    scroll-margin-top: calc(var(--nav-height) + var(--space-6));
+}
+
 .blog-post__back {
     display: inline-block;
     color: var(--color-text-secondary);
@@ -502,6 +584,36 @@
 
     .blog-categories-sidebar {
         display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .blog-post-container--with-toc {
+        max-width: 760px;
+    }
+
+    .blog-post__layout {
+        flex-direction: column;
+        gap: var(--space-8);
+    }
+
+    .blog-post__main {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* Índice vai para o topo, como um bloco estático. */
+    .blog-post__toc-wrap {
+        order: -1;
+        width: 100%;
+        position: relative;
+        top: 0;
+        max-height: none;
+        overflow: visible;
+        padding: var(--space-5) var(--space-6);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
     }
 }
 
