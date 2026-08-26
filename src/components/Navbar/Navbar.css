@@ -1,19 +1,21 @@
-/* A barra não tem mais fundo próprio: é só posicionamento.
-   Quem carrega o vidro agora é o .navbar__inner, uma pill flutuante. */
+/* O <header> deixa de ser posicionado: quem flutua é a pill.
+   Isso não é preferência, é requisito do backdrop-filter no WebKit — um
+   ancestral fixed/sticky vira "backdrop root" e o Safari pinta o filtro na
+   caixa DELE (largura total da tela), desenhando uma faixa atrás da pill.
+   Com a pill sendo ela mesma o elemento fixed, o filtro fica na pill. */
 .navbar {
+    position: static;
+    background: transparent;
+    border-bottom: none;
+}
+
+.navbar__inner {
     position: fixed;
     top: calc(26px + env(safe-area-inset-top));
     left: 0;
     right: 0;
     z-index: 100;
-    height: auto;
-    padding: 0 16px;
-    background: transparent;
-    border-bottom: none;
-    transition: top var(--transition-base);
-}
-
-.navbar__inner {
+    width: calc(100% - 32px);
     max-width: var(--container-max);
     margin: 0 auto;
     display: flex;
@@ -142,7 +144,7 @@
 
 /* Mobile */
 @media (max-width: 768px) {
-    .navbar {
+    .navbar__inner {
         top: calc(8px + env(safe-area-inset-top));
     }
 

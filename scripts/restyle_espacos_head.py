@@ -28,8 +28,17 @@ HEADER_ANTIGO = (
 )
 # 8px, e não 20: esta landing NÃO tem viewport-fit=cover, então não há
 # env(safe-area-inset-top) somando — 20px ficava baixo demais no iPhone.
+# O <header> É a pill: o backdrop-filter não pode ter ancestral sticky/fixed,
+# senão o WebKit pinta o filtro na caixa do ancestral (faixa de largura total).
 HEADER_NOVO = (
-    '<header style="position:sticky; top:8px; z-index:30; padding:8px 16px 0;">'
+    '<header style="position:sticky; top:8px; z-index:30; margin:8px auto 0; '
+    'width:calc(100% - 32px); max-width:1180px; height:60px; padding:0 10px 0 20px; '
+    'display:flex; align-items:center; border-radius:9999px; '
+    'background:linear-gradient(150deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.44) 100%); '
+    'border:1px solid rgba(255,255,255,0.92); '
+    'box-shadow:0 18px 46px rgba(11,11,12,0.10), inset 0 1px 0 rgba(255,255,255,0.95), '
+    'inset 0 -1px 0 rgba(255,255,255,0.40); '
+    'backdrop-filter:blur(18px) saturate(1.4); -webkit-backdrop-filter:blur(18px) saturate(1.4);">'
 )
 
 PILL_ANTIGA = (
@@ -37,14 +46,8 @@ PILL_ANTIGA = (
     'align-items:center; justify-content:space-between; gap:24px;">'
 )
 PILL_NOVA = (
-    '<div style="max-width:1180px; margin:0 auto; height:60px; padding:0 10px 0 20px; '
-    'display:flex; align-items:center; justify-content:space-between; gap:24px; '
-    'border-radius:9999px; '
-    'background:linear-gradient(150deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.44) 100%); '
-    'border:1px solid rgba(255,255,255,0.92); '
-    'box-shadow:0 18px 46px rgba(11,11,12,0.10), inset 0 1px 0 rgba(255,255,255,0.95), '
-    'inset 0 -1px 0 rgba(255,255,255,0.40); '
-    'backdrop-filter:blur(18px) saturate(1.4); -webkit-backdrop-filter:blur(18px) saturate(1.4);">'
+    '<div style="width:100%; height:100%; display:flex; align-items:center; '
+    'justify-content:space-between; gap:24px;">'
 )
 
 # o CTA vira pill, com a sombra suave do site no lugar do retângulo de raio 10
@@ -79,7 +82,7 @@ MENU_ANTIGO = """.esp-nav-mobile {
     }"""
 MENU_NOVO = """.esp-nav-mobile {
       flex-direction: column; gap: 4px;
-      position: absolute; top: calc(100% + 10px); left: 16px; right: 16px;
+      position: absolute; top: calc(100% + 10px); left: 0; right: 0;
       background: linear-gradient(150deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.94) 100%);
       backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
       border: 1px solid rgba(255,255,255,0.92); border-radius: 24px;
