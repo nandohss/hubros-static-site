@@ -26,6 +26,11 @@ CSS_BLOBS = """  /* ===== Blobs da home na primeira dobra =====
   .esp-hero-bg {
     position: relative;
     overflow: hidden;
+    /* Sobe para tras do header (sticky, 8px de margem + 60px de pill) para os
+       blobs cobrirem o topo da pagina; o padding devolve o espaco do conteudo.
+       Sem isto sobra uma faixa branca do body acima do gradiente. */
+    margin-top: -68px;
+    padding-top: 68px;
     background:
       radial-gradient(820px 820px at 92% 0%,  rgba(43,43,47,0.10) 0%, rgba(43,43,47,0) 62%),
       radial-gradient(560px 560px at 97% 6%,  rgba(214,187,135,0.10) 0%, rgba(214,187,135,0) 66%),

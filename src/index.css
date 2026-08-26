@@ -107,6 +107,9 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  /* Sem isto, o rubber-band do iOS (e o overscroll do macOS) mostra o branco
+     padrão do html nas bordas — a pill flutuante não cobre mais o topo. */
+  background-color: var(--color-bg);
   /* clip (em vez de hidden) evita criar um container de rolagem,
      o que quebraria o position: sticky do índice do blog. */
   overflow-x: clip;
