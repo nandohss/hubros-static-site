@@ -42,6 +42,7 @@ export default function Hero() {
         <section className="hero" id="hero">
             <div className="container">
                 <div className="hero__badge reveal">
+                    <span className="hero__badge-dot" aria-hidden="true" />
                     <span className="hero__badge-tag">Lançamento</span>
                     Disponível para iOS e Android
                 </div>

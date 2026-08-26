@@ -188,7 +188,7 @@
 .blog-post__newsletter {
     margin-top: var(--space-16);
     padding: var(--space-12) var(--space-8);
-    background: #1C1A14;
+    background: var(--color-ink-dark);
     color: #FFFFFF;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-2xl);
@@ -221,7 +221,7 @@
 
 .blog-post__newsletter .newsletter-submit {
     background: #FFFFFF;
-    color: #1C1A14;
+    color: var(--color-text-primary);
 }
 
 .blog-post__newsletter .newsletter-submit:hover {

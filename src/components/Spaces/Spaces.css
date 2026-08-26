@@ -17,7 +17,7 @@
 }
 
 .spaces__card {
-    background: var(--color-surface);
+    background: var(--glass);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--color-border);
@@ -25,15 +25,14 @@
     padding: var(--space-4);
     overflow: hidden;
     transition: all var(--transition-base);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.03);
+    box-shadow: var(--glass-shadow);
     color: var(--color-text-primary);
 }
 
 .spaces__card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 48px rgba(0,0,0,0.06);
+    box-shadow: var(--glass-shadow-hover);
     border-color: #FFFFFF;
-    background: var(--color-surface-2);
 }
 
 .spaces__card-img {

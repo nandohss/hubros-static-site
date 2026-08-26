@@ -101,7 +101,7 @@ export default function ForHosts() {
                                 </li>
                             ))}
                         </ul>
-                        <a href="/lista-de-espera?role=host" className="btn btn-secondary" style={{ marginTop: '16px', background: '#FFFFFF', color: '#1C1A14', border: 'none' }}>
+                        <a href="/lista-de-espera?role=host" className="btn btn-secondary" style={{ marginTop: '16px', background: '#FFFFFF', color: 'var(--color-text-primary)', border: 'none' }}>
                             Quero cadastrar meu espaço
                         </a>
                     </div>

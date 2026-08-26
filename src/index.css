@@ -20,13 +20,16 @@
   --color-surface-3: #FFFFFF;
   --color-border: rgba(255, 255, 255, 0.8);
 
-  /* Textos - Contraste elegante e nítido */
-  --color-text-primary: #1C1A14;
+  /* Textos - Contraste elegante e nítido.
+     O preto da marca é neutro (#0B0B0C); o antigo #1C1A14 puxava para marrom. */
+  --color-text-primary: #0B0B0C;
+  --color-ink-dark: #0B0B0C;      /* superfícies escuras: botão, bloco Para Hosts */
+  --color-ink-shadow: 11, 11, 12; /* mesmo preto para usar dentro de rgba() */
   --color-text-secondary: #615E54;
   --color-text-muted: #9CA3AF;
 
   /* Gradientes B2B Clean & Custom Glow */
-  --gradient-hero: linear-gradient(135deg, #1C1A14 0%, #615E54 100%);
+  --gradient-hero: linear-gradient(135deg, #0B0B0C 0%, #615E54 100%);
   --gradient-card: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
   /* Silhueta azul discreta para dar um leve ar tecnológico ao fundo das seções */
   --gradient-glow: radial-gradient(ellipse 60% 80% at 50% -10%, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
@@ -66,11 +69,19 @@
   --radius-2xl: 2rem;
   --radius-full: 9999px;
 
-  /* Sombras */
+  /* Superfície de vidro — receita única para todo card/pill translúcido.
+     O gradiente dá o assentamento e o inset highlight desenha a borda superior. */
+  --glass: linear-gradient(150deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.44) 100%);
+  --glass-soft: linear-gradient(150deg, rgba(255, 255, 255, 0.60) 0%, rgba(255, 255, 255, 0.34) 100%);
+  --glass-shadow: 0 18px 46px rgba(var(--color-ink-shadow), 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --glass-shadow-hover: 0 26px 60px rgba(var(--color-ink-shadow), 0.11), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+
+  /* Sombras. A antiga --shadow-card era preto a 60%, herdada do tema escuro:
+     sobre fundo claro virava um halo cinza em volta do botão. */
   --shadow-glow-primary: 0 0 40px rgba(255, 255, 255, 0.08);
   --shadow-glow-accent: 0 0 40px rgba(255, 255, 255, 0.04);
-  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.6);
-  --shadow-card-hover: 0 16px 48px rgba(0, 0, 0, 0.8);
+  --shadow-card: 0 18px 40px rgba(var(--color-ink-shadow), 0.22);
+  --shadow-card-hover: 0 24px 54px rgba(var(--color-ink-shadow), 0.30);
 
   /* Transições */
   --transition-fast: 150ms ease;
@@ -79,7 +90,9 @@
 
   /* Layout */
   --container-max: 1200px;
-  --nav-height: 72px;
+  /* Espaço ocupado pela navbar: 26px de respiro + 60px da pill.
+     Serve de offset para as páginas internas e para o sticky do blog. */
+  --nav-height: 86px;
 }
 
 /* ---- Reset & Base ---- */
@@ -110,7 +123,17 @@ body {
 }
 
 /* BACKGROUND BLOBS FOR GLASS EFFECT */
-.bg-blobs { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1; pointer-events: none; }
+/* A camada estática por baixo dos blobs: grafite nos cantos frios, dourado
+   nos quentes. Fica fora do caminho da leitura, só encosta nas bordas. */
+.bg-blobs {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  overflow: hidden; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(820px 820px at 92% 0%,   rgba(43, 43, 47, 0.14) 0%, rgba(43, 43, 47, 0) 62%),
+    radial-gradient(560px 560px at 97% 6%,   rgba(214, 187, 135, 0.10) 0%, rgba(214, 187, 135, 0) 66%),
+    radial-gradient(900px 900px at 2% 66%,   rgba(43, 43, 47, 0.11) 0%, rgba(43, 43, 47, 0) 62%),
+    radial-gradient(700px 700px at 80% 82%,  rgba(214, 187, 135, 0.08) 0%, rgba(214, 187, 135, 0) 66%);
+}
 .blob {
   position: absolute;
   border-radius: 50%;
@@ -125,6 +148,11 @@ body {
 .blob-1 { top: -20%; left: -10%; width: 50vw; height: 50vw; background: #D1D5DB; animation: drift1 14s ease-in-out infinite alternate; }
 .blob-2 { top: 30%; right: -20%; width: 45vw; height: 45vw; background: #9CA3AF; animation: drift2 18s ease-in-out infinite alternate-reverse; }
 .blob-3 { bottom: -20%; left: 10%; width: 55vw; height: 55vw; background: #E5E7EB; animation: drift3 22s ease-in-out infinite alternate; }
+/* Dourado: herdam .blob (multiply, camada de composição, animação) e só
+   sobrescrevem opacidade e blur — baixa opacidade com blur largo, para ler
+   como calor no canto e não como bolha. */
+.blob-gold-1 { top: 4%; right: -14%; width: 33vw; height: 33vw; background: #D6BB87; opacity: 0.20; filter: blur(110px); animation: drift2 24s ease-in-out infinite alternate; }
+.blob-gold-2 { bottom: 6%; left: -12%; width: 27vw; height: 27vw; background: #C9A96E; opacity: 0.13; filter: blur(120px); animation: drift1 28s ease-in-out infinite alternate-reverse; }
 
 @keyframes drift1 { 0% { transform: translateZ(0) translate(0, 0) scale(1); } 100% { transform: translateZ(0) translate(25vw, 15vh) scale(1.2); } }
 @keyframes drift2 { 0% { transform: translateZ(0) translate(0, 0) scale(1); } 100% { transform: translateZ(0) translate(-20vw, 20vh) scale(1.1); } }
@@ -140,6 +168,8 @@ body {
   .blob-1 { width: 85vw; height: 85vw; }
   .blob-2 { width: 75vw; height: 75vw; }
   .blob-3 { width: 90vw; height: 90vw; }
+  .blob-gold-1 { width: 64vw; height: 64vw; opacity: 0.15; }
+  .blob-gold-2 { width: 54vw; height: 54vw; opacity: 0.10; }
 }
 
 img,
@@ -228,7 +258,7 @@ button {
 }
 
 .btn-primary {
-  background: #1C1A14;
+  background: var(--color-ink-dark);
   color: #FFFFFF;
   box-shadow: var(--shadow-card);
 }
@@ -279,20 +309,19 @@ button {
 
 /* ---- Cards ---- */
 .card {
-  background: var(--color-surface);
+  background: var(--glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-8);
   transition: all var(--transition-base);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.03);
+  box-shadow: var(--glass-shadow);
 }
 
 .card:hover {
-  background: var(--color-surface-2);
   border-color: #FFFFFF;
-  box-shadow: 0 12px 48px rgba(0,0,0,0.06);
+  box-shadow: var(--glass-shadow-hover);
   transform: translateY(-4px);
 }
 

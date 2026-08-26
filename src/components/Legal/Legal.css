@@ -170,7 +170,7 @@
     justify-content: center;
     gap: var(--space-2);
     padding: var(--space-3) var(--space-6);
-    background: #1C1A14;
+    background: var(--color-ink-dark);
     color: #FFFFFF;
     font-weight: 600;
     font-size: var(--font-size-sm);

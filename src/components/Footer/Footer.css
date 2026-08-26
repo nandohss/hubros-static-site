@@ -33,7 +33,7 @@
 
 .footer__tagline {
     font-size: 0.9rem;
-    color: #1C1A14;
+    color: var(--color-text-primary);
     line-height: 1.6;
     max-width: 240px;
     margin-bottom: var(--space-6);
@@ -69,7 +69,7 @@
 .footer__col-title {
     font-size: 0.8rem;
     font-weight: 800;
-    color: #000000;
+    color: var(--color-text-primary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: var(--space-6);
@@ -83,14 +83,14 @@
 
 .footer__link {
     font-size: 0.9rem;
-    color: #1C1A14;
+    color: var(--color-text-primary);
     font-weight: 500;
     transition: color var(--transition-fast);
     opacity: 0.7;
 }
 
 .footer__link:hover {
-    color: #000000;
+    color: var(--color-text-primary);
     opacity: 1;
 }
 
@@ -110,7 +110,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: #1C1A14;
+    color: var(--color-text-primary);
     opacity: 0.5;
 }
 
@@ -142,7 +142,7 @@
 .footer__copy,
 .footer__made {
     font-size: 0.85rem;
-    color: #1C1A14;
+    color: var(--color-text-primary);
     font-weight: 500;
     opacity: 0.6;
 }

@@ -98,6 +98,65 @@ ANIM_CSS = """
     100% { transform: scale(2.6); opacity: 0; }
   }
 
+  /* ===== Mockup iPhone 17 =====
+     CSS puro: a landing é standalone (bundle self-contained), então não dá
+     pra reusar o IPhone3D/three.js do site principal. As proporções vêm de lá:
+     tela 0.4613 (19.5:9 → 288x624) e moldura = tela + ~2,7% por lado (8px),
+     mesma relação do `bodyW = screenW + 0.16` do componente 3D.
+     O screenshot não tem status bar, então a tela reserva 38px no topo pra
+     ela + Dynamic Island — e com isso a imagem (aspect 0.4931) encaixa nos
+     288px de largura sem corte lateral. */
+  .esp-iphone {
+    position: relative;
+    /* border-box explícito: o reset `* { box-sizing: border-box }` vive no
+       shell externo e NÃO sobrevive ao replaceWith do bundler. Sem isto a
+       largura vira 304+16=320 e a moldura fica grossa demais. */
+    box-sizing: border-box;
+    width: 304px;
+    padding: 8px;
+    border-radius: 48px;
+    /* alumínio do iPhone 17: faixas claras/escuras simulam o chanfro */
+    background: linear-gradient(160deg,#e8e8ec 0%,#a9a9af 16%,#f4f4f7 32%,#9c9ca2 50%,#eaeaee 68%,#a3a3a9 84%,#dfdfe3 100%);
+    box-shadow: 0 30px 70px rgba(11,11,12,.22), 0 2px 10px rgba(11,11,12,.14);
+  }
+  .esp-iphone__screen {
+    position: relative;
+    width: 288px; height: 624px;
+    border-radius: 40px;
+    overflow: hidden;
+    background: #FFFFFF;
+    display: flex; flex-direction: column;
+    box-shadow: inset 0 0 0 1px rgba(11,11,12,.06);
+  }
+  .esp-iphone__status {
+    position: relative;
+    flex: 0 0 38px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px 0 22px;
+    font-size: 12px; font-weight: 600; color: #0B0B0C;
+    letter-spacing: .01em;
+  }
+  .esp-iphone__island {
+    position: absolute; top: 7px; left: 50%; transform: translateX(-50%);
+    width: 92px; height: 26px; border-radius: 9999px; background: #000;
+  }
+  /* min-height:0 deixa o flex encolher a imagem; object-fit corta pelo rodapé
+     em vez de espremer o layout do app */
+  .esp-iphone__shot {
+    flex: 1 1 auto; min-height: 0;
+    width: 100%; object-fit: cover; object-position: top center;
+    display: block;
+  }
+  .esp-iphone__btn {
+    position: absolute; width: 3px; border-radius: 2px;
+    background: linear-gradient(180deg,#bcbcc2,#8e8e94);
+  }
+  .esp-iphone__btn--action { left: -2px;  top: 116px; height: 26px; }
+  .esp-iphone__btn--volup  { left: -2px;  top: 158px; height: 48px; }
+  .esp-iphone__btn--voldn  { left: -2px;  top: 218px; height: 48px; }
+  .esp-iphone__btn--power  { right: -2px; top: 176px; height: 70px; }
+  .esp-iphone__btn--cam    { right: -2px; top: 262px; height: 34px; }
+
   /* acessibilidade: quem pediu menos movimento não recebe animação nenhuma */
   @media (prefers-reduced-motion: reduce) {
     .esp-anim .esp-reveal { opacity: 1 !important; transform: none !important; }
@@ -437,7 +496,51 @@ def patch_payment_copy(tpl):
 
 # ---------------------------------------------------------------- template
 
+_OLD_PHONE = (
+    '<div style="width:288px; height:624px; border-radius:42px; overflow:hidden; background:#FFFFFF;'
+    ' box-shadow:0 30px 70px rgba(11,11,12,0.18), 0 0 0 1px rgba(11,11,12,0.08); display:flex;'
+    ' align-items:flex-start; justify-content:center;">\n'
+    '          <img src="a591cc48-048d-4d1c-b436-180fb0a0b55d" alt="Tela do app Hubros"'
+    ' style="height:100%; width:auto; display:block;">\n'
+    '        </div>'
+)
+
+# Status bar desenhada em SVG (sinal, wi-fi, bateria) porque o screenshot não
+# traz a barra do iOS. Horário 22:34 = o mesmo do mockup do site principal.
+_NEW_PHONE = (
+    '<div class="esp-iphone">\n'
+    '          <div class="esp-iphone__screen">\n'
+    '            <div class="esp-iphone__status">\n'
+    '              <span>22:34</span>\n'
+    '              <span class="esp-iphone__island" aria-hidden="true"></span>\n'
+    '              <svg width="46" height="12" viewBox="0 0 46 12" fill="#0B0B0C" aria-hidden="true">\n'
+    '                <rect x="0" y="7" width="3" height="5" rx="1"></rect>\n'
+    '                <rect x="5" y="5" width="3" height="7" rx="1"></rect>\n'
+    '                <rect x="10" y="3" width="3" height="9" rx="1"></rect>\n'
+    '                <rect x="15" y="1" width="3" height="11" rx="1"></rect>\n'
+    '                <path d="M26.4 4.7a7 7 0 0 1 8.2 0" fill="none" stroke="#0B0B0C" stroke-width="1.5" stroke-linecap="round"></path>\n'
+    '                <path d="M28.4 7.2a4.2 4.2 0 0 1 4.2 0" fill="none" stroke="#0B0B0C" stroke-width="1.5" stroke-linecap="round"></path>\n'
+    '                <circle cx="30.5" cy="9.8" r="1.1"></circle>\n'
+    '                <rect x="37" y="2.2" width="7.6" height="7.6" rx="2.2" fill="none" stroke="#0B0B0C" stroke-width="1" opacity=".4"></rect>\n'
+    '                <rect x="38.2" y="3.4" width="5.2" height="5.2" rx="1.2"></rect>\n'
+    '                <rect x="45.2" y="4.6" width="0.9" height="2.8" rx="0.45" opacity=".4"></rect>\n'
+    '              </svg>\n'
+    '            </div>\n'
+    '            <img class="esp-iphone__shot" src="a591cc48-048d-4d1c-b436-180fb0a0b55d" alt="Tela do app Hubros">\n'
+    '          </div>\n'
+    '          <span class="esp-iphone__btn esp-iphone__btn--action" aria-hidden="true"></span>\n'
+    '          <span class="esp-iphone__btn esp-iphone__btn--volup" aria-hidden="true"></span>\n'
+    '          <span class="esp-iphone__btn esp-iphone__btn--voldn" aria-hidden="true"></span>\n'
+    '          <span class="esp-iphone__btn esp-iphone__btn--power" aria-hidden="true"></span>\n'
+    '          <span class="esp-iphone__btn esp-iphone__btn--cam" aria-hidden="true"></span>\n'
+    '        </div>'
+)
+
+
 def patch_template(tpl):
+    # Moldura de iPhone 17 em volta do screenshot do app
+    tpl = sub1(tpl, _OLD_PHONE, _NEW_PHONE, 'mockup iPhone 17')
+
     # Marca a seção de pagamento (fundo #0B0B0C) para o script de theme-color
     # achar por classe. Não dá pra caçar por texto do atributo style: uma vez
     # no DOM o browser normaliza o hex pra `rgb(11, 11, 12)`, quebrando
@@ -566,6 +669,8 @@ def main():
     assert 'disponível na hora' in tpl2
     assert 'updateEdgeColors' in tpl2
     assert 'esp-pulse-dot' in tpl2 and '@keyframes esp-pulse' in tpl2
+    assert 'esp-iphone__island' in tpl2 and 'esp-iphone__shot' in tpl2
+    assert 'border-radius:42px' not in tpl2, 'moldura antiga do telefone ficou pra tras'
     print('   integridade OK: JSON valido, delimitador correto, patches presentes')
 
     shutil.copyfile(SRC, PUB)
