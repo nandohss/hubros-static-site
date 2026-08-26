@@ -142,12 +142,18 @@
 
 /* Mobile */
 @media (max-width: 768px) {
+    .navbar {
+        top: calc(8px + env(safe-area-inset-top));
+    }
+
     .navbar__links {
         position: fixed;
         top: calc(var(--nav-height) + 10px + env(safe-area-inset-top));
         left: 16px;
         right: 16px;
-        background: var(--glass);
+        /* Painel de menu não é enfeite: precisa ser legível sobre o conteúdo.
+           O --glass (.72 → .44) deixava o título do hero atravessar os links. */
+        background: linear-gradient(150deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 255, 255, 0.94) 100%);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         flex-direction: column;

@@ -26,8 +26,10 @@ HEADER_ANTIGO = (
     '<header style="position:sticky; top:0; z-index:30; background:rgba(255,255,255,0.9); '
     'backdrop-filter:blur(14px); border-bottom:1px solid #E6E6E8;">'
 )
+# 8px, e não 20: esta landing NÃO tem viewport-fit=cover, então não há
+# env(safe-area-inset-top) somando — 20px ficava baixo demais no iPhone.
 HEADER_NOVO = (
-    '<header style="position:sticky; top:20px; z-index:30; padding:20px 16px 0;">'
+    '<header style="position:sticky; top:8px; z-index:30; padding:8px 16px 0;">'
 )
 
 PILL_ANTIGA = (
@@ -78,7 +80,7 @@ MENU_ANTIGO = """.esp-nav-mobile {
 MENU_NOVO = """.esp-nav-mobile {
       flex-direction: column; gap: 4px;
       position: absolute; top: calc(100% + 10px); left: 16px; right: 16px;
-      background: linear-gradient(150deg, rgba(255,255,255,0.86) 0%, rgba(255,255,255,0.68) 100%);
+      background: linear-gradient(150deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.94) 100%);
       backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
       border: 1px solid rgba(255,255,255,0.92); border-radius: 24px;
       padding: 8px 20px 16px;
