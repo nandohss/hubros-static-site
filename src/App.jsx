@@ -8,7 +8,8 @@ import Spaces from './components/Spaces/Spaces'
 import Features from './components/Features/Features'
 import HowItWorks from './components/HowItWorks/HowItWorks'
 import ForHosts from './components/ForHosts/ForHosts'
-import Testimonials from './components/Testimonials/Testimonials'
+// Depoimentos ocultos temporariamente na home (26/08/2026).
+// import Testimonials from './components/Testimonials/Testimonials'
 import Waitlist from './components/Waitlist/Waitlist'
 import CTA from './components/CTA/CTA'
 import HelpCenter from './components/HelpCenter/HelpCenter'
@@ -94,7 +95,7 @@ function App() {
                             <Spaces />
                             <HowItWorks />
                             <ForHosts />
-                            <Testimonials />
+                            {/* <Testimonials /> */}
                             <CTA />
                         </>
                     } />
