@@ -117,7 +117,11 @@ html {
 
 body {
   font-family: var(--font-family);
-  background-color: var(--color-bg);
+  /* Transparente de propósito: quem pinta o fundo é o html (acima).
+     Ordem de pintura do CSS: background do html -> descendentes com z-index
+     negativo (.bg-blobs) -> background dos blocos em fluxo. Se o body pintar
+     o próprio fundo opaco, ele cobre os blobs. */
+  background-color: transparent;
   color: var(--color-text-primary);
   line-height: 1.6;
   overflow-x: clip;
