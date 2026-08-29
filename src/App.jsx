@@ -11,6 +11,7 @@ import ForHosts from './components/ForHosts/ForHosts'
 // Depoimentos ocultos temporariamente na home (26/08/2026).
 // import Testimonials from './components/Testimonials/Testimonials'
 import Waitlist from './components/Waitlist/Waitlist'
+import FAQ, { FAQ_ITEMS } from './components/FAQ/FAQ'
 import CTA from './components/CTA/CTA'
 import HelpCenter from './components/HelpCenter/HelpCenter'
 import About from './components/About/About'
@@ -29,6 +30,16 @@ const ORG_SCHEMA = {
     url: 'https://hubros.com.br',
     logo: 'https://hubros.com.br/favicon.png',
     sameAs: ['https://www.instagram.com/hubros.app'],
+}
+
+const FAQ_SCHEMA = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
 }
 
 const WEBSITE_SCHEMA = {
@@ -89,13 +100,14 @@ function App() {
                                 path="/"
                                 title="Hubros — Seu Espaço de Trabalho Ideal"
                                 description="Encontre e reserve espaços de coworking, salas e estúdios com facilidade. A plataforma que conecta profissionais a espaços incríveis."
-                                schema={[ORG_SCHEMA, WEBSITE_SCHEMA]}
+                                schema={[ORG_SCHEMA, WEBSITE_SCHEMA, FAQ_SCHEMA]}
                             />
                             <Hero />
                             <Spaces />
                             <HowItWorks />
                             <ForHosts />
                             {/* <Testimonials /> */}
+                            <FAQ />
                             <CTA />
                         </>
                     } />
