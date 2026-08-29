@@ -107,8 +107,8 @@ function App() {
                             <HowItWorks />
                             <ForHosts />
                             {/* <Testimonials /> */}
-                            <FAQ />
                             <CTA />
+                            <FAQ />
                         </>
                     } />
                     <Route path="/blog" element={<BlogIndex />} />

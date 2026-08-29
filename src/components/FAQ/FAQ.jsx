@@ -35,14 +35,12 @@ export default function FAQ() {
     const revealRef = useScrollReveal({ threshold: 0.1 })
 
     return (
-        <section className="faq section" id="faq">
+        <section className="faq" id="faq">
             <div className="container" ref={revealRef}>
+                <div className="faq__inner">
                 <div className="faq__header reveal">
                     <div className="section-tag">Perguntas Frequentes</div>
-                    <h2 className="section-title">Tudo que você precisa saber</h2>
-                    <p className="section-subtitle">
-                        E se ficar alguma dúvida, a gente responde pela Central de Ajuda.
-                    </p>
+                    <h2 className="faq__title">Ainda com dúvida?</h2>
                 </div>
 
                 <div className="faq__list">
@@ -59,6 +57,7 @@ export default function FAQ() {
                             <div className="faq__answer">{item.a}</div>
                         </details>
                     ))}
+                </div>
                 </div>
             </div>
         </section>

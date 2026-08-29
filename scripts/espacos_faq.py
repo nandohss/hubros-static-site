@@ -19,35 +19,33 @@ ARQ = ['landing_page_espacos.html', 'public/espacos/index.html']
 MARKER = '<script type="__bundler/template">'
 ANCORA_CSS = '  .esp-nav-desktop { display: flex; align-items: center; gap: 28px; }'
 
-CSS_FAQ = """  /* ===== FAQ ===== */
-  .esp-faq { border: 1px solid #E6E6E8; border-radius: 14px; background: #FFFFFF; overflow: hidden; }
-  .esp-faq + .esp-faq { margin-top: 12px; }
+CSS_FAQ = """  /* ===== FAQ =====
+     Discreto de proposito: fecha a pagina depois do CTA, sem competir com ele.
+     Sem card e sem sombra — divisorias e tipografia menor. */
+  .esp-faq-sec { max-width: 720px; margin: 0 auto; padding: clamp(40px,6vw,64px) 24px clamp(56px,8vw,88px); }
+  .esp-faq-title { margin: 0 0 28px; font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: #0B0B0C; }
+  .esp-faq-list { border-top: 1px solid #E6E6E8; }
+  .esp-faq { border-bottom: 1px solid #E6E6E8; }
   .esp-faq > summary {
     list-style: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: space-between; gap: 20px;
-    padding: 20px 22px;
-    font-size: 17px; font-weight: 600; color: #0B0B0C; line-height: 1.4;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 16px 0;
+    font-size: 16px; font-weight: 500; color: #0B0B0C; line-height: 1.5;
+    transition: color .15s ease;
   }
   .esp-faq > summary::-webkit-details-marker { display: none; }
-  .esp-faq > summary:hover { background: #FAFAFB; }
-  .esp-faq > summary:focus-visible { outline: 2px solid #B08F52; outline-offset: -2px; }
-  /* o sinal vira "−" quando aberto; rotação em vez de troca de caractere
-     para o movimento ser contínuo */
-  .esp-faq__sign {
-    flex: 0 0 auto; width: 22px; height: 22px; position: relative;
-    transition: transform .25s ease;
-  }
+  .esp-faq > summary:hover { color: #56565B; }
+  .esp-faq > summary:focus-visible { outline: 2px solid #B08F52; outline-offset: 2px; border-radius: 4px; }
+  /* o sinal vira "−" quando aberto; rotacao em vez de troca de caractere */
+  .esp-faq__sign { flex: 0 0 auto; width: 14px; height: 14px; position: relative; transition: transform .25s ease; }
   .esp-faq__sign::before, .esp-faq__sign::after {
     content: ""; position: absolute; inset: 50% 0 auto 0;
-    height: 2px; background: #B08F52; border-radius: 2px;
+    height: 1.5px; background: #9C9CA2; border-radius: 2px;
   }
   .esp-faq__sign::after { transition: opacity .25s ease; transform: rotate(90deg); }
   .esp-faq[open] > summary .esp-faq__sign { transform: rotate(180deg); }
   .esp-faq[open] > summary .esp-faq__sign::after { opacity: 0; }
-  .esp-faq__body {
-    padding: 0 22px 22px;
-    font-size: 16px; line-height: 1.65; color: #56565B; max-width: 70ch;
-  }
+  .esp-faq__body { padding: 0 32px 20px 0; font-size: 15px; line-height: 1.7; color: #56565B; }
   @media (prefers-reduced-motion: reduce) {
     .esp-faq__sign, .esp-faq__sign::after { transition: none; }
   }
@@ -101,12 +99,9 @@ def bloco_faq():
         </details>'''
         for p, r in PERGUNTAS
     )
-    return f'''  <section id="faq" style="max-width:1180px; margin:0 auto; padding:clamp(52px,7vw,88px) 24px;">
-      <div style="display:flex; flex-direction:column; gap:20px; max-width:720px; margin-bottom:clamp(28px,4vw,44px);">
-        <div style="font-size:14px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#B08F52;">Perguntas frequentes</div>
-        <h2 style="margin:0; font-size:clamp(28px,4.2vw,46px); font-weight:700; line-height:1.15; letter-spacing:-0.03em; color:#0B0B0C;">O que os coworkings mais perguntam.</h2>
-      </div>
-      <div style="max-width:860px;">
+    return f'''  <section id="faq" class="esp-faq-sec">
+      <h2 class="esp-faq-title">Ainda com dúvida?</h2>
+      <div class="esp-faq-list">
 {itens}
       </div>
   </section>
@@ -114,7 +109,8 @@ def bloco_faq():
 '''
 
 
-ANCORA_SEC = '<section style="background:#F7F7F8;">\n    <div style="max-width:1180px; margin:0 auto; padding:clamp(56px,8vw,100px) 24px; display'
+# entra depois do CTA final, entre ele e o rodape
+ANCORA_SEC = '  <footer style="background:#0B0B0C; color:#F7F7F8;">'
 
 
 def main():
@@ -131,10 +127,10 @@ def main():
         assert tpl.count(ANCORA_CSS) == 1, f'{path}: ancora de CSS nao encontrada'
         tpl = tpl.replace(ANCORA_CSS, CSS_FAQ + ANCORA_CSS, 1)
 
-        # o FAQ entra logo antes do CTA final
+        # o FAQ entra entre o CTA final e o rodape
         n = tpl.count(ANCORA_SEC)
-        assert n == 1, f'{path}: esperava 1 ancora do CTA final, achei {n}'
-        tpl = tpl.replace(ANCORA_SEC, bloco_faq() + '  ' + ANCORA_SEC.lstrip(), 1)
+        assert n == 1, f'{path}: esperava 1 ancora do rodape, achei {n}'
+        tpl = tpl.replace(ANCORA_SEC, bloco_faq() + ANCORA_SEC, 1)
 
         encoded = json.dumps(tpl).replace('</script>', '<\\/script>')
         assert '</script>' not in encoded
