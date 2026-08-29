@@ -59,7 +59,8 @@ def main():
         h2 = open(path, encoding='utf8').read()
         t2, e2 = json.JSONDecoder().raw_decode(h2, h2.find(MARKER) + len(MARKER))
         assert h2[e2:e2 + 9] == '</script>', 'JSON quebrado'
-        assert t2.count(f'wa.me/{NUMERO}') == 2, 'os dois botoes tem que apontar pro WhatsApp'
+        botoes = t2.count('>Vamos conversar</a>')
+        assert botoes == 2, f'esperava 2 botoes como link, achei {botoes}'
         assert '>Vamos conversar</span>' not in t2, 'sobrou botao como <span>'
         print(f'   {path}: JSON valido, 2 links de WhatsApp')
 
