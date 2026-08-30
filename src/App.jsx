@@ -18,6 +18,7 @@ import About from './components/About/About'
 import Cookies from './components/Legal/Cookies'
 import Terms from './components/Legal/Terms'
 import Privacy from './components/Legal/Privacy'
+import AccountDeletion from './components/Legal/AccountDeletion'
 import CookieConsent from './components/Legal/CookieConsent'
 import Footer from './components/Footer/Footer'
 import BlogIndex from './components/Blog/BlogIndex'
@@ -141,6 +142,12 @@ function App() {
                         <>
                             <Seo path="/privacidade/" title="Política de Privacidade — Hubros" description="Política de privacidade e tratamento de dados da Hubros." />
                             <Privacy />
+                        </>
+                    } />
+                    <Route path="/excluir-conta" element={
+                        <>
+                            <Seo path="/excluir-conta/" title="Exclusão de Conta — Hubros" description="Saiba como excluir sua conta Hubros e quais dados são removidos ou retidos." />
+                            <AccountDeletion />
                         </>
                     } />
                     <Route path="/lista-de-espera" element={

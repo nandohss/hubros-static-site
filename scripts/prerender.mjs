@@ -21,7 +21,7 @@ if (existsSync(BLOG_DIR)) {
 }
 
 // Rotas a pré-renderizar (precisa espelhar as <Route> em src/App.jsx).
-const ROUTES = ['/', '/ajuda', '/sobre', '/cookies', '/termos', '/privacidade', '/lista-de-espera', '/blog', ...blogRoutes]
+const ROUTES = ['/', '/ajuda', '/sobre', '/cookies', '/termos', '/privacidade', '/excluir-conta', '/lista-de-espera', '/blog', ...blogRoutes]
 
 async function waitForServer(url, timeoutMs = 20000) {
     const start = Date.now()
