@@ -37,6 +37,16 @@ function SearchIcon() {
     )
 }
 
+// 00.000.000/0000-00 — formata conforme digita e ignora o que não for dígito.
+function maskCNPJ(value) {
+    const d = value.replace(/\D/g, '').slice(0, 14)
+    return d
+        .replace(/^(\d{2})(\d)/, '$1.$2')
+        .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3')
+        .replace(/\.(\d{3})(\d)/, '.$1/$2')
+        .replace(/(\d{4})(\d)/, '$1-$2')
+}
+
 export default function Waitlist() {
     const [searchParams] = useSearchParams()
     const initialRole = searchParams.get('role') === 'host' ? 'host' : ''
@@ -48,6 +58,8 @@ export default function Waitlist() {
         name: '',
         email: '',
         phone: '',
+        spaceName: '',
+        cnpj: '',
         spaceType: '',
         city: '',
         neighborhood: '',
@@ -55,7 +67,8 @@ export default function Waitlist() {
     })
 
     const handleChange = (e) => {
-        setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
+        const { name, value } = e.target
+        setForm(prev => ({ ...prev, [name]: name === 'cnpj' ? maskCNPJ(value) : value }))
     }
 
     const handleSubmit = async (e) => {
@@ -72,6 +85,10 @@ export default function Waitlist() {
                     Email: form.email,
                     WhatsApp: form.phone,
                     Cidade: form.city,
+                    ...(role === 'host' && {
+                        'Nome do coworking': form.spaceName,
+                        CNPJ: form.cnpj || '—',
+                    }),
                     Bairro: form.neighborhood || '—',
                     'Tipo de espaço': form.spaceType || '—',
                     Mensagem: form.message || '—',
@@ -204,6 +221,32 @@ export default function Waitlist() {
 
                                 {role === 'host' && (
                                     <>
+                                        <div className="wl-form__row">
+                                            <div className="wl-form__field">
+                                                <label className="wl-form__label" htmlFor="spaceName">Nome do coworking</label>
+                                                <input
+                                                    id="spaceName" name="spaceName" type="text"
+                                                    className="wl-form__input"
+                                                    placeholder="Como seu espaço se chama"
+                                                    value={form.spaceName}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="wl-form__field">
+                                                <label className="wl-form__label" htmlFor="cnpj">CNPJ <span className="wl-form__optional">(opcional)</span></label>
+                                                <input
+                                                    id="cnpj" name="cnpj" type="text"
+                                                    className="wl-form__input"
+                                                    placeholder="00.000.000/0000-00"
+                                                    value={form.cnpj}
+                                                    onChange={handleChange}
+                                                    inputMode="numeric"
+                                                    maxLength={18}
+                                                />
+                                            </div>
+                                        </div>
+
                                         <div className="wl-form__row">
                                             <div className="wl-form__field">
                                                 <label className="wl-form__label" htmlFor="neighborhood">Bairro</label>
