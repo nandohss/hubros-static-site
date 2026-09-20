@@ -72,6 +72,7 @@ export default function Footer() {
                         <ul className="footer__col-links">
                             <li><Link to="/sobre" className="footer__link">Sobre Nós</Link></li>
                             <li><Link to="/blog" className="footer__link">Blog</Link></li>
+                            <li><Link to="/trabalhe-conosco" className="footer__link">Trabalhe Conosco</Link></li>
                         </ul>
                     </div>
                 </div>
