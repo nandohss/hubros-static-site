@@ -353,15 +353,21 @@
     line-height: 1.7;
 }
 
-/* ---- Aviso: cadastro já existe no app (formulário é opcional/suporte) ---- */
+/* ---- Aviso: cadastro já existe no app (formulário é opcional/suporte) ----
+   Mesma receita de vidro do .wl-role__btn logo abaixo — o box original
+   (copiado do .wl-form__consent, que é um checkbox discreto) ficava chapado
+   perto dos cards com blur/sombra da página. */
 .wl-app-note {
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
-    padding: var(--space-5) var(--space-6);
-    background: rgba(255, 255, 255, 0.55);
-    border: 1px solid rgba(255, 255, 255, 0.9);
-    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    background: var(--color-surface);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
 .wl-app-note__text {
