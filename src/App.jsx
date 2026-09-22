@@ -159,7 +159,7 @@ function App() {
                     } />
                     <Route path="/lista-de-espera" element={
                         <>
-                            <Seo path="/lista-de-espera/" title="Lista de Espera — Hubros" description="Entre na lista de espera da Hubros e seja avisado quando lançarmos espaços perto de você." />
+                            <Seo path="/lista-de-espera/" title="Cadastre seu Espaço — Hubros" description="Tem um coworking, consultório ou sala disponível? Cadastre-se e comece a receber reservas — a Hubros já está no ar." />
                             <Waitlist />
                         </>
                     } />
