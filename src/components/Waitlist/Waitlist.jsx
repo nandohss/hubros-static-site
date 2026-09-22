@@ -163,7 +163,7 @@ export default function Waitlist() {
                             </h1>
                             <p className="wl-card__sub">
                                 {isHost
-                                    ? 'Já dá pra cadastrar seu espaço direto no app. Se preferir ajuda da nossa equipe ou tiver alguma dúvida, preencha abaixo e entramos em contato.'
+                                    ? 'Preencha o formulário abaixo e nossa equipe entra em contato para te ajudar.'
                                     : 'Estamos construindo a Hubros junto com quem vai usá-la. Preencha abaixo e te avisamos quando chegar a sua vez.'}
                             </p>
                         </div>
