@@ -130,6 +130,13 @@
     display: block;
 }
 
+/* Link do selo: só embrulha a imagem (mesma caixa, sem efeito de hover —
+   o guia de marca do Founders Club proíbe alterar o selo). */
+.footer__selo-link {
+    display: block;
+    line-height: 0;
+}
+
 /* Bottom */
 .footer__bottom {
     display: flex;

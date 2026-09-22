@@ -19,6 +19,7 @@ import Cookies from './components/Legal/Cookies'
 import Terms from './components/Legal/Terms'
 import Privacy from './components/Legal/Privacy'
 import AccountDeletion from './components/Legal/AccountDeletion'
+import Careers from './components/Careers/Careers'
 import CookieConsent from './components/Legal/CookieConsent'
 import Footer from './components/Footer/Footer'
 import BlogIndex from './components/Blog/BlogIndex'
@@ -150,9 +151,15 @@ function App() {
                             <AccountDeletion />
                         </>
                     } />
+                    <Route path="/trabalhe-conosco" element={
+                        <>
+                            <Seo path="/trabalhe-conosco/" title="Trabalhe Conosco — Hubros" description="Quer construir a Hubros com a gente? Envie seu perfil e entraremos em contato quando surgir uma oportunidade." />
+                            <Careers />
+                        </>
+                    } />
                     <Route path="/lista-de-espera" element={
                         <>
-                            <Seo path="/lista-de-espera/" title="Lista de Espera — Hubros" description="Entre na lista de espera da Hubros e seja avisado quando lançarmos espaços perto de você." />
+                            <Seo path="/lista-de-espera/" title="Cadastre seu Espaço — Hubros" description="Tem um coworking, consultório ou sala disponível? Cadastre-se e comece a receber reservas — a Hubros já está no ar." />
                             <Waitlist />
                         </>
                     } />
