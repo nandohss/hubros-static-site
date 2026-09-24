@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Abrir o app da Hubros</title>
+<!--
+  PÁGINA DE REDIRECIONAMENTO INTELIGENTE
+  Hospedar em: hubros.com.br/app
+
+  Detecta se quem clicou está no iPhone ou no Android e manda direto
+  pra loja certa (App Store ou Google Play). Em computador, mostra os
+  dois links. É pra ESSA página que o botão "Ativar minha carteira"
+  do e-mail deve apontar (link_ativacao = https://hubros.com.br/app).
+
+  OBS: isso abre a loja/o app, não uma tela específica dentro do app.
+  Se no futuro vocês tiverem deep link (ex.: hubros://carteira) que
+  abre direto a tela de ativação da carteira pra quem já tem o app
+  instalado, é só adicionar a tentativa de abrir esse link antes do
+  redirecionamento abaixo.
+-->
+<style>
+  body{margin:0;background:#EFEAE2;font-family:Helvetica,Arial,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:24px;box-sizing:border-box}
+  .card{max-width:360px;text-align:center}
+  .icon{width:56px;height:56px;margin:0 auto 20px}
+  h1{font-size:20px;color:#1A1917;margin:0 0 8px}
+  p{font-size:15px;color:#4A4740;margin:0 0 28px;line-height:22px}
+  a.btn{display:block;background:#111111;color:#fff;text-decoration:none;font-weight:bold;padding:14px;border-radius:10px;margin-bottom:12px}
+  a.btn.outline{background:transparent;color:#111111;border:1.5px solid #111111}
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Abrindo a Hubros…</h1>
+    <p>Se não abrir sozinho, toque na loja do seu celular:</p>
+    <a class="btn" id="ios" href="https://apps.apple.com/br/app/hubros/id6762576263">Baixar na App Store</a>
+    <a class="btn outline" id="android" href="https://play.google.com/store/apps/details?id=br.com.hubros.hubros_app">Baixar no Google Play</a>
+  </div>
+<script>
+  var ua = navigator.userAgent || navigator.vendor || window.opera;
+  var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+  var isAndroid = /android/i.test(ua);
+  var target = isIOS
+    ? "https://apps.apple.com/br/app/hubros/id6762576263"
+    : isAndroid
+    ? "https://play.google.com/store/apps/details?id=br.com.hubros.hubros_app"
+    : null;
+  if (target) { window.location.replace(target); }
+</script>
+</body>
+</html>
