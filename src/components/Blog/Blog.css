@@ -406,14 +406,15 @@
 
 /* Quando há índice "Nesta página", o container abre espaço para a coluna lateral. */
 .blog-post-container--with-toc {
-    max-width: 1080px;
+    max-width: 1240px;
 }
 
 /* ---- Layout Post + Índice ---- */
 .blog-post__layout {
     display: flex;
-    gap: var(--space-12);
+    gap: var(--space-16, 64px);
     align-items: flex-start;
+    justify-content: space-between;
 }
 
 .blog-post__main {
@@ -426,7 +427,7 @@
    O sticky fica no PRÓPRIO item flex (a coluna), que tem a altura do artigo
    inteiro — é isso que dá o "trilho" para ele grudar enquanto a página rola. */
 .blog-post__toc-wrap {
-    width: 260px;
+    width: 220px;
     flex-shrink: 0;
     order: 1;
     position: sticky;
@@ -480,7 +481,84 @@
     border-left-color: var(--color-text-primary);
 }
 
+/* Índice recolhível (mobile/tablet). Escondido no desktop. */
+.blog-post__toc-mobile {
+    display: none;
+    margin-bottom: var(--space-8);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-surface);
+    overflow: hidden;
+}
+
+.blog-post__toc-mobile summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.blog-post__toc-mobile summary::-webkit-details-marker {
+    display: none;
+}
+
+.blog-post__toc-mobile-count {
+    margin-left: auto;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--color-text-muted);
+}
+
+.blog-post__toc-mobile summary::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform var(--transition-fast);
+}
+
+.blog-post__toc-mobile[open] summary::after {
+    transform: translateY(2px) rotate(-135deg);
+}
+
+.blog-post__toc-mobile nav {
+    padding: 0 18px 14px;
+}
+
+.blog-post__toc-mobile .blog-post__toc-list {
+    border-left: 0;
+    border-top: 1px solid var(--color-border);
+    padding-top: 6px;
+}
+
+.blog-post__toc-mobile .blog-post__toc-item a {
+    margin-left: 0;
+    border-left: 0;
+    padding: 10px 0;
+    font-size: 15px;
+}
+
+.blog-post__toc-mobile .blog-post__toc-item--h3 a {
+    padding-left: 16px;
+}
+
+.blog-post__toc-mobile .blog-post__toc-item.is-active a {
+    border-left: 0;
+}
+
 /* Compensa a navbar fixa ao rolar até uma âncora. */
+.blog-post__content .hb[id],
 .blog-post__content h2,
 .blog-post__content h3 {
     scroll-margin-top: calc(var(--nav-height) + var(--space-6));
@@ -554,6 +632,31 @@
     margin-bottom: var(--space-6);
 }
 
+/* O reset global (index.css) tira os marcadores de ul/ol; no texto do post eles fazem falta. */
+.blog-post__content > ol,
+.blog-post__content > ul {
+    margin: 0 0 var(--space-6);
+    padding-left: 1.5em;
+}
+
+.blog-post__content > ol {
+    list-style: decimal;
+}
+
+.blog-post__content > ul {
+    list-style: disc;
+}
+
+.blog-post__content > ol > li,
+.blog-post__content > ul > li {
+    margin-bottom: var(--space-2);
+    padding-left: 0.25em;
+}
+
+.blog-post__content > ol > li::marker {
+    font-weight: 700;
+}
+
 /* ---- Responsivo ---- */
 @media (max-width: 900px) {
     .blog-container-sidebar {
@@ -587,14 +690,11 @@
     }
 }
 
-@media (max-width: 900px) {
+/* Abaixo de 1100px não cabe coluna lateral sem espremer o texto:
+   o índice vira o bloco recolhível no topo do post. */
+@media (max-width: 1100px) {
     .blog-post-container--with-toc {
         max-width: 760px;
-    }
-
-    .blog-post__layout {
-        flex-direction: column;
-        gap: var(--space-8);
     }
 
     .blog-post__main {
@@ -602,18 +702,12 @@
         width: 100%;
     }
 
-    /* Índice vai para o topo, como um bloco estático. */
     .blog-post__toc-wrap {
-        order: -1;
-        width: 100%;
-        position: relative;
-        top: 0;
-        max-height: none;
-        overflow: visible;
-        padding: var(--space-5) var(--space-6);
-        background: var(--color-surface);
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-lg);
+        display: none;
+    }
+
+    .blog-post__toc-mobile {
+        display: block;
     }
 }
 

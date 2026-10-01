@@ -57,7 +57,7 @@ Quem opera espaço há tempo pensa assim: em receita por hora disponível, não 
 
 O seu número vai ser outro. Por isso a calculadora começa com o exemplo, mas é pra você trocar pelos seus.
 
-<section class="hb hb-box" data-hb="calc" aria-label="Calculadora da hora vazia">
+<section class="hb hb-box" id="calculadora" data-toc="Calculadora" data-hb="calc" aria-label="Calculadora da hora vazia">
   <p class="hb-kicker"><i></i>Calculadora</p>
   <p class="hb-title">Faça a conta com o seu espaço</p>
   <p class="hb-sub">Começa com o exemplo. Troca pelos números da sua agenda.</p>

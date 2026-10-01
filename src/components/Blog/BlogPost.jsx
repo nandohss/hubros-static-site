@@ -45,6 +45,14 @@ function extractHeadings(markdown) {
         }
         if (insideFence) continue;
 
+        // Bloco HTML com âncora própria entra no índice como subitem:
+        // <section id="calculadora" data-toc="Calculadora" ...>
+        const block = /^<\w+[^>]*\bid="([^"]+)"[^>]*\bdata-toc="([^"]+)"/.exec(line);
+        if (block) {
+            headings.push({ level: 3, text: block[2], id: block[1] });
+            continue;
+        }
+
         const match = /^(#{2,3})\s+(.+?)\s*#*$/.exec(line);
         if (!match) continue;
 
@@ -157,23 +165,50 @@ const markdownComponents = {
     ),
 };
 
+function TocList({ headings, activeId, onPick }) {
+    return (
+        <ul className="blog-post__toc-list">
+            {headings.map((h) => (
+                <li
+                    key={h.id}
+                    className={`blog-post__toc-item blog-post__toc-item--h${h.level}${activeId === h.id ? ' is-active' : ''}`}
+                >
+                    <a href={`#${h.id}`} onClick={onPick}>{h.text}</a>
+                </li>
+            ))}
+        </ul>
+    );
+}
+
+// Desktop: coluna lateral fixa. Some abaixo de 1100px (ver Blog.css).
 function TableOfContents({ headings, activeId }) {
     return (
         <aside className="blog-post__toc-wrap">
             <nav className="blog-post__toc" aria-label="Nesta página">
                 <p className="blog-post__toc-title">Nesta página</p>
-                <ul className="blog-post__toc-list">
-                    {headings.map((h) => (
-                        <li
-                            key={h.id}
-                            className={`blog-post__toc-item blog-post__toc-item--h${h.level}${activeId === h.id ? ' is-active' : ''}`}
-                        >
-                            <a href={`#${h.id}`}>{h.text}</a>
-                        </li>
-                    ))}
-                </ul>
+                <TocList headings={headings} activeId={activeId} />
             </nav>
         </aside>
+    );
+}
+
+// Mobile/tablet: índice recolhido acima do texto; fecha ao escolher uma seção.
+function TableOfContentsMobile({ headings, activeId }) {
+    const [open, setOpen] = useState(false);
+    return (
+        <details
+            className="blog-post__toc-mobile"
+            open={open}
+            onToggle={(e) => setOpen(e.currentTarget.open)}
+        >
+            <summary>
+                <span>Nesta página</span>
+                <span className="blog-post__toc-mobile-count">{headings.filter((h) => h.level === 2).length} seções</span>
+            </summary>
+            <nav aria-label="Nesta página">
+                <TocList headings={headings} activeId={activeId} onPick={() => setOpen(false)} />
+            </nav>
+        </details>
     );
 }
 
@@ -198,6 +233,18 @@ export default function BlogPost() {
     // o script os ativa depois que o post monta.
     useEffect(() => {
         if (post && window.hubrosBlogInit) window.hubrosBlogInit();
+    }, [post?.slug]);
+
+    // Link direto para uma seção (ex.: #calculadora): o conteúdo monta depois do
+    // load, então o navegador não rola sozinho. Rola quando o alvo existir.
+    useEffect(() => {
+        const id = decodeURIComponent(window.location.hash.slice(1));
+        if (!post || !id) return;
+        const t = setTimeout(() => {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ block: 'start' });
+        }, 60);
+        return () => clearTimeout(t);
     }, [post?.slug]);
 
     if (!post) {
@@ -258,6 +305,7 @@ export default function BlogPost() {
 
                 <div className="blog-post__layout">
                     <div className="blog-post__main">
+                        {hasToc && <TableOfContentsMobile headings={headings} activeId={activeId} />}
                         <div className="blog-post__content reveal-node reveal-active">
                             {body}
                         </div>

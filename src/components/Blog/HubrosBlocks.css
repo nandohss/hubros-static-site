@@ -208,5 +208,14 @@
 .hb-cta a:hover{transform:translateY(-1px);box-shadow:0 8px 20px -10px rgba(0,0,0,.6)}
 .hb-cta a:hover i{transform:scale(1.5)}
 
-@media (max-width:520px){.hb-steps button{width:28px;height:28px}.hb-presets{display:flex}.hb-presets button{flex:1}}
+.hb-steps button{width:34px;height:34px}
+@media (max-width:520px){
+  /* 2 colunas: resultado ímpar no fim ("Na mesa por mês") ocupa a linha toda, sem buraco. */
+  .hb-results{grid-template-columns:1fr 1fr}
+  .hb-results>div:nth-child(odd):last-child{grid-column:1/-1}
+  .hb-steps{gap:10px}
+  .hb-steps button{width:44px;height:44px;font-size:22px}
+  .hb-field{padding:12px 12px 12px 16px}
+  .hb-presets{display:flex}.hb-presets button{flex:1}
+}
 @media (prefers-reduced-motion:reduce){.hb,.hb *{transition:none!important;animation:none!important}.hb.hb-pre,.hb-pre *{opacity:1!important;transform:none!important}}
