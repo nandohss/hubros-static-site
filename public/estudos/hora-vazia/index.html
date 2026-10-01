@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>A hora vazia: estudo geral sobre coworking em São Paulo · Hubros</title>
+  <meta name="description" content="Estudo da Hubros com fontes públicas sobre oferta, demanda e ocupação de espaços compartilhados em São Paulo: escritório, saúde e estética.">
+  <link rel="canonical" href="https://hubros.com.br/estudos/hora-vazia/">
+  <link rel="icon" href="/favicon.png">
+  <meta name="theme-color" content="#0B0B0C">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Hubros">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://hubros.com.br/estudos/hora-vazia/">
+  <meta property="og:title" content="A hora vazia: estudo geral sobre coworking em São Paulo">
+  <meta property="og:description" content="Estudo da Hubros com fontes públicas sobre oferta, demanda e ocupação de espaços compartilhados em São Paulo: escritório, saúde e estética.">
+  <meta property="og:image" content="https://hubros.com.br/blog/hora_vazia_cover.jpg">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "A hora vazia", "description": "Estudo da Hubros com fontes públicas sobre oferta, demanda e ocupação de espaços compartilhados em São Paulo: escritório, saúde e estética.", "image": "https://hubros.com.br/blog/hora_vazia_cover.jpg", "inLanguage": "pt-BR", "datePublished": "2026-09-30", "dateModified": "2026-10-01", "author": {"@type": "Organization", "name": "Hubros", "url": "https://hubros.com.br/"}, "publisher": {"@type": "Organization", "name": "Hubros", "logo": {"@type": "ImageObject", "url": "https://hubros.com.br/favicon.png"}}, "mainEntityOfPage": "https://hubros.com.br/estudos/hora-vazia/"}</script>
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <style>
+  :root{
+    --ground:#0B0B0C; --surface:#141416; --surface-2:#1A1A1D;
+    --line:#2B2B2F; --line-soft:#212124;
+    --ink:#F7F7F8; --ink-2:#B6B6BC; --ink-3:#7C7C84;
+    --gold:#D6BB87; --gold-dim:#8C7749;
+    --n-esc:#3B8FD4; --n-sau:#B08A28; --n-odo:#D0663A; --n-est:#9070D6;
+    --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:920px;margin:0 auto;padding:56px 24px 96px;}
+  .kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin:0 0 18px;}
+  h1{font-size:clamp(40px,7vw,68px);line-height:.98;letter-spacing:-.045em;font-weight:800;margin:0 0 18px;}
+  .sub{font-size:19px;line-height:1.5;color:var(--ink-2);max-width:60ch;margin:0 0 10px;}
+  .sub b{color:var(--ink);font-weight:600;}
+  .stamp{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:0 0 36px;}
+
+  .series{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 40px;}
+  .series a,.series span{font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:7px 12px;border:1px solid var(--line);color:var(--ink-3);text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+  .series .here{border-color:var(--gold);color:#0B0B0C;background:var(--gold);}
+  .series a{color:var(--ink);}
+  .series a:hover{border-color:var(--gold-dim);}
+  .dot{width:8px;height:8px;border-radius:99px;display:inline-block;flex:none;}
+
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:52px;}
+  .tile{background:var(--surface);padding:20px 22px 22px;}
+  .tile .n{font-size:32px;font-weight:800;letter-spacing:-.035em;line-height:1;font-variant-numeric:tabular-nums;display:block;margin-bottom:8px;}
+  .tile .l{font-size:13px;color:var(--ink-2);line-height:1.4;display:block;}
+  .tile .s{font-size:11px;color:var(--ink-3);margin-top:8px;display:block;}
+
+  h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:0 0 6px;}
+  section{margin-bottom:56px;}
+  .lead{font-size:24px;line-height:1.32;letter-spacing:-.022em;font-weight:600;margin:0 0 16px;max-width:30ch;text-wrap:balance;}
+  p{margin:0 0 14px;max-width:64ch;color:var(--ink-2);}
+  p b,li b,td b{color:var(--ink);font-weight:600;}
+  ul{margin:0 0 14px;padding-left:20px;color:var(--ink-2);display:flex;flex-direction:column;gap:9px;max-width:64ch;}
+  li::marker{color:var(--gold-dim);}
+
+  .fig{border:1px solid var(--line);background:var(--surface);padding:24px 24px 20px;margin:24px 0;}
+  .fig h3{font-size:15px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;}
+  .fig .cap{font-size:12.5px;color:var(--ink-3);margin:0 0 18px;}
+  .fig .src{font-size:11.5px;color:var(--ink-3);margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line-soft);}
+  .chart-scroll{overflow-x:auto;}
+  svg{display:block;max-width:100%;height:auto;}
+  .fig svg.wide{min-width:720px;}
+  svg .bar{transition:opacity .15s ease;}
+  svg:hover .bar{opacity:.55;}
+  svg .bar:hover{opacity:1;}
+
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--line);background:var(--surface);}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:680px;}
+  th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top;}
+  thead th{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600;white-space:nowrap;}
+  tbody th{font-weight:600;color:var(--ink);font-size:13.5px;white-space:nowrap;}
+  td{color:var(--ink-2);}
+  tr:last-child td,tr:last-child th{border-bottom:0;}
+  .c{text-align:center;}
+  .ok{color:var(--gold);font-weight:700;}
+  .part{color:var(--ink-2);}
+  .gap{color:#C0563A;font-weight:700;}
+  .mat-legend{display:flex;flex-wrap:wrap;gap:20px;margin-top:12px;font-size:12.5px;color:var(--ink-3);}
+
+  .niche-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:20px;}
+  .nc{border:1px solid var(--line);background:var(--surface);padding:16px 18px;border-top-width:3px;}
+  .nc .t{font-size:15px;font-weight:700;display:block;margin-bottom:4px;}
+  .nc .st{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;display:block;margin-bottom:10px;}
+  .nc .d{font-size:13px;color:var(--ink-2);display:block;}
+  .nc a{color:var(--gold);font-size:13px;font-weight:600;display:inline-block;margin-top:10px;text-decoration:none;}
+  .nc a:hover{text-decoration:underline;}
+
+  .pull{border-left:2px solid var(--gold);padding:4px 0 4px 20px;margin:28px 0;font-size:21px;line-height:1.4;font-weight:600;letter-spacing:-.02em;color:var(--ink);max-width:44ch;}
+  .box{border:1px solid var(--line);background:var(--surface-2);padding:22px 24px;}
+  .box ul{margin-bottom:0;}
+  .errata{border:1px solid var(--gold-dim);background:var(--surface);padding:18px 22px;margin-bottom:48px;}
+  .errata h2{margin-bottom:8px;}
+  .errata p{margin:0;font-size:13.5px;}
+
+  footer{border-top:1px solid var(--line);padding-top:22px;margin-top:8px;font-size:12.5px;color:var(--ink-3);}
+  footer a{color:var(--gold-dim);}
+  footer a:hover{color:var(--gold);}
+  footer ol{padding-left:18px;display:flex;flex-direction:column;gap:6px;margin:12px 0 0;}
+  @media (max-width:560px){.wrap{padding:36px 16px 72px;} .lead{font-size:21px;}}
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+</style>
+</head>
+<body>
+<style>
+  .hub-top{position:sticky;top:0;z-index:10;background:rgba(11,11,12,.86);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid #212124}
+  .hub-top .in{max-width:920px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .hub-top a{color:#F7F7F8;text-decoration:none;font-family:'Inter',sans-serif}
+  .hub-top .brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:-.02em}
+  .hub-top .brand img{width:28px;height:28px;border-radius:7px;display:block}
+  .hub-top .nav{display:flex;gap:18px;font-size:13.5px;font-weight:600}
+  .hub-top .nav a{color:#B6B6BC}.hub-top .nav a:hover{color:#F7F7F8}
+  .hub-bottom{max-width:920px;margin:0 auto;padding:0 24px 48px;font-family:'Inter',sans-serif;font-size:12.5px;color:#7C7C84;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+  .hub-bottom a{color:#B6B6BC;text-decoration:none}.hub-bottom a:hover{color:#F7F7F8}
+  @media (max-width:560px){.hub-top .in{padding:10px 16px}.hub-bottom{padding:0 16px 40px}}
+</style>
+<header class="hub-top"><div class="in"><a class="brand" href="/"><img src="/favicon.png" alt="">Hubros</a><nav class="nav" aria-label="Site"><a href="/blog/">Blog</a><a href="/sobre/">Sobre</a></nav></div></header>
+<div class="wrap">
+
+  <p class="kicker">Estudo geral · São Paulo · versão 3 · setembro de 2026</p>
+  <h1>A hora vazia</h1>
+  <p class="sub">"Coworking" parece um mercado só, e não é. Existe espaço compartilhado para quase tudo, do escritório ao estúdio de fotografia. Este estudo cobre os três nichos em que a Hubros atua agora: escritório, saúde e estética. Mesmo entre eles, os donos, os clientes e as regras são diferentes. <b>Este é o estudo geral: o que vale para os três.</b> Cada nicho tem estudo próprio, com os números que só fazem sentido dentro dele.</p>
+  <p class="stamp">Fontes públicas · premissas marcadas · método e fontes no fim</p>
+
+  <nav class="series" aria-label="Estudos da série">
+    <span class="here">Geral</span>
+    <a href="/estudos/hora-vazia-saude/"><i class="dot" style="background:#B08A28"></i>Saúde</a>
+    <a href="/estudos/hora-vazia-escritorio/"><i class="dot" style="background:#3B8FD4"></i>Escritório</a>
+    <span><i class="dot" style="background:#9070D6"></i>Estética · em investigação</span>
+  </nav>
+
+  <div class="tiles">
+    <div class="tile"><span class="n">500+</span><span class="l">unidades de coworking na cidade de São Paulo</span><span class="s">Newmark, 2025</span></div>
+    <div class="tile"><span class="n">26,1 mi</span><span class="l">pessoas trabalham por conta própria no Brasil</span><span class="s">IBGE, PNAD Contínua, 2025</span></div>
+    <div class="tile"><span class="n">36,1%</span><span class="l">dos MEIs trabalham em casa. Eram 40% em 2019</span><span class="s">Sebrae, Perfil do MEI, 2024</span></div>
+    <div class="tile"><span class="n">3</span><span class="l">nichos no recorte da Hubros hoje: escritório, saúde e estética. Há outros, como estúdios de fotografia</span><span class="s">Seção 02</span></div>
+  </div>
+
+  <div class="errata">
+    <h2>Versão 3</h2>
+    <p>A versão anterior misturava dados de nichos diferentes na mesma página, como número de psicólogos ao lado de dado de MEI de todos os setores. Agora o estudo geral fica só com o que vale para o mercado inteiro, e o que é de cada nicho foi para o estudo daquele nicho. Odontologia passou a ser tratada dentro de Saúde, como consultório equipado.</p>
+  </div>
+
+  <section>
+    <h2>01 · A oferta</h2>
+    <p class="lead">Espaço existe. O encontro com quem precisa também, só que fragmentado.</p>
+    <p>A cidade de São Paulo concentra <b>mais de 500 unidades de coworking</b> (Newmark, 2025). No Brasil são 3.886 espaços (Newmark, 2025). Em 2021 a própria Newmark contava 663 unidades na cidade, e as duas contagens não são diretamente comparáveis.</p>
+    <p>Oferta e demanda já se encontram por vários caminhos: plataformas de reserva de escritório, plataformas de consultório por hora e um mercado grande de sublocação direta entre profissionais. <b>A existência desses canais prova que a demanda é real.</b> O que falta é escala: cada canal cobre um nicho, uma região ou um formato.</p>
+  </section>
+
+  <section>
+    <h2>02 · Três nichos, quatro tipos de sala</h2>
+    <p class="lead">Três nichos. E dentro de saúde, dois tipos de consultório.</p>
+    <p>Espaço compartilhado existe em muitos nichos além destes, como estúdios de fotografia. Eles ficam fora deste estudo porque ficam fora da operação da Hubros por enquanto. Os três abaixo são os que importam hoje.</p>
+    <p>O dono de um coworking de escritório e o dono de um coworking odontológico vendem coisas diferentes, para pessoas diferentes, com regras diferentes. Um argumento que convence um pode não fazer sentido para o outro. Odontologia é saúde, mas o consultório equipado tem regras próprias, por isso aparece numa linha separada dentro de Saúde.</p>
+
+    <div class="fig">
+      <h3>Quem oferece, o que aluga e quem procura, em cada nicho</h3>
+      <p class="cap">A estrutura é a mesma. O conteúdo de cada caixa muda, e é isso que separa os nichos.</p>
+      <div class="chart-scroll">
+        <svg class="wide" viewBox="0 0 900 400" role="img" aria-label="Três nichos: escritório, saúde (consultório simples e consultório equipado odontológico) e estética, cada um com um tipo de dono, um tipo de espaço alugado, uma regra e um tipo de profissional que procura.">
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><polygon points="0,1 9,5 0,9" fill="#7C7C84"></polygon></marker>
+          </defs>
+          <g font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="#7C7C84" letter-spacing="1.2">
+            <text x="14" y="22">NICHO</text>
+            <text x="160" y="22">QUEM OFERECE</text>
+            <text x="420" y="22">O QUE ALUGA</text>
+            <text x="680" y="22">QUEM PROCURA</text>
+          </g>
+
+          <!-- lane 1 escritório -->
+          <rect x="10" y="38" width="4" height="72" fill="#3B8FD4"></rect>
+          <text x="24" y="70" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="14" font-weight="700">Escritório</text>
+          <text x="24" y="88" fill="#7C7C84" font-family="Inter, sans-serif" font-size="11">o mais conhecido</text>
+          <rect x="156" y="42" width="210" height="64" rx="4" fill="#1A1A1D" stroke="#2B2B2F"></rect>
+          <text x="170" y="68" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="12.5" font-weight="600">Coworking de escritório</text>
+          <text x="170" y="87" fill="#B6B6BC" font-family="Inter, sans-serif" font-size="11">vive de plano mensal</text>
+          <line x1="366" y1="74" x2="410" y2="74" stroke="#7C7C84" marker-end="url(#ar)"></line>
+          <rect x="416" y="42" width="210" height="64" rx="4" fill="#1A1A1D" stroke="#2B2B2F"></rect>
+          <text x="430" y="68" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="12.5" font-weight="600">Estação e sala de reunião</text>
+          <text x="430" y="87" fill="#B6B6BC" font-family="Inter, sans-serif" font-size="11">sem licença específica</text>
+          <line x1="626" y1="74" x2="670" y2="74" stroke="#7C7C84" marker-end="url(#ar)"></line>
+          <rect x="676" y="42" width="214" height="64" rx="4" fill="#1A1A1D" stroke="#2B2B2F"></rect>
+          <text x="690" y="68" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="12.5" font-weight="600">Autônomos e remotos</text>
+          <text x="690" y="87" fill="#B6B6BC" font-family="Inter, sans-serif" font-size="11">buscam "coworking"</text>
+
+          <!-- lane 2 saúde -->
+          <rect x="10" y="126" width="4" height="72" fill="#B08A28"></rect>
+          <text x="24" y="158" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="14" font-weight="700">Saúde</text>
+          <text x="24" y="176" fill="#7C7C84" font-family="Inter, sans-serif" font-size="11">consultório simples</text>
+          <rect x="156" y="130" width="210" height="64" rx="4" fill="#1A1A1D" stroke="#2B2B2F"></rect>
+          <text x="170" y="156" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="12.5" font-weight="600">Coworking de saúde</text>
+          <text x="170" y="175" fill="#B6B6BC" font-family="Inter, sans-serif" font-size="11">hora, período ou pacote</text>
+          <line x1="366" y1="162" x2="410" y2="162" stroke="#7C7C84" marker-end="url(#ar)"></line>
+          <rect x="416" y="130" width="210" height="64" rx="4" fill="#1A1A1D" stroke="#2B2B2F"></rect>
+          <text x="430" y="156" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="12.5" font-weight="600">Consultório</text>
+          <text x="430" y="175" fill="#B6B6BC" font-family="Inter, sans-serif" font-size="11">privacidade e acústica</text>
+          <line x1="626" y1="162" x2="670" y2="162" stroke="#7C7C84" marker-end="url(#ar)"></line>
+          <rect x="676" y="130" width="214" height="64" rx="4" fill="#1A1A1D" stroke="#2B2B2F"></rect>
+          <text x="690" y="156" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="12.5" font-weight="600">Psicólogos e médicos</text>
+          <text x="690" y="175" fill="#B6B6BC" font-family="Inter, sans-serif" font-size="11">buscam "consultório por hora"</text>
+
+          <!-- lane 3 odonto -->
+          <rect x="10" y="214" width="4" height="72" fill="#B08A28"></rect>
+          <text x="24" y="246" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="14" font-weight="700">Saúde</text>
+          <text x="24" y="264" fill="#7C7C84" font-family="Inter, sans-serif" font-size="11">consultório equipado</text>
+          <rect x="156" y="218" width="210" height="64" rx="4" fill="#1A1A1D" stroke="#2B2B2F"></rect>
+          <text x="170" y="244" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="12.5" font-weight="600">Coworking odontológico</text>
+          <text x="170" y="263" fill="#B6B6BC" font-family="Inter, sans-serif" font-size="11">vende por período</text>
+          <line x1="366" y1="250" x2="410" y2="250" stroke="#7C7C84" marker-end="url(#ar)"></line>
+          <rect x="416" y="218" width="210" height="64" rx="4" fill="#1A1A1D" stroke="#B08A28" stroke-opacity=".8"></rect>
+          <text x="430" y="244" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="12.5" font-weight="600">Consultório equipado</text>
+          <text x="430" y="263" fill="#D6BB87" font-family="Inter, sans-serif" font-size="11">licença por dentista</text>
+          <line x1="626" y1="250" x2="670" y2="250" stroke="#7C7C84" marker-end="url(#ar)"></line>
+          <rect x="676" y="218" width="214" height="64" rx="4" fill="#1A1A1D" stroke="#2B2B2F"></rect>
+          <text x="690" y="244" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="12.5" font-weight="600">Dentistas autônomos</text>
+          <text x="690" y="263" fill="#B6B6BC" font-family="Inter, sans-serif" font-size="11">"consultório compartilhado"</text>
+
+          <!-- lane 4 estética -->
+          <rect x="10" y="302" width="4" height="72" fill="#9070D6"></rect>
+          <text x="24" y="334" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="14" font-weight="700">Estética</text>
+          <text x="24" y="352" fill="#7C7C84" font-family="Inter, sans-serif" font-size="11">outra lógica</text>
+          <rect x="156" y="306" width="210" height="64" rx="4" fill="#1A1A1D" stroke="#2B2B2F"></rect>
+          <text x="170" y="332" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="12.5" font-weight="600">Salão e espaço de beleza</text>
+          <text x="170" y="351" fill="#B6B6BC" font-family="Inter, sans-serif" font-size="11">parceria com cota-parte</text>
+          <line x1="366" y1="338" x2="410" y2="338" stroke="#7C7C84" marker-end="url(#ar)"></line>
+          <rect x="416" y="306" width="210" height="64" rx="4" fill="#1A1A1D" stroke="#9070D6" stroke-opacity=".6"></rect>
+          <text x="430" y="332" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="12.5" font-weight="600">Cadeira, cabine, sala</text>
+          <text x="430" y="351" fill="#9070D6" font-family="Inter, sans-serif" font-size="11">Lei 13.352, contrato homologado</text>
+          <line x1="626" y1="338" x2="670" y2="338" stroke="#7C7C84" marker-end="url(#ar)"></line>
+          <rect x="676" y="306" width="214" height="64" rx="4" fill="#1A1A1D" stroke="#2B2B2F"></rect>
+          <text x="690" y="332" fill="#F7F7F8" font-family="Inter, sans-serif" font-size="12.5" font-weight="600">Profissionais parceiros</text>
+          <text x="690" y="351" fill="#B6B6BC" font-family="Inter, sans-serif" font-size="11">muitos já dentro de salões</text>
+        </svg>
+      </div>
+      <p class="src">Regras destacadas em cor: no consultório odontológico, o compartilhamento de consultório em São Paulo só foi permitido pela Portaria CVS nº 01/2024 (APCD), e cada dentista precisa de licença de funcionamento própria (CROSP). Na estética, a parceria é regulada pela Lei 13.352/2016, com cota-parte e contrato homologado no sindicato (Planalto).</p>
+    </div>
+
+    <div class="pull">Um argumento que funciona com o dono de coworking de escritório pode soar sem sentido para o dono de uma clínica odontológica. Por isso cada nicho tem estudo próprio.</div>
+  </section>
+
+  <section>
+    <h2>03 · O movimento que vale para todos</h2>
+    <p class="lead">Ano após ano, menos gente trabalha em casa.</p>
+    <p>O Brasil fechou 2025 com <b>26,1 milhões de pessoas trabalhando por conta própria</b>, dentro de um recorde de 103 milhões de ocupados (IBGE). São 11,5 milhões de MEIs com cadastro ativo, mais de 90% em operação (Sebrae, 2024). Esses números misturam todos os setores e todo o país. É por isso que estão aqui, no estudo geral, e não dentro de um nicho.</p>
+
+    <div class="fig">
+      <h3>MEIs que trabalham em casa</h3>
+      <p class="cap">Percentual dos microempreendedores individuais que declararam a própria casa como local de trabalho. Brasil, todos os setores.</p>
+      <div class="chart-scroll">
+        <svg viewBox="0 0 640 230" role="img" aria-label="MEIs que trabalham em casa: 40% em 2019, 38% em 2022, 36,1% em 2024">
+          <line x1="60" y1="190" x2="620" y2="190" stroke="#2B2B2F"></line>
+          <line x1="60" y1="100" x2="620" y2="100" stroke="#212124" stroke-dasharray="3 4"></line>
+          <line x1="60" y1="10" x2="620" y2="10" stroke="#212124" stroke-dasharray="3 4"></line>
+          <text x="50" y="194" text-anchor="end" fill="#7C7C84" font-family="Inter, sans-serif" font-size="11">0%</text>
+          <text x="50" y="104" text-anchor="end" fill="#7C7C84" font-family="Inter, sans-serif" font-size="11">20%</text>
+          <text x="50" y="14" text-anchor="end" fill="#7C7C84" font-family="Inter, sans-serif" font-size="11">40%</text>
+          <rect class="bar" x="110" y="10" width="100" height="180" rx="4" fill="#8C7749"><title>2019: 40%</title></rect>
+          <text x="160" y="32" text-anchor="middle" fill="#0B0B0C" font-family="Inter, sans-serif" font-size="14" font-weight="700">40%</text>
+          <text x="160" y="212" text-anchor="middle" fill="#B6B6BC" font-family="Inter, sans-serif" font-size="12">2019</text>
+          <rect class="bar" x="280" y="19" width="100" height="171" rx="4" fill="#8C7749"><title>2022: 38%</title></rect>
+          <text x="330" y="41" text-anchor="middle" fill="#0B0B0C" font-family="Inter, sans-serif" font-size="14" font-weight="700">38%</text>
+          <text x="330" y="212" text-anchor="middle" fill="#B6B6BC" font-family="Inter, sans-serif" font-size="12">2022</text>
+          <rect class="bar" x="450" y="27.5" width="100" height="162.5" rx="4" fill="#8C7749"><title>2024: 36,1%</title></rect>
+          <text x="500" y="49" text-anchor="middle" fill="#0B0B0C" font-family="Inter, sans-serif" font-size="14" font-weight="700">36,1%</text>
+          <text x="500" y="212" text-anchor="middle" fill="#B6B6BC" font-family="Inter, sans-serif" font-size="12">2024</text>
+        </svg>
+      </div>
+      <p class="src">Fonte: Sebrae, Perfil do Microempreendedor Individual, edições 2019, 2022 e 2024 (Agência Sebrae, out/2024). Dados nacionais, sem recorte por estado ou setor.</p>
+    </div>
+
+    <p>Aplicando os 36,1% aos cerca de 10,4 milhões de MEIs em operação, são perto de <b>3,7 milhões de microempreendedores trabalhando em casa</b> (cálculo nosso). O trabalho remoto conta a mesma história por outro ângulo: 6,6 milhões de pessoas em 2024, 7,9% dos trabalhadores analisados pelo IBGE, abaixo do pico de 2022 mas acima dos 5,8% de 2019.</p>
+    <p>O limite desses números precisa ficar claro. Eles mostram um movimento, <b>não mostram para onde essas pessoas vão</b>, nem quantas gostariam de ter um espaço profissional e ainda não têm. Não existe pesquisa pública que meça essa intenção.</p>
+  </section>
+
+  <section>
+    <h2>04 · Ocupação</h2>
+    <p class="lead">Os grandes operadores estão cheios. A hora vazia, se existe, está em outro lugar.</p>
+    <ul>
+      <li><b>IWG (Regus, Spaces):</b> acima de 90% de ocupação, com o dobro da demanda de 2024 (NeoFeed, out/2025).</li>
+      <li><b>WeWork Brasil:</b> 80% de ocupação em 2022 (CNN Brasil).</li>
+      <li><b>Newmark:</b> vacância de 23,8% nos coworkings de São Paulo em abril de 2022.</li>
+    </ul>
+    <p>Esses números medem estação e escritório privativo de grandes redes de escritório. Não medem sala de reunião, consultório, cadeira de salão nem horários de borda em operadores médios e pequenos. <b>Nossa hipótese é que a ociosidade está justamente aí, e ela muda de nicho para nicho.</b> Não encontramos dado público que a confirme em nenhum deles.</p>
+  </section>
+
+  <section>
+    <h2>05 · O que já se sabe de cada nicho</h2>
+    <p class="lead">A profundidade dos dados públicos varia muito.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>Camada</th><th class="c">Escritório</th><th class="c">Saúde: consultório</th><th class="c">Saúde: odontológico</th><th class="c">Estética</th></tr></thead>
+        <tbody>
+          <tr><th>Tamanho do público</th><td class="c ok">tem</td><td class="c ok">tem</td><td class="c part">parcial</td><td class="c part">parcial</td></tr>
+          <tr><th>Como esse público trabalha</th><td class="c ok">tem</td><td class="c part">parcial</td><td class="c part">parcial</td><td class="c part">parcial</td></tr>
+          <tr><th>Quantidade de espaços</th><td class="c ok">tem</td><td class="c gap">falta</td><td class="c gap">falta</td><td class="c gap">falta</td></tr>
+          <tr><th>Ocupação</th><td class="c part">parcial</td><td class="c gap">falta</td><td class="c gap">falta</td><td class="c gap">falta</td></tr>
+          <tr><th>Regras e licenças</th><td class="c ok">simples</td><td class="c gap">falta</td><td class="c ok">tem</td><td class="c ok">tem</td></tr>
+          <tr><th>Como a demanda procura</th><td class="c part">parcial</td><td class="c ok">tem</td><td class="c part">parcial</td><td class="c gap">falta</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mat-legend">
+      <span style="color:var(--gold)">tem: dado público com fonte</span>
+      <span>parcial: dado antigo, secundário ou de amostra pequena</span>
+      <span style="color:#C0563A">falta: nenhum dado público encontrado</span>
+    </div>
+
+    <div class="niche-cards">
+      <div class="nc" style="border-top-color:#B08A28">
+        <span class="t">Saúde</span><span class="st" style="color:var(--gold)">Estudo disponível</span>
+        <span class="d">Psicologia, medicina e odontologia. Traz o funil do mercado endereçável de psicólogos da capital e as regras do consultório odontológico compartilhado.</span>
+        <a href="/estudos/hora-vazia-saude/">Ler o estudo →</a>
+      </div>
+      <div class="nc" style="border-top-color:#3B8FD4">
+        <span class="t">Escritório</span><span class="st" style="color:var(--ink-3)">Em preparação</span>
+        <span class="d">O nicho com mais dado macro. Falta separar sala de reunião de estação de trabalho.</span>
+      </div>
+      <div class="nc" style="border-top-color:#9070D6">
+        <span class="t">Estética</span><span class="st" style="color:var(--ink-3)">Em investigação</span>
+        <span class="d">A lógica é de parceria, não de aluguel. Precisa de pesquisa antes de virar tese.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>06 · Cada nicho procura com um nome</h2>
+    <p class="lead">"Coworking" é palavra de escritório.</p>
+    <p>A única pesquisa pública sobre o tema é da CNDL com o SPC Brasil: <b>61% dos consumidores das capitais tinham interesse em usar coworking em 2019</b>, contra 47% em 2018 (837 entrevistas). É interesse, não conhecimento, e é anterior à pandemia.</p>
+    <p>Fora do escritório, a palavra quase não aparece. As plataformas que atendem saúde se apresentam como "aluguel de consultório por hora" e "consultórios compartilhados"; clínicas anunciam "sublocação de salas"; conselhos de psicologia, como o de Minas Gerais, mantêm seção de sublocações. No odontológico, a própria regulação usa "compartilhamento de consultório". <b>A demanda de cada nicho existe, mas procura com a sua própria palavra.</b></p>
+  </section>
+
+  <section>
+    <h2>07 · O que o estudo geral ainda não sabe</h2>
+    <div class="box">
+      <ul>
+        <li><b>Quantos autônomos querem espaço profissional e ainda não têm.</b> O movimento de saída de casa está medido; a intenção, não.</li>
+        <li><b>Onde está a hora vazia.</b> Só existe dado de ocupação de grandes redes de escritório.</li>
+        <li><b>Quantos espaços existem por nicho.</b> A contagem de 500+ não separa escritório, saúde e estética.</li>
+        <li><b>Recorte por região da cidade.</b> Nenhuma das fontes gerais desce ao nível de bairro.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <b style="color:var(--ink-2)">Método:</b> levantamento a partir de IBGE, Sebrae, relatórios setoriais, regulação e imprensa especializada, consultados em setembro de 2026. Dados de MEI e trabalho remoto são nacionais; os de coworking, da cidade de São Paulo. Toda estimativa é cálculo nosso e está marcada.
+    <ol>
+      <li><a href="https://neofeed.com.br/negocios/sao-paulo-e-cidade-com-mais-coworkings-no-mundo-e-duas-chinesas-estao-puxando-a-demanda/" target="_blank" rel="noopener">NeoFeed, dados Newmark e IWG (out/2025)</a></li>
+      <li><a href="https://www.cnnbrasil.com.br/economia/macroeconomia/setor-de-coworking-recupera-forca-com-formato-hibrido-de-trabalho/" target="_blank" rel="noopener">CNN Brasil, Newmark 2021 e WeWork (abr/2022)</a></li>
+      <li><a href="https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/2013-agencia-de-noticias/releases/45759-pnad-continua-em-2025-taxa-anual-de-desocupacao-foi-de-5-6-enquanto-taxa-de-subutilizacao-foi-14-5" target="_blank" rel="noopener">IBGE, PNAD Contínua 2025</a></li>
+      <li><a href="https://agenciasebrae.com.br/dados/brasil-bate-recorde-de-microempreendedores-individuais-em-atividade/" target="_blank" rel="noopener">Agência Sebrae, Perfil do MEI (out/2024)</a></li>
+      <li><a href="https://inforchannel.com.br/2025/11/27/ibge-aponta-que-home-office-perde-forca-no-brasil-mas-segue-acima-do-nivel-pre-pandemia/" target="_blank" rel="noopener">IBGE, trabalho remoto 2024, via Inforchannel (nov/2025)</a></li>
+      <li><a href="https://www.apcd.org.br/jornal-da-apcd/odontologia/compartilhamento-de-consultorios-odontologicos-agora-e-permitido-em-sao-paulo" target="_blank" rel="noopener">APCD, Portaria CVS 01/2024</a></li>
+      <li><a href="https://crosp.org.br/noticia/coworkings-tem-se-tornado-uma-opcao-para-os-cirurgioes-dentistas/" target="_blank" rel="noopener">CROSP, coworkings odontológicos (jul/2022)</a></li>
+      <li><a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13352.htm" target="_blank" rel="noopener">Lei 13.352/2016 (Planalto)</a></li>
+      <li><a href="https://hzcoworkingspace.com.br/blog/interesse-de-usar-coworking/" target="_blank" rel="noopener">CNDL e SPC Brasil, interesse em coworking (2019)</a></li>
+      <li><a href="https://crp04.org.br/oportunidades/sublocacoes/" target="_blank" rel="noopener">CRP-MG, seção de sublocações</a></li>
+      <li><a href="https://www.coworkingcafe.com/blog/uk-ireland-coworking-report/" target="_blank" rel="noopener">CoworkingCafe, UK &amp; Ireland Report (jul/2026)</a></li>
+    </ol>
+  </footer>
+</div>
+<div class="hub-bottom"><span>© Hubros · Estudos A Hora Vazia</span><a href="/blog/">Ler o blog →</a></div>
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>A sala de reunião parada: estudo sobre escritório em São Paulo · Hubros</title>
+  <meta name="description" content="Quem precisa de sala de reunião por hora em São Paulo, quanto isso dá e o que ainda falta medir sobre a ocupação em coworking.">
+  <link rel="canonical" href="https://hubros.com.br/estudos/hora-vazia-escritorio/">
+  <link rel="icon" href="/favicon.png">
+  <meta name="theme-color" content="#0B0B0C">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Hubros">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://hubros.com.br/estudos/hora-vazia-escritorio/">
+  <meta property="og:title" content="A sala de reunião parada: estudo sobre escritório em São Paulo">
+  <meta property="og:description" content="Quem precisa de sala de reunião por hora em São Paulo, quanto isso dá e o que ainda falta medir sobre a ocupação em coworking.">
+  <meta property="og:image" content="https://hubros.com.br/blog/hora_vazia_cover.jpg">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "A sala de reunião parada", "description": "Quem precisa de sala de reunião por hora em São Paulo, quanto isso dá e o que ainda falta medir sobre a ocupação em coworking.", "image": "https://hubros.com.br/blog/hora_vazia_cover.jpg", "inLanguage": "pt-BR", "datePublished": "2026-09-30", "dateModified": "2026-10-01", "author": {"@type": "Organization", "name": "Hubros", "url": "https://hubros.com.br/"}, "publisher": {"@type": "Organization", "name": "Hubros", "logo": {"@type": "ImageObject", "url": "https://hubros.com.br/favicon.png"}}, "mainEntityOfPage": "https://hubros.com.br/estudos/hora-vazia-escritorio/"}</script>
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <style>
+  :root{
+    --ground:#0B0B0C; --surface:#141416; --surface-2:#1A1A1D;
+    --line:#2B2B2F; --line-soft:#212124;
+    --ink:#F7F7F8; --ink-2:#B6B6BC; --ink-3:#7C7C84;
+    --gold:#D6BB87; --gold-dim:#8C7749; --esc:#3B8FD4;
+    --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:920px;margin:0 auto;padding:56px 24px 96px;}
+  .kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin:0 0 18px;display:flex;align-items:center;gap:10px;}
+  .kicker i{width:10px;height:10px;border-radius:99px;background:var(--esc);display:inline-block;}
+  h1{font-size:clamp(38px,6.5vw,62px);line-height:1;letter-spacing:-.045em;font-weight:800;margin:0 0 18px;}
+  .sub{font-size:19px;line-height:1.5;color:var(--ink-2);max-width:60ch;margin:0 0 10px;}
+  .sub b{color:var(--ink);font-weight:600;}
+  .stamp{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:0 0 36px;}
+
+  .series{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 36px;}
+  .series a,.series span{font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:7px 12px;border:1px solid var(--line);color:var(--ink-3);text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+  .series .here{border-color:var(--gold);color:#0B0B0C;background:var(--gold);}
+  .series a{color:var(--ink);}
+  .series a:hover{border-color:var(--gold-dim);}
+  .dot{width:8px;height:8px;border-radius:99px;display:inline-block;flex:none;}
+
+  .scope{border:1px solid var(--line);border-left:3px solid var(--esc);background:var(--surface);padding:16px 20px;margin-bottom:40px;font-size:14px;color:var(--ink-2);}
+  .scope b{color:var(--ink);}
+
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:52px;}
+  .tile{background:var(--surface);padding:20px 22px 22px;}
+  .tile .n{font-size:30px;font-weight:800;letter-spacing:-.035em;line-height:1;font-variant-numeric:tabular-nums;display:block;margin-bottom:8px;}
+  .tile .l{font-size:13px;color:var(--ink-2);line-height:1.4;display:block;}
+  .tile .s{font-size:11px;color:var(--ink-3);margin-top:8px;display:block;}
+  .tile.est .n{color:var(--gold);}
+
+  h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:0 0 6px;}
+  section{margin-bottom:56px;}
+  .lead{font-size:24px;line-height:1.32;letter-spacing:-.022em;font-weight:600;margin:0 0 16px;max-width:32ch;text-wrap:balance;}
+  p{margin:0 0 14px;max-width:64ch;color:var(--ink-2);}
+  p b,li b,td b{color:var(--ink);font-weight:600;}
+  ul{margin:0 0 14px;padding-left:20px;color:var(--ink-2);display:flex;flex-direction:column;gap:9px;max-width:64ch;}
+  li::marker{color:var(--gold-dim);}
+
+  .fig{border:1px solid var(--line);background:var(--surface);padding:24px 24px 20px;margin:24px 0;}
+  .fig h3{font-size:15px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;}
+  .fig .cap{font-size:12.5px;color:var(--ink-3);margin:0 0 14px;}
+  .fig .src{font-size:11.5px;color:var(--ink-3);margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line-soft);}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--ink-3);margin:0 0 12px;}
+  .legend span{display:inline-flex;align-items:center;gap:7px;}
+  .sw{width:18px;height:10px;display:inline-block;}
+  .chart-scroll{overflow-x:auto;}
+  svg{display:block;max-width:100%;height:auto;}
+  .fig svg.wide{min-width:720px;}
+  svg .bar{transition:opacity .15s ease;}
+  svg:hover .bar{opacity:.55;}
+  svg .bar:hover{opacity:1;}
+
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--line);background:var(--surface);}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:620px;}
+  th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line-soft);vertical-align:top;}
+  th{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600;white-space:nowrap;}
+  td{color:var(--ink-2);}
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink);font-weight:600;}
+  tr:last-child td{border-bottom:0;}
+  tr.total td{background:var(--surface-2);}
+  .src-tag{display:inline-block;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:2px 6px;border:1px solid var(--gold-dim);color:var(--gold);}
+  .prem-tag{display:inline-block;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:2px 6px;border:1px dashed var(--ink-3);color:var(--ink-3);}
+
+  .pull{border-left:2px solid var(--gold);padding:4px 0 4px 20px;margin:28px 0;font-size:21px;line-height:1.4;font-weight:600;letter-spacing:-.02em;color:var(--ink);max-width:46ch;}
+  .words{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:18px 0;}
+  .word{border:1px solid var(--line);background:var(--surface);padding:14px 16px;}
+  .word .w{font-size:16px;font-weight:700;color:var(--ink);display:block;letter-spacing:-.01em;}
+  .word .who{font-size:12px;color:var(--ink-3);display:block;margin-top:4px;}
+  .box{border:1px solid var(--line);background:var(--surface-2);padding:22px 24px;}
+  .box ul{margin-bottom:0;}
+  .types{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:18px 0;}
+  .type{border:1px solid var(--line);background:var(--surface);padding:18px 20px;}
+  .type .h{font-size:16px;font-weight:700;display:block;letter-spacing:-.01em;}
+  .type .who{font-size:12px;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;font-weight:600;display:block;margin:4px 0 12px;}
+  .type dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13px;}
+  .type dt{color:var(--ink-3);}
+  .type dd{margin:0;color:var(--ink-2);}
+
+  footer{border-top:1px solid var(--line);padding-top:22px;margin-top:8px;font-size:12.5px;color:var(--ink-3);}
+  footer a{color:var(--gold-dim);}
+  footer a:hover{color:var(--gold);}
+  footer ol{padding-left:18px;display:flex;flex-direction:column;gap:6px;margin:12px 0 0;}
+  @media (max-width:560px){.wrap{padding:36px 16px 72px;} .lead{font-size:21px;}}
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+</style>
+</head>
+<body>
+<style>
+  .hub-top{position:sticky;top:0;z-index:10;background:rgba(11,11,12,.86);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid #212124}
+  .hub-top .in{max-width:920px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .hub-top a{color:#F7F7F8;text-decoration:none;font-family:'Inter',sans-serif}
+  .hub-top .brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:-.02em}
+  .hub-top .brand img{width:28px;height:28px;border-radius:7px;display:block}
+  .hub-top .nav{display:flex;gap:18px;font-size:13.5px;font-weight:600}
+  .hub-top .nav a{color:#B6B6BC}.hub-top .nav a:hover{color:#F7F7F8}
+  .hub-bottom{max-width:920px;margin:0 auto;padding:0 24px 48px;font-family:'Inter',sans-serif;font-size:12.5px;color:#7C7C84;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+  .hub-bottom a{color:#B6B6BC;text-decoration:none}.hub-bottom a:hover{color:#F7F7F8}
+  @media (max-width:560px){.hub-top .in{padding:10px 16px}.hub-bottom{padding:0 16px 40px}}
+</style>
+<header class="hub-top"><div class="in"><a class="brand" href="/"><img src="/favicon.png" alt="">Hubros</a><nav class="nav" aria-label="Site"><a href="/blog/">Blog</a><a href="/sobre/">Sobre</a></nav></div></header>
+<div class="wrap">
+  <p class="kicker"><i></i>Estudo de nicho · Escritório · São Paulo · setembro de 2026</p>
+  <h1>A sala de reunião parada</h1>
+  <p class="sub">O coworking de escritório vende plano mensal. A sala de reunião fica de fora dessa conta e ninguém mede o quanto ela fica em pé. <b>Este estudo mostra quem precisa de sala por hora em São Paulo, estima quanto isso dá e diz o que ainda falta medir.</b></p>
+  <p class="stamp">Fontes públicas · premissas marcadas · método e fontes no fim</p>
+
+  <nav class="series" aria-label="Estudos da série">
+    <a href="/estudos/hora-vazia/">Geral</a>
+    <a href="/estudos/hora-vazia-saude/"><i class="dot" style="background:#B08A28"></i>Saúde</a>
+    <span class="here"><i class="dot" style="background:#0B0B0C"></i>Escritório</span>
+    <span><i class="dot" style="background:#9070D6"></i>Estética · em investigação</span>
+  </nav>
+
+  <div class="scope"><b>O que este estudo cobre:</b> a sala de reunião do coworking de escritório, vendida por hora para quem não é membro. <b>O que ele não cobre:</b> estação de trabalho, sala privativa e escritório virtual, que já têm produto mensal maduro e não são o ponto ocioso.</div>
+
+  <div class="tiles">
+    <div class="tile"><span class="n">395.608</span><span class="l">advogados inscritos na seccional São Paulo</span><span class="s">OAB Conselho Federal, set/2026</span></div>
+    <div class="tile"><span class="n">42,66%</span><span class="l">da advocacia trabalha em regime de home office</span><span class="s">OAB e FGV, 2023</span></div>
+    <div class="tile"><span class="n">6,6 mi</span><span class="l">de pessoas trabalhavam de casa no Brasil</span><span class="s">IBGE, PNAD Contínua, ref. 2024</span></div>
+    <div class="tile"><span class="n">646.248</span><span class="l">empresas atuantes no município de São Paulo</span><span class="s">IBGE, CEMPRE 2021</span></div>
+    <div class="tile est"><span class="n">295 a 759</span><span class="l">salas de reunião que só um recorte da demanda encheria</span><span class="s">Estimativa, seção 04</span></div>
+  </div>
+
+  <section>
+    <h2>01 · O ativo que ninguém mede</h2>
+    <p class="lead">Todo coworking de escritório sabe quantas estações vendeu. Quase nenhum sabe quantas horas a sala de reunião ficou em pé.</p>
+    <p>A razão é o modelo de venda. A estação e a sala privativa têm contrato mensal, então a ocupação aparece no faturamento. A sala de reunião costuma entrar como cortesia dentro do plano, com um pacote de horas que o membro usa ou não usa. Quando ninguém usa, nada acontece no sistema. <b>A sala não aparece como vaga, aparece como benefício não consumido.</b></p>
+    <p>Isso cria um ponto cego. Não existe no Brasil nenhum levantamento público de ocupação de sala de reunião dentro de coworking. Nem associação setorial, nem consultoria imobiliária, nem órgão público. O que existe é o dado do escritório corporativo, e ele já mostra o tamanho da folga.</p>
+
+    <div class="fig">
+      <h3>Uso real do escritório corporativo, no mundo</h3>
+      <p class="cap">Percentual da capacidade efetivamente utilizada. Levantamento com 84 organizações e 716 milhões de pés quadrados.</p>
+      <div class="chart-scroll">
+        <svg viewBox="0 0 680 200" role="img" aria-label="Uso do escritório: pré-pandemia 61 por cento, 2024 49 por cento, 2025 54 por cento, 2026 56 por cento">
+          <g font-family="Inter, sans-serif">
+            <line x1="150" y1="10" x2="150" y2="176" stroke="#2B2B2F"></line>
+            <text x="140" y="35" text-anchor="end" fill="#B6B6BC" font-size="12.5" font-weight="500">Pré-pandemia</text>
+            <rect class="bar" x="150" y="16" width="420" height="28" rx="4" fill="#3B8FD4" fill-opacity=".3"><title>61%</title></rect>
+            <text x="580" y="35" fill="#F7F7F8" font-size="13" font-weight="700">61%</text>
+            <text x="140" y="77" text-anchor="end" fill="#B6B6BC" font-size="12.5" font-weight="500">2024</text>
+            <rect class="bar" x="150" y="58" width="337" height="28" rx="4" fill="#3B8FD4"><title>49%</title></rect>
+            <text x="497" y="77" fill="#F7F7F8" font-size="13" font-weight="700">49%</text>
+            <text x="140" y="119" text-anchor="end" fill="#B6B6BC" font-size="12.5" font-weight="500">2025</text>
+            <rect class="bar" x="150" y="100" width="372" height="28" rx="4" fill="#3B8FD4"><title>54%</title></rect>
+            <text x="532" y="119" fill="#F7F7F8" font-size="13" font-weight="700">54%</text>
+            <text x="140" y="161" text-anchor="end" fill="#B6B6BC" font-size="12.5" font-weight="500">2026</text>
+            <rect class="bar" x="150" y="142" width="386" height="28" rx="4" fill="#3B8FD4"><title>56%</title></rect>
+            <text x="546" y="161" fill="#F7F7F8" font-size="13" font-weight="700">56%</text>
+            <text x="150" y="194" fill="#7C7C84" font-size="11">0%</text>
+            <text x="570" y="194" text-anchor="end" fill="#7C7C84" font-size="11">70%</text>
+          </g>
+        </svg>
+      </div>
+      <p class="src">JLL, Global Occupancy Planning Benchmark Report 2026 (maio/2026). Dado global, não brasileiro. Mede escritório corporativo, não coworking.</p>
+    </div>
+
+    <p>O escritório de empresa, que é planejado, gerido e medido, opera a pouco mais da metade da capacidade. <b>A sala de reunião de coworking não tem nenhuma razão para estar melhor.</b> Só não tem ninguém contando.</p>
+  </section>
+
+  <section>
+    <h2>02 · A conta de cinco minutos</h2>
+    <p class="lead">Sem dado público, o número que importa é o seu.</p>
+    <p>A conta é simples e cabe em uma sala só. Não precisa de sistema, precisa da agenda do mês passado.</p>
+
+    <div class="fig">
+      <h3>Quanto ficou na mesa</h3>
+      <p class="cap">Números de exemplo, só para mostrar o formato. Os do seu espaço são outros.</p>
+      <div class="chart-scroll">
+        <svg class="wide" viewBox="0 0 900 150" role="img" aria-label="Quatro passos: horas comercializáveis 240, horas usadas 60, horas vazias 180, valor na mesa">
+          <g font-family="Inter, sans-serif">
+            <rect x="5" y="25" width="185" height="92" rx="5" fill="#1A1A1D" stroke="#2B2B2F"></rect>
+            <text x="20" y="49" fill="#7C7C84" font-size="10" letter-spacing="1.2">01 · DISPONÍVEL</text>
+            <text x="20" y="79" fill="#F7F7F8" font-size="24" font-weight="800">240 h</text>
+            <text x="20" y="101" fill="#B6B6BC" font-size="11.5">12h × 5 dias × 4 semanas</text>
+            <path d="M198 71 L232 71" stroke="#3B8FD4" stroke-width="1.5"></path>
+            <path d="M226 66 L233 71 L226 76" fill="none" stroke="#3B8FD4" stroke-width="1.5"></path>
+
+            <rect x="240" y="25" width="185" height="92" rx="5" fill="#1A1A1D" stroke="#2B2B2F"></rect>
+            <text x="255" y="49" fill="#7C7C84" font-size="10" letter-spacing="1.2">02 · USADO</text>
+            <text x="255" y="79" fill="#F7F7F8" font-size="24" font-weight="800">60 h</text>
+            <text x="255" y="101" fill="#B6B6BC" font-size="11.5">o que a agenda registrou</text>
+            <path d="M433 71 L467 71" stroke="#3B8FD4" stroke-width="1.5"></path>
+            <path d="M461 66 L468 71 L461 76" fill="none" stroke="#3B8FD4" stroke-width="1.5"></path>
+
+            <rect x="475" y="25" width="185" height="92" rx="5" fill="#1A1A1D" stroke="#2B2B2F"></rect>
+            <text x="490" y="49" fill="#7C7C84" font-size="10" letter-spacing="1.2">03 · HORA VAZIA</text>
+            <text x="490" y="79" fill="#F7F7F8" font-size="24" font-weight="800">180 h</text>
+            <text x="490" y="101" fill="#B6B6BC" font-size="11.5">a diferença entre as duas</text>
+            <path d="M668 71 L702 71" stroke="#D6BB87" stroke-width="1.5"></path>
+            <path d="M696 66 L703 71 L696 76" fill="none" stroke="#D6BB87" stroke-width="1.5"></path>
+
+            <rect x="710" y="25" width="185" height="92" rx="5" fill="#1A1A1D" stroke="#D6BB87"></rect>
+            <text x="725" y="49" fill="#8C7749" font-size="10" letter-spacing="1.2">04 · NA MESA</text>
+            <text x="725" y="79" fill="#D6BB87" font-size="24" font-weight="800">R$ __</text>
+            <text x="725" y="101" fill="#B6B6BC" font-size="11.5">× preço da hora avulsa</text>
+
+            <text x="5" y="16" fill="#7C7C84" font-size="10.5">Uma sala, um mês, cinco minutos</text>
+          </g>
+        </svg>
+      </div>
+      <p class="src">Cálculo do próprio espaço. Vale a régua de baixo: o custo mensal da sala dividido pelas horas comercializáveis mostra a partir de que preço a hora avulsa já compensa.</p>
+    </div>
+
+    <p><b>Um ponto de honestidade.</b> A hora vazia não gera prejuízo novo. Aluguel, condomínio, energia e limpeza são pagos com ou sem gente dentro. O que ela faz é deixar receita na mesa: dinheiro que o espaço já estava pronto para ganhar e não ganhou.</p>
+  </section>
+
+  <section>
+    <h2>03 · Quem precisa de sala por hora</h2>
+    <p class="lead">Não é a empresa híbrida. É quem não tem escritório nenhum.</p>
+    <p>A tentação é ligar sala de reunião avulsa ao boom do trabalho híbrido. O dado brasileiro não sustenta isso. O home office no Brasil subiu na pandemia, estabilizou e vem caindo há dois anos.</p>
+
+    <div class="fig">
+      <h3>Pessoas trabalhando de casa no Brasil</h3>
+      <p class="cap">Percentual do total de trabalhadores, excluído o setor público e o trabalho doméstico. Não há série para 2020 e 2021.</p>
+      <div class="chart-scroll">
+        <svg viewBox="0 0 680 230" role="img" aria-label="Home office no Brasil: 2012 3,6 por cento; 2019 5,8; 2022 8,4; 2023 8,2; 2024 7,9">
+          <g font-family="Inter, sans-serif">
+            <line x1="110" y1="10" x2="110" y2="208" stroke="#2B2B2F"></line>
+            <text x="100" y="34" text-anchor="end" fill="#B6B6BC" font-size="12.5" font-weight="500">2012</text>
+            <rect class="bar" x="110" y="16" width="171" height="26" rx="4" fill="#3B8FD4" fill-opacity=".35"><title>3,6%</title></rect>
+            <text x="291" y="34" fill="#B6B6BC" font-size="12.5" font-weight="700">3,6%</text>
+            <text x="100" y="74" text-anchor="end" fill="#B6B6BC" font-size="12.5" font-weight="500">2019</text>
+            <rect class="bar" x="110" y="56" width="276" height="26" rx="4" fill="#3B8FD4" fill-opacity=".35"><title>5,8%</title></rect>
+            <text x="396" y="74" fill="#B6B6BC" font-size="12.5" font-weight="700">5,8%</text>
+            <text x="100" y="114" text-anchor="end" fill="#B6B6BC" font-size="12.5" font-weight="500">2022</text>
+            <rect class="bar" x="110" y="96" width="400" height="26" rx="4" fill="#3B8FD4"><title>8,4%, cerca de 6,7 milhões de pessoas</title></rect>
+            <text x="520" y="114" fill="#F7F7F8" font-size="12.5" font-weight="700">8,4%</text>
+            <text x="100" y="154" text-anchor="end" fill="#B6B6BC" font-size="12.5" font-weight="500">2023</text>
+            <rect class="bar" x="110" y="136" width="390" height="26" rx="4" fill="#3B8FD4"><title>8,2%, cerca de 6,61 milhões de pessoas</title></rect>
+            <text x="510" y="154" fill="#F7F7F8" font-size="12.5" font-weight="700">8,2%</text>
+            <text x="100" y="194" text-anchor="end" fill="#F7F7F8" font-size="12.5" font-weight="700">2024</text>
+            <rect class="bar" x="110" y="176" width="376" height="26" rx="4" fill="#3B8FD4"><title>7,9%, cerca de 6,6 milhões de pessoas</title></rect>
+            <text x="496" y="194" fill="#F7F7F8" font-size="12.5" font-weight="700">7,9% · 6,6 mi</text>
+            <text x="110" y="224" fill="#7C7C84" font-size="11">0%</text>
+          </g>
+        </svg>
+      </div>
+      <p class="src">IBGE, PNAD Contínua, edição especial divulgada em novembro de 2025, com dados anuais desde 2012.</p>
+    </div>
+
+    <p>Ou seja: <b>a tese não é crescimento, é estoque.</b> São 6,6 milhões de pessoas trabalhando de casa, e o número é estável. Uma parte delas precisa, de vez em quando, de um lugar decente para receber alguém. Não precisa de plano mensal. Precisa de duas horas.</p>
+
+    <p class="pull">Quem trabalha de casa não tem onde receber cliente. É esse o problema que a sala de reunião por hora resolve.</p>
+
+    <p>Três grupos concentram essa necessidade em São Paulo:</p>
+
+    <div class="types">
+      <div class="type">
+        <span class="h">Autônomo que atende cliente</span>
+        <span class="who">Advogado, contador, arquiteto, consultor</span>
+        <dl>
+          <dt>Precisa de</dt><dd>sala fechada, mesa, boa impressão</dd>
+          <dt>Frequência</dt><dd>eventual, algumas vezes por mês</dd>
+          <dt>Hoje resolve</dt><dd>em cafeteria, ou na casa do cliente</dd>
+        </dl>
+      </div>
+      <div class="type">
+        <span class="h">Empresa pequena sem sala própria</span>
+        <span class="who">Micro e pequena empresa de serviços</span>
+        <dl>
+          <dt>Precisa de</dt><dd>sala para reunião com cliente ou time</dd>
+          <dt>Frequência</dt><dd>pontual, em datas específicas</dd>
+          <dt>Hoje resolve</dt><dd>no escritório do cliente, ou por chamada</dd>
+        </dl>
+      </div>
+      <div class="type">
+        <span class="h">Time remoto que se junta</span>
+        <span class="who">Empresa distribuída, sem sede na cidade</span>
+        <dl>
+          <dt>Precisa de</dt><dd>sala maior, por meio período ou dia</dd>
+          <dt>Frequência</dt><dd>mensal ou trimestral</dd>
+          <dt>Hoje resolve</dt><dd>em hotel, ou alugando sala de evento</dd>
+        </dl>
+      </div>
+    </div>
+
+    <p>O município de São Paulo tem <b>646.248 empresas e organizações atuantes</b> e 681.246 unidades locais (IBGE, CEMPRE 2021). A esmagadora maioria é micro. Não dá para saber pelo cadastro quantas têm sala de reunião própria, mas a ordem de grandeza deixa claro de que lado está o volume.</p>
+    <p>Do lado internacional há um sinal na direção certa: as <b>reservas de sala de reunião cresceram 22% nas Américas</b>, segundo levantamento de escritório flexível publicado em setembro de 2025. A base de comparação não é divulgada na versão pública, então o número serve de indício, não de prova.</p>
+  </section>
+
+  <section>
+    <h2>04 · O mercado endereçável</h2>
+    <p class="lead">O recorte dos advogados que trabalham de casa na capital.</p>
+    <p>A advocacia serve de exemplo pelo mesmo motivo que a psicologia serviu no estudo de saúde: é a categoria com mais dado público. Tem cadastro oficial atualizado e tem um censo próprio que mediu regime de trabalho. O funil parte de um número oficial e aplica três filtros. Um tem fonte. Dois são premissas, com faixa baixa e alta.</p>
+
+    <div class="fig">
+      <h3>Do total de inscritos ao mercado endereçável</h3>
+      <p class="cap">Cada etapa mostra o cenário baixo (barra cheia) e o cenário alto (contorno). Mesma escala em todas as linhas.</p>
+      <div class="legend">
+        <span><i class="sw" style="background:#3B8FD4"></i>Cenário baixo</span>
+        <span><i class="sw" style="border:1.5px solid #3B8FD4"></i>Cenário alto</span>
+      </div>
+      <div class="chart-scroll">
+        <svg class="wide" viewBox="0 0 900 200" role="img" aria-label="Funil: 395.608 inscritos; 138.463 a 178.024 na capital; 59.068 a 75.945 em home office; 17.720 a 45.567 recebem cliente presencialmente">
+          <g font-family="Inter, sans-serif">
+            <line x1="250" y1="10" x2="250" y2="186" stroke="#2B2B2F"></line>
+
+            <text x="238" y="37" text-anchor="end" fill="#B6B6BC" font-size="12.5" font-weight="500">Inscritos na seccional SP</text>
+            <rect class="bar" x="250" y="20" width="520" height="24" rx="4" fill="#3B8FD4"><title>395.608 inscritos</title></rect>
+            <text x="780" y="37" fill="#F7F7F8" font-size="13" font-weight="700">395.608</text>
+
+            <text x="238" y="81" text-anchor="end" fill="#B6B6BC" font-size="12.5" font-weight="500">Na capital</text>
+            <rect class="bar" x="250" y="64" width="234" height="24" rx="4" fill="#3B8FD4" fill-opacity=".14" stroke="#3B8FD4" stroke-width="1.5"><title>Cenário alto: 178.024</title></rect>
+            <rect class="bar" x="250" y="64" width="182" height="24" rx="4" fill="#3B8FD4"><title>Cenário baixo: 138.463</title></rect>
+            <text x="494" y="81" fill="#F7F7F8" font-size="13" font-weight="700">138.463 a 178.024</text>
+
+            <text x="238" y="125" text-anchor="end" fill="#B6B6BC" font-size="12.5" font-weight="500">Em home office</text>
+            <rect class="bar" x="250" y="108" width="100" height="24" rx="4" fill="#3B8FD4" fill-opacity=".14" stroke="#3B8FD4" stroke-width="1.5"><title>Cenário alto: 75.945</title></rect>
+            <rect class="bar" x="250" y="108" width="78" height="24" rx="4" fill="#3B8FD4"><title>Cenário baixo: 59.068</title></rect>
+            <text x="360" y="125" fill="#F7F7F8" font-size="13" font-weight="700">59.068 a 75.945</text>
+
+            <text x="238" y="169" text-anchor="end" fill="#D6BB87" font-size="12.5" font-weight="700">Recebem cliente</text>
+            <rect class="bar" x="250" y="152" width="60" height="24" rx="4" fill="#3B8FD4" fill-opacity=".14" stroke="#3B8FD4" stroke-width="1.5"><title>Cenário alto: 45.567</title></rect>
+            <rect class="bar" x="250" y="152" width="23" height="24" rx="3" fill="#3B8FD4"><title>Cenário baixo: 17.720</title></rect>
+            <text x="320" y="169" fill="#D6BB87" font-size="13" font-weight="700">17.720 a 45.567</text>
+          </g>
+        </svg>
+      </div>
+      <p class="src">Cálculo nosso. Fontes e premissas de cada etapa na tabela abaixo.</p>
+    </div>
+
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>Etapa</th><th>Base</th><th>Baixo</th><th>Alto</th></tr></thead>
+        <tbody>
+          <tr><td><b>Inscritos na seccional SP</b></td><td><span class="src-tag">Fonte</span> OAB Conselho Federal, quadro atualizado diariamente. Inclui regulares e recadastrados, em todo o estado</td><td class="num">395.608</td><td class="num">395.608</td></tr>
+          <tr><td><b>Na capital</b></td><td><span class="prem-tag">Premissa</span> 35% a 45%. O piso é a fatia do município de São Paulo nas empresas atuantes do estado, 34,9% (IBGE, CEMPRE 2021). A OAB SP não publica o recorte por subseção em formato aberto</td><td class="num">138.463</td><td class="num">178.024</td></tr>
+          <tr><td><b>Em regime de home office</b></td><td><span class="src-tag">Fonte</span> 42,66%, censo da advocacia OAB e FGV, apresentado em nov/2023. Dado nacional</td><td class="num">59.068</td><td class="num">75.945</td></tr>
+          <tr class="total"><td><b>Recebem cliente presencialmente</b></td><td><span class="prem-tag">Premissa</span> 30% a 60% recebem cliente presencialmente ao menos uma vez por mês</td><td class="num">17.720</td><td class="num">45.567</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:18px;">Com duas reuniões por mês de duas horas cada (premissa), são <b>71 mil a 182 mil horas de sala por mês</b>. Uma sala aberta 12 horas por dia, de segunda a sexta, oferece cerca de 240 horas no mês:</p>
+
+    <div class="fig">
+      <h3>Salas de reunião que essa demanda encheria</h3>
+      <p class="cap">Só advogados, só na capital, só quem trabalha de casa. Sala de referência com 240 horas comercializáveis por mês.</p>
+      <div class="chart-scroll">
+        <svg viewBox="0 0 680 150" role="img" aria-label="Cenário baixo: 295 salas. Cenário alto: 759 salas.">
+          <g font-family="Inter, sans-serif">
+            <line x1="130" y1="12" x2="130" y2="118" stroke="#2B2B2F"></line>
+            <text x="120" y="44" text-anchor="end" fill="#B6B6BC" font-size="13" font-weight="500">Cenário baixo</text>
+            <rect class="bar" x="130" y="24" width="185" height="30" rx="4" fill="#3B8FD4"><title>Cerca de 295 salas</title></rect>
+            <text x="327" y="44" fill="#F7F7F8" font-size="14" font-weight="700">295</text>
+            <text x="120" y="96" text-anchor="end" fill="#B6B6BC" font-size="13" font-weight="500">Cenário alto</text>
+            <rect class="bar" x="130" y="76" width="476" height="30" rx="4" fill="#3B8FD4" fill-opacity=".14" stroke="#3B8FD4" stroke-width="1.5"><title>Cerca de 759 salas</title></rect>
+            <text x="618" y="96" fill="#F7F7F8" font-size="14" font-weight="700">759</text>
+            <text x="130" y="138" fill="#7C7C84" font-size="11">0</text>
+            <text x="381" y="138" text-anchor="middle" fill="#7C7C84" font-size="11">400</text>
+            <text x="632" y="138" text-anchor="middle" fill="#7C7C84" font-size="11">800</text>
+          </g>
+        </svg>
+      </div>
+      <p class="src">Cálculo nosso. "Sala cheia" é uma forma de expressar volume de horas, não uma previsão de captura. Não inclui contadores, arquitetos, consultores nem empresas.</p>
+    </div>
+
+    <p><b>A faixa é larga de propósito.</b> Duas das quatro etapas não têm dado público. Ainda assim, o cenário mais conservador já diz alguma coisa: São Paulo tem cerca de 500 espaços de coworking, e só os advogados da capital que trabalham de casa dariam volume para <b>295 salas de reunião ocupadas em tempo integral</b>, de segunda a sexta, das 8h às 20h. Contadores, arquitetos, consultores e as empresas pequenas entrariam por cima disso, e ainda não há dado suficiente para fazer a mesma conta com honestidade.</p>
+  </section>
+
+  <section>
+    <h2>05 · Como essa demanda procura</h2>
+    <p class="lead">Quem precisa de sala para uma reunião não digita "coworking".</p>
+    <p>Digita o produto. E o produto tem nome próprio:</p>
+    <div class="words">
+      <div class="word"><span class="w">"Sala de reunião por hora"</span><span class="who">o termo mais direto, e o mais disputado</span></div>
+      <div class="word"><span class="w">"Aluguel de sala de reunião"</span><span class="who">quase sempre com o bairro junto</span></div>
+      <div class="word"><span class="w">"Sala para atendimento"</span><span class="who">quem recebe cliente, não quem faz reunião interna</span></div>
+      <div class="word"><span class="w">"Sala de reunião na Paulista"</span><span class="who">a busca por endereço, não por espaço</span></div>
+    </div>
+    <p>Quem vai atrás desses termos hoje encontra uma lista de páginas de coworkings individuais, cada uma disputando a mesma palavra sozinha. <b>Não existe um lugar onde a pessoa compare bairro, horário e preço e resolva em três minutos.</b> Ela abre cinco abas, manda cinco mensagens e espera resposta.</p>
+    <p>Para quem tem espaço, a consequência é a mesma do estudo de saúde, invertida: <b>uma sala anunciada só como parte de um plano de coworking fica invisível para quem está procurando sala de reunião.</b></p>
+  </section>
+
+  <section>
+    <h2>06 · A oferta que já existe</h2>
+    <p class="lead">A sala está lá. O que falta é ela ser encontrável por hora.</p>
+    <ul>
+      <li><b>Cerca de 500 espaços de coworking em São Paulo</b>, ocupando 241 mil m² em edifícios comerciais no segundo trimestre de 2025, o equivalente a 1,3% da área locável da cidade (Newmark). Praticamente todos têm ao menos uma sala de reunião.</li>
+      <li><b>Centros de negócios e escritórios com serviços</b>, que já vendem sala por hora e por período, em geral com foco em quem é cliente da casa.</li>
+      <li><b>Grandes redes internacionais</b>, que operam acima de 90% de ocupação nas unidades brasileiras. Essa ocupação é de escritório e estação, não de sala de reunião.</li>
+      <li><b>Hotéis e centros de convenção</b>, que capturam a reunião maior, de meio período ou dia inteiro.</li>
+    </ul>
+    <p>Todos esses canais existem e funcionam. O que nenhum deles resolve é o problema de busca: a pessoa que precisa de uma sala na quarta às 14h em Pinheiros não tem onde olhar o que está livre agora.</p>
+  </section>
+
+  <section>
+    <h2>07 · O que este estudo ainda não sabe</h2>
+    <div class="box">
+      <ul>
+        <li><b>Ocupação real de sala de reunião em coworking no Brasil.</b> Nenhuma fonte pública mede. É a lacuna central deste estudo e a razão de a seção 02 ser uma conta, e não um dado.</li>
+        <li><b>Volume de busca dos termos da seção 05.</b> Sem o dado de busca não dá para dimensionar a demanda que já está ativa hoje.</li>
+        <li><b>Quantos advogados estão na capital.</b> É a etapa de maior peso no funil e hoje é premissa, porque a OAB SP não publica o recorte por subseção em formato aberto.</li>
+        <li><b>Com que frequência o autônomo recebe cliente presencialmente.</b> O censo da advocacia mediu regime de trabalho, não frequência de atendimento presencial.</li>
+        <li><b>Preço médio da hora de sala de reunião em São Paulo.</b> Cada espaço publica o seu, e não há série comparável por bairro.</li>
+        <li><b>Quanto da demanda já é resolvida por indicação.</b> Parte do mercado nunca passa por busca.</li>
+        <li><b>Contadores, arquitetos e consultores.</b> Têm conselho e cadastro, mas não têm censo que meça regime de trabalho como o da advocacia. Ficaram de fora desta versão.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <b style="color:var(--ink-2)">Método:</b> levantamento a partir de órgãos públicos, conselhos profissionais e consultorias imobiliárias, consultados em setembro de 2026. Números da OAB referem-se ao estado de São Paulo. Números do CEMPRE referem-se ao município. Toda estimativa é cálculo nosso e está marcada. Sobre o censo da advocacia: as matérias de imprensa divergem quanto ao número de respondentes (20.885 em uma, mais de 45 mil em outra), por isso usamos o percentual publicado e não o tamanho da amostra.
+    <ol>
+      <li><a href="https://www.oab.org.br/institucionalconselhofederal/quadroadvogados" target="_blank" rel="noopener">OAB Conselho Federal, quadro de advogados por seccional</a></li>
+      <li><a href="https://www.migalhas.com.br/quentes/397720/estudo-da-oab-e-fgv-expoe-censo-da-advocacia-civil-e-area-mais-atuada" target="_blank" rel="noopener">Censo da advocacia OAB e FGV, via Migalhas (nov/2023)</a> · <a href="https://www.terra.com.br/noticias/educacao/carreira/censo-da-oab-indica-que-64-dos-advogados-no-brasil-ganham-ate-r-66-mil,e97da48f1ca08bdf4540f721431500affa8xo2om.html" target="_blank" rel="noopener">cobertura complementar</a></li>
+      <li><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2025-11/proporcao-de-quem-estava-em-home-office-recua-em-2024-e-chega-79" target="_blank" rel="noopener">IBGE, PNAD Contínua, home office (divulgação nov/2025)</a></li>
+      <li><a href="https://sidra.ibge.gov.br/tabela/1685" target="_blank" rel="noopener">IBGE, CEMPRE, tabela 1685, município e estado de São Paulo (2021)</a></li>
+      <li><a href="https://www.jll.com/en-us/insights/occupancy-benchmark-report" target="_blank" rel="noopener">JLL, Global Occupancy Planning Benchmark Report 2026</a></li>
+      <li><a href="https://www.cushmanwakefield.com/pt-br/brazil/insights/2025-flexible-office" target="_blank" rel="noopener">Cushman &amp; Wakefield, escritório flexível, tendências globais (set/2025)</a></li>
+      <li><a href="https://neofeed.com.br/negocios/sao-paulo-e-cidade-com-mais-coworkings-no-mundo-e-duas-chinesas-estao-puxando-a-demanda/" target="_blank" rel="noopener">Newmark, coworkings em São Paulo, via NeoFeed (2T2025)</a></li>
+    </ol>
+  </footer>
+</div>
+<div class="hub-bottom"><span>© Hubros · Estudos A Hora Vazia</span><a href="/blog/">Ler o blog →</a></div>
+</body>
+</html>

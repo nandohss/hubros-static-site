@@ -129,7 +129,7 @@ Faz a conta. Se o resultado assustar, normal. Pelo menos agora ele tem nome.
 
 <aside class="hb hb-cta">
   <p>Quer ir mais fundo? Juntamos fontes, premissas e o que ainda falta medir num estudo.</p>
-  <a href="https://claude.ai/artifact/JPaDZ543myyK7SeKQLuUZR" target="_blank" rel="noopener"><i></i>Ler o estudo A Hora Vazia</a>
+  <a href="/estudos/hora-vazia/"><i></i>Ler o estudo A Hora Vazia</a>
 </aside>
 
 ## Perguntas frequentes

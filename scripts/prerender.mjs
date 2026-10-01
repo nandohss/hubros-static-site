@@ -76,7 +76,7 @@ async function main() {
         // páginas HTML avulsas servidas direto de public/ — não passam pelo
         // prerender, mas precisam entrar no sitemap para o Google achá-las, já
         // que nenhum link do site aponta para elas.
-        const STATIC_PAGES = ['/espacos']
+        const STATIC_PAGES = ['/espacos', '/estudos/hora-vazia', '/estudos/hora-vazia-saude', '/estudos/hora-vazia-escritorio']
         const allUrls = [...ROUTES, ...STATIC_PAGES]
         const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

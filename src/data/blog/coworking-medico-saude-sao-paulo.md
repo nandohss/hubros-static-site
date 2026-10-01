@@ -149,7 +149,7 @@ Alugar algumas horas fixas por semana num coworking de saúde é um formato que 
 
 <aside class="hb hb-cta">
   <p>O estudo completo tem o funil, as fontes de cada número e o que ainda falta medir.</p>
-  <a href="https://claude.ai/artifact/EAFbFZjtGx7thSpcFgLU3V" target="_blank" rel="noopener"><i></i>Ler o estudo A Hora Vazia: Saúde</a>
+  <a href="/estudos/hora-vazia-saude/"><i></i>Ler o estudo A Hora Vazia: Saúde</a>
 </aside>
 
 ## Perguntas frequentes
