@@ -146,6 +146,17 @@ function extractFaq(markdown) {
     return items.length ? { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items } : null;
 }
 
+// Injeta os mesmos ids/âncoras nos headings renderizados pelo markdown.
+const markdownComponents = {
+    h2: ({ children }) => <h2 id={slugify(getNodeText(children))}>{children}</h2>,
+    h3: ({ children }) => <h3 id={slugify(getNodeText(children))}>{children}</h3>,
+    a: ({ href, children }) => (
+        /^https?:/.test(href || '')
+            ? <a href={href} target="_blank" rel="noopener">{children}</a>
+            : <a href={href}>{children}</a>
+    ),
+};
+
 function TableOfContents({ headings, activeId }) {
     return (
         <aside className="blog-post__toc-wrap">
@@ -176,6 +187,13 @@ export default function BlogPost() {
     );
     const activeId = useActiveHeading(headings.map((h) => h.id));
 
+    // Memoizado: o script dos blocos mexe no DOM (contagem, steppers), então o
+    // markdown não deve re-renderizar a cada mudança de seção ativa no índice.
+    const body = useMemo(
+        () => (post ? <ReactMarkdown components={markdownComponents} rehypePlugins={[rehypeRaw]}>{post.content}</ReactMarkdown> : null),
+        [post?.content]
+    );
+
     // Blocos interativos (calculadora, funil, checklist) são HTML cru no markdown:
     // o script os ativa depois que o post monta.
     useEffect(() => {
@@ -187,17 +205,6 @@ export default function BlogPost() {
     }
 
     const hasToc = headings.length >= 2;
-
-    // Injeta os mesmos ids/âncoras nos headings renderizados pelo markdown.
-    const markdownComponents = {
-        h2: ({ children }) => <h2 id={slugify(getNodeText(children))}>{children}</h2>,
-        h3: ({ children }) => <h3 id={slugify(getNodeText(children))}>{children}</h3>,
-        a: ({ href, children }) => (
-            /^https?:/.test(href || '')
-                ? <a href={href} target="_blank" rel="noopener">{children}</a>
-                : <a href={href}>{children}</a>
-        ),
-    };
 
     const SITE_URL = 'https://hubros.com.br';
     const postUrl = `${SITE_URL}/blog/${post.slug}/`;
@@ -239,20 +246,20 @@ export default function BlogPost() {
 
                 <header className="blog-post__header reveal-node reveal-active">
                     {post.image && (
-                        <img src={post.image} alt={post.title} className="blog-post__cover" width="1024" height="1024" decoding="async" fetchPriority="high" />
+                        <img src={post.image} alt={post.imageAlt || post.title} className="blog-post__cover" width="1024" height="1024" decoding="async" fetchPriority="high" />
                     )}
                     <h1 className="blog-post__title">{post.title}</h1>
                     <div className="blog-post__meta">
                         <span>Por <strong>{post.author}</strong></span>
                         <span className="blog-post__dot">&bull;</span>
-                        <span>{new Date(post.date).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        <span>{new Date(`${post.date}T12:00:00`).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                     </div>
                 </header>
 
                 <div className="blog-post__layout">
                     <div className="blog-post__main">
                         <div className="blog-post__content reveal-node reveal-active">
-                            <ReactMarkdown components={markdownComponents} rehypePlugins={[rehypeRaw]}>{post.content}</ReactMarkdown>
+                            {body}
                         </div>
 
                         <div className="blog-post__newsletter reveal-node reveal-active">

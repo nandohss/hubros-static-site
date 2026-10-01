@@ -141,7 +141,7 @@ export default function BlogIndex() {
                         <div className="blog-featured reveal-node reveal-active">
                             {featuredPost.image && (
                                 <Link to={`/blog/${featuredPost.slug}`} className="blog-featured__image-link">
-                                    <img src={featuredPost.image} alt={featuredPost.title} className="blog-featured__image" width="1024" height="1024" decoding="async" fetchPriority="high" />
+                                    <img src={featuredPost.image} alt={featuredPost.imageAlt || featuredPost.title} className="blog-featured__image" width="1024" height="1024" decoding="async" fetchPriority="high" />
                                 </Link>
                             )}
                             <div className="blog-featured__content">
@@ -149,13 +149,13 @@ export default function BlogIndex() {
                                     <span className="blog-card__tag">{featuredPost.category}</span>
                                     <span>&bull;</span>
                                     <span className="blog-card__date">
-                                        {new Date(featuredPost.date).toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric' })}
+                                        {new Date(`${featuredPost.date}T12:00:00`).toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric' })}
                                     </span>
                                 </div>
                                 <h2 className="blog-featured__title">
                                     <Link to={`/blog/${featuredPost.slug}`}>{featuredPost.title}</Link>
                                 </h2>
-                                <p className="blog-featured__desc">{featuredPost.description}</p>
+                                <p className="blog-featured__desc">{featuredPost.excerpt || featuredPost.description}</p>
                                 <Link to={`/blog/${featuredPost.slug}`} className="btn btn-primary">Ler Artigo Completo</Link>
                             </div>
                         </div>
@@ -171,13 +171,13 @@ export default function BlogIndex() {
                                 <Link to={`/blog/${post.slug}`} className="blog-card reveal-node reveal-active" key={post.slug}>
                                     {post.image && (
                                         <div className="blog-card__image-container">
-                                            <img src={post.image} alt={post.title} className="blog-card__image" width="1024" height="1024" loading="lazy" decoding="async" />
+                                            <img src={post.image} alt={post.imageAlt || post.title} className="blog-card__image" width="1024" height="1024" loading="lazy" decoding="async" />
                                         </div>
                                     )}
                                     <div className="blog-card__body">
                                         <div className="blog-card__meta">
                                             <span className="blog-card__date">
-                                                {new Date(post.date).toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric' })}
+                                                {new Date(`${post.date}T12:00:00`).toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric' })}
                                             </span>
                                             <span>&bull;</span>
                                             <span className="blog-card__tag" style={{ fontSize: '11px', color: 'var(--color-text-secondary)' }}>
@@ -185,7 +185,7 @@ export default function BlogIndex() {
                                             </span>
                                         </div>
                                         <h3 className="blog-card__title">{post.title}</h3>
-                                        <p className="blog-card__desc">{post.description}</p>
+                                        <p className="blog-card__desc">{post.excerpt || post.description}</p>
                                         <span className="blog-card__readmore">Ler artigo &rarr;</span>
                                     </div>
                                 </Link>

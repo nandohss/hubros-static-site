@@ -2,10 +2,12 @@
 title: "Quanto custa a hora vazia do seu coworking"
 seoTitle: "Hora vazia no coworking: quanto fica na mesa por mês"
 description: "Sua sala de reunião fica parada quantas horas por semana? Faça a conta em 5 minutos e veja quanta receita ficou na mesa no mês."
+excerpt: "Uma conta de cinco minutos pra descobrir quanta receita a sua sala de reunião deixou na mesa no mês passado. Com calculadora."
 date: "2026-10-01"
 author: "Fernando Sousa"
 category: "Dicas para Hosts"
-image: "/blog/host_room.jpg"
+image: "/blog/hora_vazia_cover.jpg"
+imageAlt: "Sala de reunião vazia em coworking no fim da tarde"
 ---
 
 Quantas horas por semana a sua sala de reunião fica parada?

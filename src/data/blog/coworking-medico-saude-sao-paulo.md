@@ -2,10 +2,12 @@
 title: "Coworking médico, odontológico e de saúde em São Paulo: quem procura, quanto se busca e o que a sala precisa ter"
 seoTitle: "Coworking médico e de saúde em SP: o que se busca"
 description: "Coworking médico, odontológico e de saúde em São Paulo: quem procura, quanto se busca no Google e o que a sala precisa ter."
+excerpt: "Psicólogos, médicos e dentistas procuram sala por algumas horas por semana. Quem são, quanta gente é e quanto se busca no Google."
 date: "2026-10-01"
 author: "Fernando Sousa"
 category: "Nichos & Atendimento"
-image: "/blog/clinic_room.jpg"
+image: "/blog/saude_cover.jpg"
+imageAlt: "Consultório vazio em coworking de saúde em São Paulo"
 ---
 
 Psicólogo que atende em horário fixo. Médico que divide a semana entre o hospital e o consultório. Dentista que quer atender dois dias por semana.
@@ -97,7 +99,7 @@ A diferença é de regra, não só de equipamento. Em São Paulo, o compartilham
 
 Eu achava que quem é da saúde não usava a palavra "coworking". Fui no Google medir, e errei. Os números de busca do último ano no estado de São Paulo:
 
-<figure class="hb hb-box">
+<figure class="hb hb-box hb-bars">
   <p class="hb-kicker"><i></i>Buscas por mês no Google · estado de SP</p>
   <p class="hb-title">Coworking com a profissão junto ganha de "por hora"</p>
   <p class="hb-sub">Faixas de buscas mensais, setembro de 2025 a agosto de 2026.</p>
