@@ -406,7 +406,7 @@
 
 /* Quando há índice "Nesta página", o container abre espaço para a coluna lateral. */
 .blog-post-container--with-toc {
-    max-width: 1240px;
+    max-width: 1220px;
 }
 
 /* ---- Layout Post + Índice ---- */
@@ -414,13 +414,18 @@
     display: flex;
     gap: var(--space-16, 64px);
     align-items: flex-start;
-    justify-content: space-between;
 }
 
 .blog-post__main {
-    flex-grow: 1;
+    flex: 1 1 auto;
     min-width: 0;
     max-width: 760px;
+}
+
+/* Com índice lateral, o texto cresce até encostar no índice (sem vão no meio),
+   limitado a ~90 caracteres por linha. */
+.blog-post-container--with-toc .blog-post__main {
+    max-width: 880px;
 }
 
 /* ---- Índice "Nesta página" ----
