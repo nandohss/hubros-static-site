@@ -1,10 +1,13 @@
 import { useMemo, useEffect, useState } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 import Seo from '../Seo';
 import { getPostBySlug } from '../../data/getPosts';
 import NewsletterForm from './NewsletterForm';
 import './Blog.css';
+import './HubrosBlocks.css';
+import './hubrosBlocks.js';
 
 // Gera um id/âncora estável a partir do texto de um heading (compatível com pt-BR).
 function slugify(text) {
@@ -123,6 +126,26 @@ function useActiveHeading(ids) {
     return activeId;
 }
 
+// Monta o schema FAQPage a partir da seção "## Perguntas frequentes" (### pergunta + parágrafo de resposta).
+function extractFaq(markdown) {
+    const start = markdown.search(/^##\s+Perguntas frequentes\s*$/m);
+    if (start === -1) return null;
+    const items = [];
+    const parts = markdown.slice(start).split(/^###\s+/m).slice(1);
+    for (const part of parts) {
+        const [question, ...rest] = part.split('\n');
+        const answer = rest.join(' ').replace(/\s+/g, ' ').trim();
+        if (question.trim() && answer) {
+            items.push({
+                '@type': 'Question',
+                name: question.trim(),
+                acceptedAnswer: { '@type': 'Answer', text: answer },
+            });
+        }
+    }
+    return items.length ? { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items } : null;
+}
+
 function TableOfContents({ headings, activeId }) {
     return (
         <aside className="blog-post__toc-wrap">
@@ -153,6 +176,12 @@ export default function BlogPost() {
     );
     const activeId = useActiveHeading(headings.map((h) => h.id));
 
+    // Blocos interativos (calculadora, funil, checklist) são HTML cru no markdown:
+    // o script os ativa depois que o post monta.
+    useEffect(() => {
+        if (post && window.hubrosBlogInit) window.hubrosBlogInit();
+    }, [post?.slug]);
+
     if (!post) {
         return <Navigate to="/blog" replace />;
     }
@@ -163,6 +192,11 @@ export default function BlogPost() {
     const markdownComponents = {
         h2: ({ children }) => <h2 id={slugify(getNodeText(children))}>{children}</h2>,
         h3: ({ children }) => <h3 id={slugify(getNodeText(children))}>{children}</h3>,
+        a: ({ href, children }) => (
+            /^https?:/.test(href || '')
+                ? <a href={href} target="_blank" rel="noopener">{children}</a>
+                : <a href={href}>{children}</a>
+        ),
     };
 
     const SITE_URL = 'https://hubros.com.br';
@@ -187,16 +221,17 @@ export default function BlogPost() {
         },
         mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
     };
+    const faqSchema = extractFaq(post.content);
 
     return (
         <article className="section blog-post-section">
             <Seo
                 path={`/blog/${post.slug}/`}
-                title={`${post.title} — Hubros`}
+                title={`${post.seoTitle || post.title} — Hubros`}
                 description={post.description}
                 image={post.image}
                 type="article"
-                schema={schema}
+                schema={faqSchema ? [schema, faqSchema] : schema}
             />
 
             <div className={`container blog-post-container${hasToc ? ' blog-post-container--with-toc' : ''}`}>
@@ -217,7 +252,7 @@ export default function BlogPost() {
                 <div className="blog-post__layout">
                     <div className="blog-post__main">
                         <div className="blog-post__content reveal-node reveal-active">
-                            <ReactMarkdown components={markdownComponents}>{post.content}</ReactMarkdown>
+                            <ReactMarkdown components={markdownComponents} rehypePlugins={[rehypeRaw]}>{post.content}</ReactMarkdown>
                         </div>
 
                         <div className="blog-post__newsletter reveal-node reveal-active">

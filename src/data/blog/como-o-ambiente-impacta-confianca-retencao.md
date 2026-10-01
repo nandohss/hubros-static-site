@@ -30,3 +30,5 @@ Em vez de assumir um aluguel fixo de R$ 3.000,00 por mês, a nova geração de p
 
 > **Quer elevar o nível dos seus atendimentos sem assumir custos fixos?**  
 > Com o **App Hubros**, você encontra consultórios de psicologia, salas de estética e escritórios de alto padrão na sua cidade, alugando apenas pelo tempo que precisar. Baixe o app e impressione seus clientes a partir de amanhã.
+
+Procurando consultório por algumas horas por semana? [Veja como funciona em São Paulo](/blog/coworking-medico-saude-sao-paulo).
