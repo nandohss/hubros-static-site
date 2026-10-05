@@ -31,7 +31,7 @@ export default function HowItWorks() {
                         Reserve em 3 passos simples
                     </h2>
                     <p className="section-subtitle">
-                        No Hubros, você descobre espaços próximos, filtra pela categoria ideal e vê o preço por hora ou dia — tudo antes de reservar.
+                        No Hubros, você descobre espaços próximos, filtra pela categoria ideal e vê o preço por hora ou dia, tudo antes de reservar.
                     </p>
                 </div>
 

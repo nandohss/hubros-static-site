@@ -100,7 +100,7 @@ function App() {
                         <>
                             <Seo
                                 path="/"
-                                title="Hubros — Seu Espaço de Trabalho Ideal"
+                                title="Hubros | Seu Espaço de Trabalho Ideal"
                                 description="Encontre e reserve espaços de coworking, salas e estúdios com facilidade. A plataforma que conecta profissionais a espaços incríveis."
                                 schema={[ORG_SCHEMA, WEBSITE_SCHEMA, FAQ_SCHEMA]}
                             />
@@ -117,49 +117,49 @@ function App() {
                     <Route path="/blog/:slug" element={<BlogPost />} />
                     <Route path="/ajuda" element={
                         <>
-                            <Seo path="/ajuda/" title="Central de Ajuda — Hubros" description="Tire suas dúvidas e fale com o time da Hubros. Suporte para encontrar e reservar espaços de trabalho." />
+                            <Seo path="/ajuda/" title="Central de Ajuda | Hubros" description="Tire suas dúvidas e fale com o time da Hubros. Suporte para encontrar e reservar espaços de trabalho." />
                             <HelpCenter />
                         </>
                     } />
                     <Route path="/sobre" element={
                         <>
-                            <Seo path="/sobre/" title="Sobre a Hubros — Redefinindo o espaço de trabalho" description="Conheça a Hubros: conectamos profissionais e empresas a ambientes de trabalho inspiradores, de forma rápida, flexível e sem burocracia." />
+                            <Seo path="/sobre/" title="Sobre a Hubros | Redefinindo o espaço de trabalho" description="Conheça a Hubros: conectamos profissionais e empresas a ambientes de trabalho inspiradores, de forma rápida, flexível e sem burocracia." />
                             <About />
                         </>
                     } />
                     <Route path="/cookies" element={
                         <>
-                            <Seo path="/cookies/" title="Política de Cookies — Hubros" description="Saiba como a Hubros utiliza cookies para melhorar a sua experiência na plataforma." />
+                            <Seo path="/cookies/" title="Política de Cookies | Hubros" description="Saiba como a Hubros utiliza cookies para melhorar a sua experiência na plataforma." />
                             <Cookies />
                         </>
                     } />
                     <Route path="/termos" element={
                         <>
-                            <Seo path="/termos/" title="Termos de Uso — Hubros" description="Termos de uso da plataforma Hubros." />
+                            <Seo path="/termos/" title="Termos de Uso | Hubros" description="Termos de uso da plataforma Hubros." />
                             <Terms />
                         </>
                     } />
                     <Route path="/privacidade" element={
                         <>
-                            <Seo path="/privacidade/" title="Política de Privacidade — Hubros" description="Política de privacidade e tratamento de dados da Hubros." />
+                            <Seo path="/privacidade/" title="Política de Privacidade | Hubros" description="Política de privacidade e tratamento de dados da Hubros." />
                             <Privacy />
                         </>
                     } />
                     <Route path="/excluir-conta" element={
                         <>
-                            <Seo path="/excluir-conta/" title="Exclusão de Conta — Hubros" description="Saiba como excluir sua conta Hubros e quais dados são removidos ou retidos." />
+                            <Seo path="/excluir-conta/" title="Exclusão de Conta | Hubros" description="Saiba como excluir sua conta Hubros e quais dados são removidos ou retidos." />
                             <AccountDeletion />
                         </>
                     } />
                     <Route path="/trabalhe-conosco" element={
                         <>
-                            <Seo path="/trabalhe-conosco/" title="Trabalhe Conosco — Hubros" description="Quer construir a Hubros com a gente? Envie seu perfil e entraremos em contato quando surgir uma oportunidade." />
+                            <Seo path="/trabalhe-conosco/" title="Trabalhe Conosco | Hubros" description="Quer construir a Hubros com a gente? Envie seu perfil e entraremos em contato quando surgir uma oportunidade." />
                             <Careers />
                         </>
                     } />
                     <Route path="/lista-de-espera" element={
                         <>
-                            <Seo path="/lista-de-espera/" title="Cadastre seu Espaço — Hubros" description="Tem um coworking, consultório ou sala disponível? Cadastre-se e comece a receber reservas — a Hubros já está no ar." />
+                            <Seo path="/lista-de-espera/" title="Cadastre seu Espaço | Hubros" description="Tem um coworking, consultório ou sala disponível? Cadastre-se e comece a receber reservas. A Hubros já está no ar." />
                             <Waitlist />
                         </>
                     } />

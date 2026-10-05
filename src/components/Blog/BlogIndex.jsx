@@ -55,7 +55,7 @@ export default function BlogIndex() {
         <section className="section blog-section">
             <Seo 
                 path="/blog/" 
-                title="Blog — Hubros | Ecossistema de Produtividade" 
+                title="Blog Hubros | Ecossistema de Produtividade" 
                 description="Conteúdos práticos sobre IA, negócios, carreira e gestão de espaços. Transforme a maneira como você trabalha." 
             />
             <div className="container blog-container-sidebar">

@@ -281,7 +281,7 @@ export default function BlogPost() {
         <article className="section blog-post-section">
             <Seo
                 path={`/blog/${post.slug}/`}
-                title={post.seoTitle || `${post.title} — Hubros`}
+                title={post.seoTitle || `${post.title} | Hubros`}
                 description={post.description}
                 image={post.image}
                 type="article"

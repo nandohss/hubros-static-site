@@ -89,7 +89,7 @@ export default function ForHosts() {
                         </h2>
                         <p className="forhosts-desc">
                             Clínicas, escritórios, estúdios e salões ficam vazios horas por dia.
-                            Na Hubros, cada hora vazia vira oportunidade real de receita — sem esforço.
+                            Na Hubros, cada hora vazia vira oportunidade real de receita, sem esforço.
                         </p>
                         <ul className="forhosts-list">
                             {perks.map((perk, i) => (
