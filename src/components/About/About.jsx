@@ -25,7 +25,7 @@ export default function About() {
                             Ser um profissional autônomo ou iniciar uma pequena empresa sempre envolveu um grande dilema: arcar com os <span className="about__vision-highlight">altos custos fixos</span> de um aluguel comercial (luz, internet, condomínio, burocracias pesadas) ou sacrificar a imagem profissional improvisando atendimentos.
                         </p>
                         <p className="about__vision-text">
-                            Do outro lado do balcão, percebemos que clínicas, estúdios e escritórios passam horas — ou até dias — completamente vazios e sofrendo com a ociosidade, gerando prejuízo contínuo para seus proprietários.
+                            Do outro lado do balcão, percebemos que clínicas, estúdios e escritórios passam horas, ou até dias, completamente vazios e sofrendo com a ociosidade, gerando prejuízo contínuo para seus proprietários.
                         </p>
                         <p className="about__vision-text">
                             A <span className="about__vision-highlight">Hubros</span> nasceu justamente para resolver esse desequilíbrio. Através da economia compartilhada, transformamos espaços ociosos em oportunidades reais. Democratizamos o acesso a infraestruturas premium para quem precisa trabalhar ou atender, pagando estritamente pelo tempo que usar.

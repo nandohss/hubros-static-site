@@ -50,7 +50,7 @@ const sections = [
         title: 'Gerenciamento de Cookies',
         content: (
             <p>
-                O respeito à sua privacidade é inegociável. Você pode gerenciar, aprovar ou desativar os cookies a qualquer momento diretamente nas configurações de privacidade do seu navegador. No entanto, ao desativar certos cookies — especialmente os Necessários e Funcionais — o desempenho da plataforma pode ser degradado e algumas funcionalidades de busca ou reserva podem não operar corretamente.
+                O respeito à sua privacidade é inegociável. Você pode gerenciar, aprovar ou desativar os cookies a qualquer momento diretamente nas configurações de privacidade do seu navegador. No entanto, ao desativar certos cookies, especialmente os Necessários e Funcionais, o desempenho da plataforma pode ser degradado e algumas funcionalidades de busca ou reserva podem não operar corretamente.
             </p>
         ),
     },

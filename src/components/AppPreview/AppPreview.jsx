@@ -17,7 +17,7 @@ export default function AppPreview() {
                         </h2>
                         <p className="ap__desc">
                             No Hubros, você descobre espaços próximos, filtra pela categoria
-                            ideal e vê o preço por hora ou dia — tudo antes de reservar.
+                            ideal e vê o preço por hora ou dia, tudo antes de reservar.
                         </p>
 
                         <div className="ap__features">

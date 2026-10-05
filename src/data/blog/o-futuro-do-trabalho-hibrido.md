@@ -24,7 +24,7 @@ O "meio-termo" perfeito é o acesso a uma rede distribuída de espaços profissi
 
 Do lado dos proprietários de imóveis (os *Hosts*), há uma oportunidade gigante de monetizar ociosidade. Uma sala de reunião vazia 3 dias na semana é um passivo. Quando conectada a uma plataforma que permite a reserva por hora, ela se torna uma fonte de receita passiva e previsível.
 
-Na **Hubros**, nós acreditamos que o futuro do trabalho é distribuído, sob demanda e sem burocracia. Se você precisa de um lugar para criar, focar ou colaborar — por uma hora ou por um dia inteiro —, o espaço ideal está mais perto do que você imagina.
+Na **Hubros**, nós acreditamos que o futuro do trabalho é distribuído, sob demanda e sem burocracia. Se você precisa de um lugar para criar, focar ou colaborar (por uma hora ou por um dia inteiro), o espaço ideal está mais perto do que você imagina.
 
 ---
 

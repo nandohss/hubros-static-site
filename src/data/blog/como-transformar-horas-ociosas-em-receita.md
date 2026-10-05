@@ -11,7 +11,7 @@ Você já parou para calcular quanto custa uma sala fechada? Fiz a conta complet
 
 Seja um consultório de psicologia, uma cadeira de dentista ou uma sala de reunião em um escritório moderno, **espaço vazio é perda de receita**. Você continua pagando aluguel, condomínio, internet e luz, mas aquele ativo não está gerando nenhum retorno.
 
-Muitos proprietários e locatários têm horários ociosos ao longo da semana — talvez você só atenda de segunda a quinta, ou tenha buracos na agenda de manhã. A grande virada de chave para negócios locais modernos é **transformar essas horas paradas em faturamento**.
+Muitos proprietários e locatários têm horários ociosos ao longo da semana. Talvez você só atenda de segunda a quinta, ou tenha buracos na agenda de manhã. A grande virada de chave para negócios locais modernos é **transformar essas horas paradas em faturamento**.
 
 ## A economia sob demanda
 

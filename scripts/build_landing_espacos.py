@@ -560,7 +560,7 @@ def patch_template(tpl):
     # Fernando: "plataforma" -> "Plataforma" (consistência com o cargo do Gabriel)
     tpl = sub1(tpl,
                'CTO — plataforma e experiência do app',
-               'CTO — Plataforma e experiência do app',
+               'CTO: Plataforma e experiência do app',
                'cargo Fernando')
 
     # CSS novo. Tira o overflow-x:hidden daqui — volta como `clip` no ANIM_CSS.
@@ -577,7 +577,7 @@ def patch_template(tpl):
 
 # ---------------------------------------------------------------- SEO
 
-TITLE = 'Cadastre seu coworking na Hubros — horas vazias viram receita'
+TITLE = 'Cadastre seu coworking na Hubros: horas vazias viram receita'
 DESC = ('A Hubros conecta profissionais que precisam de um lugar para trabalhar aos '
         'espaços que estão ociosos. Cadastro gratuito, você define preço e horário, '
         'e o pagamento cai direto na sua carteira.')
@@ -654,7 +654,7 @@ def main():
 
     # verificação de integridade no arquivo final
     tpl2, _, _ = read_template(open(SRC, encoding='utf8').read())
-    assert 'CTO — Plataforma' in tpl2
+    assert 'CTO: Plataforma' in tpl2
     assert 'esp-reveal' in tpl2 and 'initIfStale' in tpl2
     assert 'overflow-x: hidden' not in tpl2, 'overflow-x:hidden quebra sticky + IntersectionObserver'
     assert 'overflow-x: clip' in tpl2

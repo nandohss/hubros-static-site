@@ -114,12 +114,12 @@ export default function Waitlist() {
                     Cidade: form.city,
                     ...(role === 'host' && {
                         'Nome do coworking': form.spaceName,
-                        CNPJ: form.cnpj || '—',
+                        CNPJ: form.cnpj || 'não informado',
                     }),
-                    Bairro: form.neighborhood || '—',
-                    'Tipo de espaço': form.spaceType || '—',
-                    Mensagem: form.message || '—',
-                    _subject: `[Hubros] ${role === 'host' ? 'Pedido de ajuda — cadastro de coworking' : 'Nova entrada na lista de espera'}`,
+                    Bairro: form.neighborhood || 'não informado',
+                    'Tipo de espaço': form.spaceType || 'não informado',
+                    Mensagem: form.message || 'não informado',
+                    _subject: `[Hubros] ${role === 'host' ? 'Pedido de ajuda: cadastro de coworking' : 'Nova entrada na lista de espera'}`,
                 }),
             })
             const data = await res.json()
@@ -172,7 +172,7 @@ export default function Waitlist() {
                             <div className="wl-app-note">
                                 <p className="wl-app-note__text">
                                     <strong>O cadastro do seu coworking já pode ser feito direto no app Hubros.</strong>{' '}
-                                    Este formulário é opcional — use se quiser ajuda da nossa equipe ou tiver alguma dúvida.
+                                    Este formulário é opcional. Use se quiser ajuda da nossa equipe ou tiver alguma dúvida.
                                 </p>
                                 <div className="wl-app-note__stores">
                                     <a href={APP_STORE_URL} className="btn btn-secondary wl-app-note__store" target="_blank" rel="noopener noreferrer">

@@ -7,7 +7,7 @@ import './FAQ.css'
 export const FAQ_ITEMS = [
     {
         q: 'Como funciona a reserva?',
-        a: 'Você busca pelo mapa ou por categoria, escolhe o espaço, a data e a duração — por hora ou por dia — e paga pelo app. A confirmação é imediata e o endereço completo fica na sua reserva.',
+        a: 'Você busca pelo mapa ou por categoria, escolhe o espaço, a data e a duração (por hora ou por dia) e paga pelo app. A confirmação é imediata e o endereço completo fica na sua reserva.',
     },
     {
         q: 'Preciso assinar contrato ou pagar mensalidade?',
@@ -19,7 +19,7 @@ export const FAQ_ITEMS = [
     },
     {
         q: 'E se o espaço não aprovar minha reserva?',
-        a: 'Alguns espaços aprovam cada reserva antes de confirmar. Se a sua não for aceita, o estorno é automático — você não precisa pedir nada.',
+        a: 'Alguns espaços aprovam cada reserva antes de confirmar. Se a sua não for aceita, o estorno é automático. Você não precisa pedir nada.',
     },
     {
         q: 'Como faço para entrar no dia da reserva?',

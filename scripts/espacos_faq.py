@@ -54,7 +54,7 @@ CSS_FAQ = """  /* ===== FAQ =====
 
 PERGUNTAS = [
     ("Preciso abrir a agenda inteira?",
-     "Não. Você abre só as janelas que hoje ficam ociosas — uma tarde, um dia da semana, um "
+     "Não. Você abre só as janelas que hoje ficam ociosas: uma tarde, um dia da semana, um "
      "período do mês. Mensalistas e contratos fixos seguem exatamente como estão, e a agenda "
      "aberta pode ser ajustada ou fechada quando você quiser."),
     ("Meu espaço não é exatamente um coworking. Posso cadastrar?",
@@ -70,7 +70,7 @@ PERGUNTAS = [
     ("Preciso ter alguém na recepção?",
      "Não precisa montar nada por causa da Hubros: a reserva chega confirmada e paga, então no "
      "horário é só abrir a porta. Para registrar a chegada, o profissional mostra o QR code da "
-     "reserva e você escaneia pelo app — leva um segundo. E se o seu espaço já tem recepção ou "
+     "reserva e você escaneia pelo app: leva um segundo. E se o seu espaço já tem recepção ou "
      "controle de acesso próprio, siga com ele: os dois convivem sem problema."),
     ("Quando o dinheiro cai na minha conta?",
      "A divisão acontece na hora: assim que a reserva é paga no app, a sua parte já vai para "
@@ -78,11 +78,11 @@ PERGUNTAS = [
      "automático, uma vez por mês, com o extrato das reservas."),
     ("Quando meu espaço começa a aparecer no app?",
      "O cadastro leva alguns minutos. O espaço entra no marketplace quando você ativa a conta "
-     "de recebimento — é a mesma etapa que libera os pagamentos, então vale fazer na sequência "
+     "de recebimento. É a mesma etapa que libera os pagamentos, então vale fazer na sequência "
      "do cadastro."),
     ("Posso cadastrar como pessoa física?",
      "Sim, CNPJ ou CPF. No CNPJ são pedidos também os dados da empresa e do sócio "
-     "administrador — exigência do banco para abrir a conta de recebimento, não da Hubros."),
+     "administrador. É uma exigência do banco para abrir a conta de recebimento, não da Hubros."),
     ("Preciso de algo que o app ainda não faz. Dá para pedir?",
      "Fale com a gente. A Hubros está em evolução constante e boa parte do que existe hoje "
      f'nasceu de pedido de quem opera espaço. Chame no <a href="{LINK_WHATSAPP}" target="_blank" '

@@ -9,7 +9,7 @@ image: "/blog/coworking_backstage.jpg"
 
 Aqui na Hubros, nós temos a cultura de construir em público (o famoso *Build in Public*). Antes de escrever uma única linha de código do nosso app, nós fomos para a rua conversar com quem sente a dor na pele: proprietários de clínicas, donos de coworkings e gestores de escritórios.
 
-Eles representam os potenciais **Hosts** da nossa rede — a alma da plataforma. Nas últimas semanas, fizemos dezenas de entrevistas e pesquisas de mercado. Aqui estão os 3 maiores aprendizados que moldaram o desenvolvimento do aplicativo Hubros.
+Eles representam os potenciais **Hosts** da nossa rede, a alma da plataforma. Nas últimas semanas, fizemos dezenas de entrevistas e pesquisas de mercado. Aqui estão os 3 maiores aprendizados que moldaram o desenvolvimento do aplicativo Hubros.
 
 ### 1. "A ociosidade é silenciosa"
 A maioria dos gestores de espaços não tem a métrica de "quantas horas essa sala ficou vazia este mês". O custo do aluguel já está embutido no fixo da empresa, então a sala vazia passa despercebida. Quando fizemos a conta junto com eles e mostramos que uma única sala de reunião parada 3 dias por semana significa quase R$ 20.000 deixados na mesa por ano, o choque foi imediato.
