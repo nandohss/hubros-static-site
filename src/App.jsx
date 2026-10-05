@@ -11,6 +11,7 @@ import ForHosts from './components/ForHosts/ForHosts'
 // Depoimentos ocultos temporariamente na home (26/08/2026).
 // import Testimonials from './components/Testimonials/Testimonials'
 import Waitlist from './components/Waitlist/Waitlist'
+import HostSignup from './components/HostSignup/HostSignup'
 import FAQ, { FAQ_ITEMS } from './components/FAQ/FAQ'
 import CTA from './components/CTA/CTA'
 import HelpCenter from './components/HelpCenter/HelpCenter'
@@ -161,6 +162,14 @@ function App() {
                         <>
                             <Seo path="/lista-de-espera/" title="Cadastre seu Espaço | Hubros" description="Tem um coworking, consultório ou sala disponível? Cadastre-se e comece a receber reservas. A Hubros já está no ar." />
                             <Waitlist />
+                        </>
+                    } />
+                    {/* Fora do prerender e do sitemap de propósito: página de conversão (noindex).
+                        Enquanto HOST_SIGNUP_ENABLED for false, só encaminha para a lista de espera. */}
+                    <Route path="/cadastrar-espaco" element={
+                        <>
+                            <Seo path="/cadastrar-espaco/" title="Cadastrar meu espaço | Hubros" description="Crie sua conta e salve o seu espaço na Hubros em poucos minutos." />
+                            <HostSignup />
                         </>
                     } />
                 </Routes>

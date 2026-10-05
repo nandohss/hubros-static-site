@@ -1,0 +1,110 @@
+/* Cadastro de espaço no site: reaproveita o visual do Waitlist (wl-*) e só acrescenta
+   o que é próprio desta página: indicador de etapas, código, dicas e links discretos. */
+
+.hs-steps {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    list-style: none;
+    margin: 0 0 var(--space-6);
+    padding: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.hs-steps__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.hs-steps__dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.hs-steps__item--active {
+    color: var(--color-text-primary);
+    font-weight: 600;
+}
+
+.hs-steps__item--active .hs-steps__dot,
+.hs-steps__item--done .hs-steps__dot {
+    background: var(--color-text-primary);
+    border-color: var(--color-text-primary);
+    color: #fff;
+}
+
+.hs-hint {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.hs-field-error {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+    color: #b45309;
+}
+
+.hs-code-input {
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 0.5em;
+    font-variant-numeric: tabular-nums;
+}
+
+.hs-link-button {
+    background: none;
+    border: 0;
+    padding: var(--space-2);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    text-decoration: underline;
+    cursor: pointer;
+    align-self: center;
+}
+
+.hs-link-button:disabled {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    cursor: default;
+}
+
+.hs-alt {
+    margin: 0;
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.hs-alt a,
+.hs-back-link {
+    color: var(--color-text-primary);
+}
+
+.hs-back-link {
+    display: inline-block;
+    margin-top: var(--space-4);
+    font-size: var(--font-size-sm);
+}
+
+.hs-turnstile {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 520px) {
+    .hs-steps {
+        gap: var(--space-2);
+        font-size: 12px;
+    }
+}
