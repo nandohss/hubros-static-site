@@ -3,14 +3,14 @@ import assert from 'node:assert/strict'
 import { existsSync, readFileSync } from 'node:fs'
 
 import {
-    CATEGORIES, MAX_METADATA_BYTES, SITE_SOURCE, UFS, buildSignUpRequest, buildSpace, isValidEmail,
+    AMBIENTES, CATEGORIES, MAX_METADATA_BYTES, SITE_SOURCE, UFS, buildSignUpRequest, buildSpace, isValidEmail,
     isValidPhone, lookupCep, mapAuthError, maskCep, maskPhone, onlyDigits, passwordError,
     validateAccountStep, validateSpaceStep,
 } from './hostSignup.js'
 import { CognitoError } from './cognito.js'
 
 const spaceForm = {
-    name: ' Meu Coworking ', categoria: CATEGORIES[0], zipCode: '01310-100', street: 'Av. Paulista',
+    name: ' Meu Coworking ', categoria: CATEGORIES[0], ambiente: 'unico', zipCode: '01310-100', street: 'Av. Paulista',
     number: '1000', complement: '', district: 'Bela Vista', city: 'São Paulo', state: 'sp',
 }
 const accountForm = {
@@ -57,9 +57,13 @@ test('validação de e-mail, telefone e senha', () => {
 test('validação dos passos devolve um erro por campo inválido', () => {
     assert.deepEqual(validateSpaceStep(spaceForm), {})
     assert.deepEqual(Object.keys(validateSpaceStep({})).sort(),
-        ['categoria', 'city', 'district', 'name', 'number', 'state', 'street', 'zipCode'])
+        ['ambiente', 'categoria', 'city', 'district', 'name', 'number', 'state', 'street', 'zipCode'])
     assert.ok(validateSpaceStep({ ...spaceForm, categoria: 'Beleza e Estética' }).categoria) // inativa nos apps
     assert.ok(validateSpaceStep({ ...spaceForm, zipCode: '123' }).zipCode)
+    for (const invalido of ['', 'outro', 'UNICO', undefined]) {
+        assert.ok(validateSpaceStep({ ...spaceForm, ambiente: invalido }).ambiente, String(invalido))
+    }
+    for (const { value } of AMBIENTES) assert.deepEqual(validateSpaceStep({ ...spaceForm, ambiente: value }), {})
     assert.ok(validateSpaceStep({ ...spaceForm, state: 'XX' }).state)
     assert.deepEqual(validateAccountStep(accountForm), {})
     assert.deepEqual(Object.keys(validateAccountStep({})).sort(),
@@ -71,7 +75,7 @@ test('validação dos passos devolve um erro por campo inválido', () => {
 test('buildSpace: só strings, só os campos do backend, telefone no formato do app', () => {
     const space = buildSpace(form)
     assert.deepEqual(space, {
-        name: 'Meu Coworking', categoria: 'Escritório e Negócios', zipCode: '01310100',
+        name: 'Meu Coworking', categoria: 'Escritório e Negócios', ambiente: 'unico', zipCode: '01310100',
         street: 'Av. Paulista', number: '1000', district: 'Bela Vista', city: 'São Paulo', state: 'SP',
         email: 'ana@example.com', ddd: '11', numeroTelefone: '987654321', telefoneCompleto: '11987654321',
     })

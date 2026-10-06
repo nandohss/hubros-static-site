@@ -108,3 +108,79 @@
         font-size: 12px;
     }
 }
+
+/* Pergunta "Como é o seu espaço?": duas opções em cartões, acessíveis por teclado (radio). */
+.hs-choice {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.hs-choice legend {
+    padding: 0;
+    margin-bottom: var(--space-2);
+}
+
+.hs-choice__item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--space-3);
+    row-gap: 2px;
+    align-items: start;
+    padding: var(--space-3) var(--space-4);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
+
+.hs-choice__item input {
+    grid-row: 1 / span 2;
+    margin-top: 3px;
+    accent-color: var(--color-text-primary);
+}
+
+.hs-choice__item:focus-within {
+    outline: 2px solid var(--color-text-primary);
+    outline-offset: 2px;
+}
+
+.hs-choice__item--active {
+    border-color: var(--color-text-primary);
+    background: #fff;
+}
+
+.hs-choice__label {
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.hs-choice__hint {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+/* Tela "e-mail já tem cadastro": duas situações possíveis, uma por bloco. */
+.hs-option {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-5, 20px) 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.hs-option__title {
+    margin: 0;
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+}
+
+.hs-option__text {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}

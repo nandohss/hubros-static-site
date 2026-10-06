@@ -8,7 +8,7 @@ import {
 } from '../../config/hostSignup'
 import { confirmSignUp, resendConfirmationCode, signUp } from '../../lib/cognito'
 import {
-    CATEGORIES, FIELD_LIMITS, UFS, buildSignUpRequest, lookupCep, mapAuthError, maskCep, maskPhone,
+    AMBIENTES, CATEGORIES, FIELD_LIMITS, UFS, buildSignUpRequest, lookupCep, mapAuthError, maskCep, maskPhone,
     normalizeEmail, validateAccountStep, validateSpaceStep,
 } from '../../lib/hostSignup'
 
@@ -19,7 +19,7 @@ const RESEND_COOLDOWN_SECONDS = 30
 const STEPS = ['Seu espaço', 'Sua conta', 'Confirmação']
 
 const EMPTY_FORM = {
-    name: '', categoria: '', zipCode: '', street: '', number: '', complement: '', district: '',
+    name: '', categoria: '', ambiente: '', zipCode: '', street: '', number: '', complement: '', district: '',
     city: '', state: '', fullName: '', email: '', phone: '', password: '', acceptTerms: false,
 }
 
@@ -164,20 +164,28 @@ function HostSignupForm() {
         }
     }
 
-    // E-mail que já existe pode ser um cadastro NÃO confirmado (o código reenviado
-    // ainda cria o rascunho) ou uma conta já confirmada (segue pelo app).
-    const handleSignUpError = async (error) => {
+    // E-mail que já existe pode ser um cadastro NÃO confirmado (o código reenviado ainda cria o
+    // rascunho) ou uma conta já confirmada. Com a proteção de existência de usuário ligada, o
+    // reenvio para uma conta já confirmada responde sucesso falso e nenhum e-mail sai, então daqui
+    // não dá para saber qual é o caso: a tela deixa o host dizer, em vez de prometer um código.
+    const handleSignUpError = (error) => {
         const { kind, message } = mapAuthError(error)
-        if (kind !== 'exists') { setApiError(message); return }
+        if (kind === 'exists') { setApiError(''); setStep('exists'); return }
+        setApiError(message)
+    }
+
+    const handleResendFromExists = async () => {
+        setLoading(true)
+        setApiError('')
         try {
             await resendConfirmationCode({ clientId: COGNITO_WEB_CLIENT_ID, email }, clientOptions)
-            setNotice(`Esse e-mail já tinha um cadastro por confirmar. Reenviamos o código para ${email}.`)
+            setNotice(`Enviamos um novo código para ${email}. Se ele não chegar em alguns minutos, esse e-mail já está confirmado: entre pelo app com ele.`)
             setCooldown(RESEND_COOLDOWN_SECONDS)
             setStep('code')
-        } catch (resendError) {
-            const resend = mapAuthError(resendError)
-            if (resend.kind === 'alreadyConfirmed' || resend.kind === 'generic') setStep('exists')
-            else setApiError(resend.message)
+        } catch (error) {
+            setApiError(mapAuthError(error).message)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -215,15 +223,36 @@ function HostSignupForm() {
         <div className="wl-page">
             <Helmet><meta name="robots" content="noindex" /></Helmet>
             <main className="wl-main">
-                {(step === 'done' || step === 'exists') ? (
+                {step === 'exists' ? (
+                    <div className="wl-card">
+                        <div className="wl-card__header">
+                            <div className="section-tag">Cadastre seu espaço</div>
+                            <h1 className="wl-card__title">Esse e-mail já<br /><span className="text-gradient">tem cadastro</span></h1>
+                            <p className="wl-card__sub">O espaço que você acabou de preencher não foi salvo. Escolha a opção que descreve a sua situação.</p>
+                        </div>
+                        <section className="hs-option">
+                            <h2 className="hs-option__title">Já confirmei meu e-mail</h2>
+                            <p className="hs-option__text">Entre no app da Hubros com {email} e cadastre o espaço por lá. É rápido e já fica tudo pronto para as reservas.</p>
+                            <StoreButtons />
+                        </section>
+                        <section className="hs-option">
+                            <h2 className="hs-option__title">Comecei, mas não confirmei</h2>
+                            <p className="hs-option__text">Ao tocar em Reenviar código, mandamos um novo código para {email}. Se ele não chegar em alguns minutos, o e-mail já está confirmado: use a opção acima.</p>
+                            {apiError && <p className="wl-form__error" role="alert">{apiError}</p>}
+                            <button type="button" className="btn btn-secondary" onClick={handleResendFromExists} disabled={loading}>
+                                {loading ? 'Enviando...' : 'Reenviar código'}
+                            </button>
+                        </section>
+                        <button type="button" className="hs-link-button" onClick={() => { setApiError(''); setStep('account') }}>Usar outro e-mail</button>
+                    </div>
+                ) : step === 'done' ? (
                     <div className="wl-success">
                         <h1 className="wl-success__title">
-                            {step === 'exists' ? 'Esse e-mail já tem conta' : confirmedHere ? 'Espaço salvo!' : 'Cadastro recebido!'}
+                            {confirmedHere ? 'Espaço salvo!' : 'Cadastro recebido!'}
                         </h1>
                         <p className="wl-success__sub">
-                            {step === 'exists' && 'Entre no app da Hubros com esse e-mail e cadastre o seu espaço por lá. É rápido e já fica tudo pronto para as reservas.'}
-                            {step === 'done' && confirmedHere && `O ${form.name || 'seu espaço'} já está salvo na sua conta. Baixe o app e entre com o e-mail e a senha que você acabou de criar: ele aparece em Meus espaços, e é só adicionar fotos, preço e horários.`}
-                            {step === 'done' && !confirmedHere && `Falta confirmar o e-mail. Baixe o app, entre com ${email} e a senha que você criou e digite o código que enviamos. Depois disso o ${form.name || 'seu espaço'} aparece em Meus espaços.`}
+                            {confirmedHere && `O ${form.name || 'seu espaço'} já está salvo na sua conta. Baixe o app e entre com o e-mail e a senha que você acabou de criar: ele aparece em Meus espaços, e é só adicionar fotos, preço e horários.`}
+                            {!confirmedHere && `Falta confirmar o e-mail. Baixe o app, entre com ${email} e a senha que você criou e digite o código que enviamos. Depois disso o ${form.name || 'seu espaço'} aparece em Meus espaços.`}
                         </p>
                         <StoreButtons />
                         <a href="/" className="hs-back-link">Voltar ao site</a>
@@ -265,6 +294,17 @@ function HostSignupForm() {
                                         {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
                                     </select>
                                 </Field>
+                                <fieldset className="hs-choice">
+                                    <legend className="wl-form__label">Como é o seu espaço?</legend>
+                                    {AMBIENTES.map(({ value, label, hint }) => (
+                                        <label key={value} className={form.ambiente === value ? 'hs-choice__item hs-choice__item--active' : 'hs-choice__item'}>
+                                            <input type="radio" name="ambiente" value={value} checked={form.ambiente === value} onChange={onChange} />
+                                            <span className="hs-choice__label">{label}</span>
+                                            <span className="hs-choice__hint">{hint}</span>
+                                        </label>
+                                    ))}
+                                    {errors.ambiente && <p className="hs-field-error" role="alert">{errors.ambiente}</p>}
+                                </fieldset>
                                 <div className="wl-form__row">
                                     <Field id="zipCode" label="CEP" error={errors.zipCode}>
                                         <input id="zipCode" name="zipCode" className="wl-form__input" value={form.zipCode} onChange={onCepChange}

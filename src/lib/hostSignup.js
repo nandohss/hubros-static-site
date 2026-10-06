@@ -13,6 +13,14 @@ export const CATEGORIES = [
     'Eventos e Sociais',
 ]
 
+// Como o host descreve o espaço. Define como o rascunho nasce: "unico" já vem com o recurso de
+// ambiente único (é assim que os apps reconhecem um ambiente único: exatamente 1 recurso
+// fullSpace) e "multiplos" nasce sem recursos, para cadastrar cada um no app.
+export const AMBIENTES = [
+    { value: 'unico', label: 'Um único ambiente', hint: 'Ex.: consultório, salão, sala única. Você define preço e capacidade no app.' },
+    { value: 'multiplos', label: 'Múltiplos ambientes', hint: 'Ex.: coworking com várias salas ou mesas, clínica com vários consultórios. Você cadastra cada ambiente no app.' },
+]
+
 // Mesmos limites do create_draft_space (lambda-spaces-controller). O PreSignUp
 // descarta o espaço inteiro se o metadata passar de 2 KB.
 export const FIELD_LIMITS = {
@@ -71,6 +79,7 @@ export function validateSpaceStep(form) {
     const errors = {}
     if (!required(form.name)) errors.name = 'Informe o nome do espaço.'
     if (!CATEGORIES.includes(form.categoria)) errors.categoria = 'Escolha uma categoria.'
+    if (!AMBIENTES.some((a) => a.value === form.ambiente)) errors.ambiente = 'Escolha como é o seu espaço.'
     if (!isValidCep(form.zipCode)) errors.zipCode = 'Informe um CEP com 8 dígitos.'
     if (!required(form.street)) errors.street = 'Informe a rua.'
     if (!required(form.number)) errors.number = 'Informe o número.'
@@ -99,6 +108,7 @@ export function buildSpace(form) {
     const space = {
         name: trimTo(form.name, FIELD_LIMITS.name),
         categoria: form.categoria,
+        ambiente: form.ambiente,
         zipCode: onlyDigits(form.zipCode).slice(0, 8),
         street: trimTo(form.street, FIELD_LIMITS.street),
         number: trimTo(form.number, FIELD_LIMITS.number),
