@@ -164,29 +164,15 @@ function HostSignupForm() {
         }
     }
 
-    // E-mail que já existe pode ser um cadastro NÃO confirmado (o código reenviado ainda cria o
-    // rascunho) ou uma conta já confirmada. Com a proteção de existência de usuário ligada, o
-    // reenvio para uma conta já confirmada responde sucesso falso e nenhum e-mail sai, então daqui
-    // não dá para saber qual é o caso: a tela deixa o host dizer, em vez de prometer um código.
+    // E-mail que já existe: NÃO dá para saber, pelo site, se a conta está confirmada. O Cognito manda
+    // um código mesmo para conta já confirmada e responde ao ConfirmSignUp como se houvesse um
+    // código pendente, então qualquer tentativa de "resolver" por código aqui pode acabar dizendo
+    // que o espaço foi salvo quando não foi. Os apps já tratam conta não confirmada no login (pedem
+    // o código e confirmam), então a orientação é uma só: entrar pelo app.
     const handleSignUpError = (error) => {
         const { kind, message } = mapAuthError(error)
         if (kind === 'exists') { setApiError(''); setStep('exists'); return }
         setApiError(message)
-    }
-
-    const handleResendFromExists = async () => {
-        setLoading(true)
-        setApiError('')
-        try {
-            await resendConfirmationCode({ clientId: COGNITO_WEB_CLIENT_ID, email }, clientOptions)
-            setNotice(`Enviamos um novo código para ${email}. Se ele não chegar em alguns minutos, esse e-mail já está confirmado: entre pelo app com ele.`)
-            setCooldown(RESEND_COOLDOWN_SECONDS)
-            setStep('code')
-        } catch (error) {
-            setApiError(mapAuthError(error).message)
-        } finally {
-            setLoading(false)
-        }
     }
 
     const handleConfirm = async (event) => {
@@ -228,20 +214,13 @@ function HostSignupForm() {
                         <div className="wl-card__header">
                             <div className="section-tag">Cadastre seu espaço</div>
                             <h1 className="wl-card__title">Esse e-mail já<br /><span className="text-gradient">tem cadastro</span></h1>
-                            <p className="wl-card__sub">O espaço que você acabou de preencher não foi salvo. Escolha a opção que descreve a sua situação.</p>
+                            <p className="wl-card__sub">Para não misturar contas, o cadastro pelo site só cria e-mails novos.</p>
                         </div>
                         <section className="hs-option">
-                            <h2 className="hs-option__title">Já confirmei meu e-mail</h2>
-                            <p className="hs-option__text">Entre no app da Hubros com {email} e cadastre o espaço por lá. É rápido e já fica tudo pronto para as reservas.</p>
+                            <h2 className="hs-option__title">Entre no app com {email}</h2>
+                            <p className="hs-option__text">Use a senha que você criou. Se você começou o cadastro aqui e não chegou a confirmar o e-mail, o app pede o código na hora e, depois de confirmar, o espaço que você preencheu aparece em Meus espaços.</p>
+                            <p className="hs-option__text">Se o e-mail já estava confirmado, o espaço que você acabou de preencher não foi salvo: cadastre por lá, é rápido.</p>
                             <StoreButtons />
-                        </section>
-                        <section className="hs-option">
-                            <h2 className="hs-option__title">Comecei, mas não confirmei</h2>
-                            <p className="hs-option__text">Ao tocar em Reenviar código, mandamos um novo código para {email}. Se ele não chegar em alguns minutos, o e-mail já está confirmado: use a opção acima.</p>
-                            {apiError && <p className="wl-form__error" role="alert">{apiError}</p>}
-                            <button type="button" className="btn btn-secondary" onClick={handleResendFromExists} disabled={loading}>
-                                {loading ? 'Enviando...' : 'Reenviar código'}
-                            </button>
                         </section>
                         <button type="button" className="hs-link-button" onClick={() => { setApiError(''); setStep('account') }}>Usar outro e-mail</button>
                     </div>
