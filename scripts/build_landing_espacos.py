@@ -336,7 +336,7 @@ ANIM_JS = """
     var anchor = currentAnchor();
     if (!anchor) { return; }  // DOM ainda não montado; a próxima tentativa pega
 
-    tagAll('a[href*="lista-de-espera"]', 'esp-cta');
+    tagAll('a[href*="cadastrar-espaco"]', 'esp-cta');
     tagAll('header a, footer a', 'esp-link');
     tagAll('[style*="border-radius:16px"], [style*="border-radius:14px"]', 'esp-card');
     bindScrollOnce();
