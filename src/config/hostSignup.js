@@ -12,4 +12,4 @@ export const COGNITO_REGION = 'sa-east-1'
 export const COGNITO_WEB_CLIENT_ID = '4kllelcbjsej1e3ie3jpt7ldir'
 
 // Chave pública do Cloudflare Turnstile. Vazia = o formulário não mostra o desafio.
-export const TURNSTILE_SITE_KEY = ''
+export const TURNSTILE_SITE_KEY = '0x4AAAAAAFOzqMV6I9gDU6lY'
