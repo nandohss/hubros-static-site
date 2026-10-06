@@ -1,9 +1,10 @@
 // Cadastro de espaço direto no site (/cadastrar-espaco/).
 //
-// DESLIGADO por padrão. Só ligar quando os dois triggers do Cognito (PreSignUp e
-// PostConfirmation) estiverem no user pool: sem eles a conta é criada mas o espaço
-// rascunho não. Enquanto estiver desligado, a rota redireciona para a lista de espera.
-export const HOST_SIGNUP_ENABLED = false
+// Ligado em 06/10/2026, depois de os dois triggers do Cognito (PreSignUp e PostConfirmation)
+// entrarem no user pool: sem eles a conta é criada mas o espaço rascunho não. Se for preciso
+// desligar, a rota volta a redirecionar para a lista de espera (e os triggers do pool podem
+// ser removidos com infra-identity-security/attach-cognito-triggers.py --detach --apply).
+export const HOST_SIGNUP_ENABLED = true
 
 export const COGNITO_REGION = 'sa-east-1'
 
