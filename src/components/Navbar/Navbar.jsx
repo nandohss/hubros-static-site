@@ -13,7 +13,7 @@ export default function Navbar() {
     }, [])
 
     const navLinks = [
-        { label: 'Para Coworkers', href: '/#features' },
+        { label: 'Para quem reserva', href: '/#spaces' },
         { label: 'Para Hosts', href: '/#hosts' },
         { label: 'Blog', href: '/blog' },
         { label: 'Sobre', href: '/sobre' },
@@ -50,7 +50,8 @@ export default function Navbar() {
                     <button
                         className={`navbar__burger ${menuOpen ? 'navbar__burger--open' : ''}`}
                         onClick={() => setMenuOpen(!menuOpen)}
-                        aria-label="Menu"
+                        aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+                        aria-expanded={menuOpen}
                     >
                         <span /><span /><span />
                     </button>

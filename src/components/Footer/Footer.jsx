@@ -45,7 +45,7 @@ export default function Footer() {
                     <div className="footer__col">
                         <h4 className="footer__col-title">Produto</h4>
                         <ul className="footer__col-links">
-                            <li><Link to="/#spaces" className="footer__link">Para Coworkers</Link></li>
+                            <li><Link to="/#spaces" className="footer__link">Para quem reserva</Link></li>
                             <li><Link to="/#hosts" className="footer__link">Para Hosts</Link></li>
                         </ul>
                     </div>

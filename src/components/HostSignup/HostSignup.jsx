@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { cloneElement, useEffect, useRef, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import '../Waitlist/Waitlist.css'
+import StoreBadges from '../StoreBadges/StoreBadges'
 import './HostSignup.css'
 import {
     COGNITO_REGION, COGNITO_WEB_CLIENT_ID, HOST_SIGNUP_ENABLED, TURNSTILE_SITE_KEY,
@@ -12,8 +12,6 @@ import {
     normalizeEmail, validateAccountStep, validateSpaceStep,
 } from '../../lib/hostSignup'
 
-const APP_STORE_URL = 'https://apps.apple.com/br/app/hubros/id6762576263'
-const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=br.com.hubros.hubros_app'
 const WAITLIST_URL = '/lista-de-espera/?role=host'
 const RESEND_COOLDOWN_SECONDS = 30
 const STEPS = ['Seu espaço', 'Sua conta', 'Confirmação']
@@ -23,24 +21,28 @@ const EMPTY_FORM = {
     city: '', state: '', fullName: '', email: '', phone: '', password: '', acceptTerms: false,
 }
 
-function Field({ id, label, error, optional, children }) {
+// O erro fica ligado ao campo (aria-invalid + aria-describedby) para o leitor de tela anunciar.
+function Field({ id, label, error, optional, hint, className = '', children }) {
+    const describedBy = [error && `${id}-error`, hint && `${id}-hint`].filter(Boolean).join(' ') || undefined
     return (
-        <div className="wl-form__field">
-            <label className="wl-form__label" htmlFor={id}>
-                {label}{optional && <> <span className="wl-form__optional">(opcional)</span></>}
+        <div className={`hs-field ${className}`}>
+            <label className="hs-label" htmlFor={id}>
+                {label}{optional && <> <span className="hs-optional">(opcional)</span></>}
             </label>
-            {children}
-            {error && <p className="hs-field-error" role="alert">{error}</p>}
+            {cloneElement(children, { 'aria-invalid': error ? true : undefined, 'aria-describedby': describedBy })}
+            {hint && <div id={`${id}-hint`} className="hs-hint">{hint}</div>}
+            {error && <p id={`${id}-error`} className="hs-field-error" role="alert">{error}</p>}
         </div>
     )
 }
 
-function StoreButtons() {
+function StepHeader({ title, sub }) {
     return (
-        <div className="wl-app-note__stores">
-            <a href={APP_STORE_URL} className="btn btn-secondary wl-app-note__store" target="_blank" rel="noopener noreferrer">App Store</a>
-            <a href={PLAY_STORE_URL} className="btn btn-secondary wl-app-note__store" target="_blank" rel="noopener noreferrer">Google Play</a>
-        </div>
+        <header className="hs-head">
+            <p className="home-label hs-head__label">Cadastre seu espaço</p>
+            <h1 className="hs-title">{title}</h1>
+            {sub && <p className="hs-sub">{sub}</p>}
+        </header>
     )
 }
 
@@ -204,184 +206,224 @@ function HostSignupForm() {
     }
 
     const stepIndex = { space: 0, account: 1, code: 2 }[step]
+    const spaceName = form.name || 'seu espaço'
+
+    const progress = (
+        <ol className="hs-progress" aria-label="Etapas do cadastro">
+            {STEPS.map((label, index) => (
+                <li key={label} className={index < stepIndex ? 'is-complete' : undefined}
+                    aria-current={index === stepIndex ? 'step' : undefined}>
+                    <span className="hs-progress__n">{index + 1}</span>{label}
+                </li>
+            ))}
+        </ol>
+    )
 
     return (
-        <div className="wl-page">
+        <div className="hs-page">
             <Helmet><meta name="robots" content="noindex" /></Helmet>
-            <main className="wl-main">
-                {step === 'exists' ? (
-                    <div className="wl-card">
-                        <div className="wl-card__header">
-                            <div className="section-tag">Cadastre seu espaço</div>
-                            <h1 className="wl-card__title">Esse e-mail já<br /><span className="text-gradient">tem cadastro</span></h1>
-                            <p className="wl-card__sub">Para não misturar contas, o cadastro pelo site só cria e-mails novos.</p>
-                        </div>
-                        <section className="hs-option">
-                            <h2 className="hs-option__title">Entre no app com {email}</h2>
-                            <p className="hs-option__text">Use a senha que você criou. Se você começou o cadastro aqui e não chegou a confirmar o e-mail, o app pede o código na hora e, depois de confirmar, o espaço que você preencheu aparece em Meus espaços.</p>
-                            <p className="hs-option__text">Se o e-mail já estava confirmado, o espaço que você acabou de preencher não foi salvo: cadastre por lá, é rápido.</p>
-                            <StoreButtons />
+            <div className="container">
+                {step === 'exists' && (
+                    <>
+                        <StepHeader title="Esse e-mail já tem cadastro." sub="Para não misturar contas, o cadastro pelo site só cria e-mails novos." />
+                        <section className="hs-card hs-card--narrow">
+                            <h2 className="hs-card__title">Entre no app com {email}</h2>
+                            <p className="hs-text">Use a senha que você criou. Se você começou o cadastro aqui e não chegou a confirmar o e-mail, o app pede o código na hora e, depois de confirmar, o espaço que você preencheu aparece em Meus espaços.</p>
+                            <p className="hs-text">Se o e-mail já estava confirmado, o espaço que você acabou de preencher não foi salvo: cadastre por lá, é rápido.</p>
+                            <StoreBadges className="hs-stores" idPrefix="hs-exists" />
+                            <div className="hs-actions hs-actions--start">
+                                <button type="button" className="hs-link-button" onClick={() => { setApiError(''); setStep('account') }}>Usar outro e-mail</button>
+                            </div>
                         </section>
-                        <button type="button" className="hs-link-button" onClick={() => { setApiError(''); setStep('account') }}>Usar outro e-mail</button>
-                    </div>
-                ) : step === 'done' ? (
-                    <div className="wl-success">
-                        <h1 className="wl-success__title">
-                            {confirmedHere ? 'Espaço salvo!' : 'Cadastro recebido!'}
-                        </h1>
-                        <p className="wl-success__sub">
-                            {confirmedHere && `O ${form.name || 'seu espaço'} já está salvo na sua conta. Baixe o app e entre com o e-mail e a senha que você acabou de criar: ele aparece em Meus espaços, e é só adicionar fotos, preço e horários.`}
-                            {!confirmedHere && `Falta confirmar o e-mail. Baixe o app, entre com ${email} e a senha que você criou e digite o código que enviamos. Depois disso o ${form.name || 'seu espaço'} aparece em Meus espaços.`}
-                        </p>
-                        <StoreButtons />
-                        <a href="/" className="hs-back-link">Voltar ao site</a>
-                    </div>
-                ) : (
-                    <div className="wl-card">
-                        <div className="wl-card__header">
-                            <div className="section-tag">Cadastre seu espaço</div>
-                            <h1 className="wl-card__title">
-                                {step === 'code'
-                                    ? <>Confirme seu<br /><span className="text-gradient">e-mail</span></>
-                                    : <>Comece a receber<br /><span className="text-gradient">reservas</span></>}
-                            </h1>
-                            <p className="wl-card__sub">
-                                {step === 'space' && 'Dois minutos e o seu espaço fica salvo na Hubros. Fotos, preço e horários você completa depois, direto no app.'}
-                                {step === 'account' && 'Crie a conta que você vai usar para entrar no app e gerenciar o espaço.'}
-                                {step === 'code' && notice}
-                            </p>
+                    </>
+                )}
+
+                {step === 'done' && (
+                    <section className="hs-card hs-card--narrow hs-done">
+                        <div className="hs-done__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M20 6 9 17l-5-5" /></svg>
                         </div>
-
-                        <ol className="hs-steps" aria-label="Etapas do cadastro">
-                            {STEPS.map((label, index) => (
-                                <li key={label} className={index === stepIndex ? 'hs-steps__item hs-steps__item--active' : index < stepIndex ? 'hs-steps__item hs-steps__item--done' : 'hs-steps__item'}
-                                    aria-current={index === stepIndex ? 'step' : undefined}>
-                                    <span className="hs-steps__dot">{index + 1}</span>{label}
-                                </li>
-                            ))}
+                        <h1 className="hs-title hs-title--left">{confirmedHere ? 'Espaço salvo.' : 'Cadastro recebido.'}</h1>
+                        <p className="hs-sub hs-sub--left">
+                            {confirmedHere
+                                ? `O ${spaceName} já está salvo na sua conta. Agora é no app:`
+                                : 'Falta confirmar o e-mail. Agora é no app:'}
+                        </p>
+                        <ol className="hs-next">
+                            <li><span className="hs-next__n">1</span>Baixe o app Hubros</li>
+                            {confirmedHere ? (
+                                <>
+                                    <li><span className="hs-next__n">2</span>Entre com o e-mail e a senha que você acabou de criar</li>
+                                    <li><span className="hs-next__n">3</span>Em Meus espaços, adicione fotos, preço e horários</li>
+                                </>
+                            ) : (
+                                <>
+                                    <li><span className="hs-next__n">2</span>Entre com {email} e a senha que você criou</li>
+                                    <li><span className="hs-next__n">3</span>Digite o código que enviamos: o {spaceName} aparece em Meus espaços</li>
+                                </>
+                            )}
                         </ol>
+                        <StoreBadges className="hs-stores" idPrefix="hs-done" />
+                        <a href="/" className="hs-link-button hs-back">Voltar ao site</a>
+                    </section>
+                )}
 
-                        {step === 'space' && (
-                            <form className="wl-form" onSubmit={goToAccount} noValidate>
-                                <Field id="name" label="Nome do espaço" error={errors.name}>
-                                    <input id="name" name="name" className="wl-form__input" value={form.name} onChange={onChange}
-                                        maxLength={FIELD_LIMITS.name} placeholder="Como seu espaço se chama" autoComplete="organization" />
-                                </Field>
-                                <Field id="categoria" label="Categoria" error={errors.categoria}>
-                                    <select id="categoria" name="categoria" className="wl-form__input wl-form__select" value={form.categoria} onChange={onChange}>
-                                        <option value="">Selecione</option>
-                                        {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
-                                    </select>
-                                </Field>
-                                <fieldset className="hs-choice">
-                                    <legend className="wl-form__label">Como é o seu espaço?</legend>
-                                    {AMBIENTES.map(({ value, label, hint }) => (
-                                        <label key={value} className={form.ambiente === value ? 'hs-choice__item hs-choice__item--active' : 'hs-choice__item'}>
-                                            <input type="radio" name="ambiente" value={value} checked={form.ambiente === value} onChange={onChange} />
-                                            <span className="hs-choice__label">{label}</span>
-                                            <span className="hs-choice__hint">{hint}</span>
-                                        </label>
-                                    ))}
-                                    {errors.ambiente && <p className="hs-field-error" role="alert">{errors.ambiente}</p>}
-                                </fieldset>
-                                <div className="wl-form__row">
-                                    <Field id="zipCode" label="CEP" error={errors.zipCode}>
-                                        <input id="zipCode" name="zipCode" className="wl-form__input" value={form.zipCode} onChange={onCepChange}
-                                            inputMode="numeric" placeholder="00000-000" autoComplete="postal-code" />
-                                        {cepStatus === 'loading' && <p className="hs-hint">Buscando endereço...</p>}
-                                        {cepStatus === 'notfound' && <p className="hs-hint">Não achamos esse CEP. Preencha o endereço à mão.</p>}
+                {step === 'space' && (
+                    <>
+                        <StepHeader title="Comece a receber reservas." sub="Dois minutos e o seu espaço fica salvo na Hubros. Fotos, preço e horários você completa depois, direto no app." />
+                        {progress}
+                        <form className="hs-card" onSubmit={goToAccount} noValidate>
+                            <fieldset className="hs-group">
+                                <legend>Sobre o espaço</legend>
+                                <div className="hs-row hs-row--name">
+                                    <Field id="name" label="Nome do espaço" error={errors.name}>
+                                        <input id="name" name="name" className="hs-input" value={form.name} onChange={onChange}
+                                            maxLength={FIELD_LIMITS.name} placeholder="Como seu espaço se chama" autoComplete="organization" />
                                     </Field>
-                                    <Field id="number" label="Número" error={errors.number}>
-                                        <input id="number" name="number" className="wl-form__input" value={form.number} onChange={onChange}
-                                            maxLength={FIELD_LIMITS.number} autoComplete="off" />
+                                    <Field id="categoria" label="Categoria" error={errors.categoria}>
+                                        <select id="categoria" name="categoria" className="hs-input hs-select" value={form.categoria} onChange={onChange}>
+                                            <option value="">Selecione</option>
+                                            {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                                        </select>
                                     </Field>
                                 </div>
-                                <Field id="street" label="Rua" error={errors.street}>
-                                    <input id="street" name="street" className="wl-form__input" value={form.street} onChange={onChange}
-                                        maxLength={FIELD_LIMITS.street} autoComplete="address-line1" />
-                                </Field>
-                                <div className="wl-form__row">
+                                <fieldset className="hs-choice" aria-describedby={errors.ambiente ? 'ambiente-error' : undefined}>
+                                    <legend className="hs-label">Como é o seu espaço?</legend>
+                                    <div className="hs-choice__grid">
+                                        {AMBIENTES.map(({ value, label, hint }) => (
+                                            <label key={value} className="hs-choice__item">
+                                                <input type="radio" name="ambiente" value={value} checked={form.ambiente === value} onChange={onChange} />
+                                                <span className="hs-choice__label">{label}</span>
+                                                <span className="hs-choice__hint">{hint}</span>
+                                            </label>
+                                        ))}
+                                    </div>
+                                    {errors.ambiente && <p id="ambiente-error" className="hs-field-error" role="alert">{errors.ambiente}</p>}
+                                </fieldset>
+                            </fieldset>
+
+                            <fieldset className="hs-group">
+                                <legend>Endereço</legend>
+                                <div className="hs-row hs-row--cep">
+                                    <Field id="zipCode" label="CEP" error={errors.zipCode}
+                                        hint={cepStatus === 'loading' ? 'Buscando endereço…'
+                                            : cepStatus === 'notfound' ? 'Não achamos esse CEP. Preencha o endereço à mão.'
+                                                : 'Com o CEP, a gente preenche rua, bairro e cidade.'}>
+                                        <input id="zipCode" name="zipCode" className="hs-input" value={form.zipCode} onChange={onCepChange}
+                                            inputMode="numeric" placeholder="00000-000" autoComplete="postal-code" />
+                                    </Field>
+                                    <Field id="number" label="Número" error={errors.number}>
+                                        <input id="number" name="number" className="hs-input" value={form.number} onChange={onChange}
+                                            maxLength={FIELD_LIMITS.number} autoComplete="off" />
+                                    </Field>
                                     <Field id="complement" label="Complemento" optional>
-                                        <input id="complement" name="complement" className="wl-form__input" value={form.complement} onChange={onChange}
+                                        <input id="complement" name="complement" className="hs-input" value={form.complement} onChange={onChange}
                                             maxLength={FIELD_LIMITS.complement} autoComplete="address-line2" />
                                     </Field>
+                                </div>
+                                <div className="hs-row hs-row--street">
+                                    <Field id="street" label="Rua" error={errors.street}>
+                                        <input id="street" name="street" className="hs-input" value={form.street} onChange={onChange}
+                                            maxLength={FIELD_LIMITS.street} autoComplete="address-line1" />
+                                    </Field>
                                     <Field id="district" label="Bairro" error={errors.district}>
-                                        <input id="district" name="district" className="wl-form__input" value={form.district} onChange={onChange}
+                                        <input id="district" name="district" className="hs-input" value={form.district} onChange={onChange}
                                             maxLength={FIELD_LIMITS.district} />
                                     </Field>
                                 </div>
-                                <div className="wl-form__row">
+                                <div className="hs-row hs-row--city">
                                     <Field id="city" label="Cidade" error={errors.city}>
-                                        <input id="city" name="city" className="wl-form__input" value={form.city} onChange={onChange}
+                                        <input id="city" name="city" className="hs-input" value={form.city} onChange={onChange}
                                             maxLength={FIELD_LIMITS.city} autoComplete="address-level2" />
                                     </Field>
                                     <Field id="state" label="Estado" error={errors.state}>
-                                        <select id="state" name="state" className="wl-form__input wl-form__select" value={form.state} onChange={onChange}>
+                                        <select id="state" name="state" className="hs-input hs-select" value={form.state} onChange={onChange}>
                                             <option value="">UF</option>
                                             {UFS.map((uf) => <option key={uf} value={uf}>{uf}</option>)}
                                         </select>
                                     </Field>
                                 </div>
-                                <button type="submit" className="btn btn-primary wl-form__submit">Continuar</button>
-                                <p className="hs-alt">Prefere falar com a gente? <a href={WAITLIST_URL}>Fale com a equipe</a></p>
-                            </form>
-                        )}
+                            </fieldset>
 
-                        {step === 'account' && (
-                            <form className="wl-form" onSubmit={handleSignUp} noValidate>
+                            <div className="hs-actions">
+                                <p className="hs-alt">Prefere falar com a gente? <a href={WAITLIST_URL}>Fale com a equipe</a></p>
+                                <button type="submit" className="btn btn-primary hs-submit">Continuar para sua conta</button>
+                            </div>
+                        </form>
+                    </>
+                )}
+
+                {step === 'account' && (
+                    <>
+                        <StepHeader title="Comece a receber reservas." sub="Crie a conta que você vai usar para entrar no app e gerenciar o espaço." />
+                        {progress}
+                        <form className="hs-card" onSubmit={handleSignUp} noValidate>
+                            <fieldset className="hs-group">
+                                <legend>Sua conta</legend>
                                 <Field id="fullName" label="Nome completo" error={errors.fullName}>
-                                    <input id="fullName" name="fullName" className="wl-form__input" value={form.fullName} onChange={onChange}
+                                    <input id="fullName" name="fullName" className="hs-input" value={form.fullName} onChange={onChange}
                                         autoComplete="name" />
                                 </Field>
-                                <Field id="email" label="E-mail" error={errors.email}>
-                                    <input id="email" name="email" type="email" className="wl-form__input" value={form.email} onChange={onChange}
-                                        maxLength={FIELD_LIMITS.email} autoComplete="email" placeholder="seu@email.com" />
-                                </Field>
-                                <Field id="phone" label="WhatsApp" error={errors.phone}>
-                                    <input id="phone" name="phone" type="tel" className="wl-form__input" value={form.phone}
-                                        onChange={(e) => update('phone', maskPhone(e.target.value))} autoComplete="tel-national" placeholder="(11) 99999-9999" />
-                                </Field>
-                                <Field id="password" label="Senha" error={errors.password}>
-                                    <input id="password" name="password" type="password" className="wl-form__input" value={form.password} onChange={onChange}
+                                <div className="hs-row">
+                                    <Field id="email" label="E-mail" error={errors.email}>
+                                        <input id="email" name="email" type="email" className="hs-input" value={form.email} onChange={onChange}
+                                            maxLength={FIELD_LIMITS.email} autoComplete="email" placeholder="seu@email.com" spellCheck={false} />
+                                    </Field>
+                                    <Field id="phone" label="WhatsApp" error={errors.phone}>
+                                        <input id="phone" name="phone" type="tel" className="hs-input" value={form.phone}
+                                            onChange={(e) => update('phone', maskPhone(e.target.value))} autoComplete="tel-national" placeholder="(11) 99999-9999" />
+                                    </Field>
+                                </div>
+                                <Field id="password" label="Senha" error={errors.password}
+                                    hint="Mínimo de 8 caracteres, com maiúscula, minúscula e número. Você vai usar essa senha para entrar no app.">
+                                    <input id="password" name="password" type="password" className="hs-input" value={form.password} onChange={onChange}
                                         autoComplete="new-password" />
-                                    <p className="hs-hint">Mínimo de 8 caracteres, com maiúscula, minúscula e número. Você vai usar essa senha para entrar no app.</p>
                                 </Field>
-                                <label className="wl-form__consent">
-                                    <input type="checkbox" name="acceptTerms" checked={form.acceptTerms} onChange={onChange} className="wl-form__consent-check" />
+                                <label className="hs-consent">
+                                    <input type="checkbox" name="acceptTerms" checked={form.acceptTerms} onChange={onChange}
+                                        aria-invalid={errors.acceptTerms ? true : undefined} />
                                     <span>Li e aceito os <a href="/termos/" target="_blank" rel="noopener noreferrer">Termos de Uso</a> e a <a href="/privacidade/" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>. Vamos enviar e-mails sobre o cadastro do seu espaço, e você pode cancelar quando quiser.</span>
                                 </label>
                                 {errors.acceptTerms && <p className="hs-field-error" role="alert">{errors.acceptTerms}</p>}
                                 {TURNSTILE_SITE_KEY && <div ref={turnstileRef} className="hs-turnstile" />}
-                                {apiError && <p className="wl-form__error" role="alert">{apiError}</p>}
-                                <button type="submit" className="btn btn-primary wl-form__submit" disabled={loading}>
-                                    {loading ? 'Criando...' : 'Criar conta e salvar meu espaço'}
-                                </button>
+                            </fieldset>
+                            {apiError && <p className="hs-form-error" role="alert">{apiError}</p>}
+                            <div className="hs-actions">
                                 <button type="button" className="hs-link-button" onClick={() => { setApiError(''); setStep('space') }}>Voltar</button>
-                            </form>
-                        )}
+                                <button type="submit" className="btn btn-primary hs-submit" disabled={loading}>
+                                    {loading ? 'Criando…' : 'Criar conta e salvar meu espaço'}
+                                </button>
+                            </div>
+                        </form>
+                    </>
+                )}
 
-                        {step === 'code' && (
-                            <form className="wl-form" onSubmit={handleConfirm} noValidate>
-                                <Field id="code" label="Código de 6 dígitos">
-                                    <input id="code" name="code" className="wl-form__input hs-code-input" value={code}
-                                        onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                                        inputMode="numeric" autoComplete="one-time-code" maxLength={6} placeholder="000000" />
-                                </Field>
-                                {apiError && <p className="wl-form__error" role="alert">{apiError}</p>}
-                                <button type="submit" className="btn btn-primary wl-form__submit" disabled={loading}>
-                                    {loading ? 'Confirmando...' : 'Confirmar e-mail'}
+                {step === 'code' && (
+                    <>
+                        <StepHeader title="Confirme seu e-mail." sub={notice} />
+                        {progress}
+                        <form className="hs-card hs-card--code" onSubmit={handleConfirm} noValidate>
+                            <Field id="code" label="Código de 6 dígitos">
+                                <input id="code" name="code" className="hs-input hs-code-input" value={code}
+                                    onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                                    inputMode="numeric" autoComplete="one-time-code" maxLength={6} placeholder="000000" />
+                            </Field>
+                            {apiError && <p className="hs-form-error" role="alert">{apiError}</p>}
+                            <div className="hs-actions hs-actions--stack">
+                                <button type="submit" className="btn btn-primary hs-submit" disabled={loading}>
+                                    {loading ? 'Confirmando…' : 'Confirmar e-mail'}
                                 </button>
                                 <button type="button" className="hs-link-button" onClick={handleResend} disabled={cooldown > 0}>
-                                    {cooldown > 0 ? `Reenviar código em ${cooldown}s` : 'Reenviar código'}
+                                    {cooldown > 0 ? <>Reenviar código em <span className="hs-tabular">{cooldown}</span>s</> : 'Reenviar código'}
                                 </button>
                                 <button type="button" className="hs-link-button" onClick={() => setStep('done')}>
                                     Confirmo depois, pelo app
                                 </button>
-                            </form>
-                        )}
-                    </div>
+                            </div>
+                        </form>
+                    </>
                 )}
-            </main>
+            </div>
         </div>
     )
 }

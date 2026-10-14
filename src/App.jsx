@@ -107,11 +107,12 @@ function App() {
                             />
                             <Hero />
                             <Spaces />
+                            <Features />
                             <HowItWorks />
                             <ForHosts />
                             {/* <Testimonials /> */}
-                            <CTA />
                             <FAQ />
+                            <CTA />
                         </>
                     } />
                     <Route path="/blog" element={<BlogIndex />} />

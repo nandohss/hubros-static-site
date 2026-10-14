@@ -115,9 +115,11 @@
 .navbar__burger {
     display: none;
     flex-direction: column;
+    justify-content: center;
     gap: 5px;
-    width: 24px;
-    padding: 4px;
+    width: 44px;
+    height: 44px;
+    padding: 0 12px;   /* traços continuam com 20px; a área de toque é 44x44 */
 }
 
 .navbar__burger span {
