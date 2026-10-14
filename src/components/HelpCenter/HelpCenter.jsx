@@ -46,7 +46,9 @@ export default function HelpCenter() {
             <section className="help-center-page" id="ajuda">
                 <div className="container help-center-page__container">
                     <div className="help-center-page__box help-center-success">
-                        <div className="help-center-success__icon">✅</div>
+                        <div className="help-center-success__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M20 6 9 17l-5-5" /></svg>
+                        </div>
                         <h2 className="help-center-success__title">Mensagem enviada!</h2>
                         <p className="help-center-success__text">
                             Recebemos sua mensagem e entraremos em contato em breve pelo e-mail <strong>{form.email || 'informado'}</strong>.
@@ -68,9 +70,10 @@ export default function HelpCenter() {
             <div className="container help-center-page__container">
                 <div className="help-center-page__header">
                     <div className="section-tag">Central de Ajuda</div>
-                    <h2 className="help-center-page__title">
+                    {/* Era h2 e a página ficava sem h1: mesmo texto, agora como título principal. */}
+                    <h1 className="help-center-page__title">
                         Como podemos <span className="text-gradient">ajudar?</span>
-                    </h2>
+                    </h1>
                     <p className="help-center-page__subtitle">
                         Preencha o formulário e nossa equipe entrará em contato em breve.
                     </p>
@@ -127,7 +130,7 @@ export default function HelpCenter() {
                             className="help-center-form__button"
                             disabled={status === 'sending'}
                         >
-                            {status === 'sending' ? 'Enviando...' : 'Enviar Mensagem'}
+                            {status === 'sending' ? 'Enviando…' : 'Enviar Mensagem'}
                         </button>
                     </form>
                 </div>

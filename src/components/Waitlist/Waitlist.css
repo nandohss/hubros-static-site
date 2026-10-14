@@ -407,3 +407,67 @@
         flex-direction: column;
     }
 }
+
+/* =====================================================================
+   Linguagem nova (out/2026) — sobrescreve o bloco acima sem mexer no HTML.
+   Cabeçalho à esquerda, coluna de 720px, campos de 52px, contraste AA.
+   ===================================================================== */
+.wl-main { padding: calc(var(--nav-height) + clamp(3rem, 2rem + 4vw, 6rem)) var(--space-6) var(--section-y); }
+.wl-card { max-width: 720px; gap: 2rem; }
+.wl-card__header { text-align: left; }
+.wl-card__title {
+    font-size: var(--fs-h2);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -.04em;
+    margin-top: 1.25rem;
+    text-wrap: balance;
+}
+.wl-card__title .text-gradient { color: var(--color-text-secondary); }
+.wl-card__sub { font-size: var(--fs-lead); color: var(--color-text-secondary); line-height: 1.6; margin-top: 1rem; max-width: 34rem; margin-left: 0; }
+
+/* Escolha de perfil: o não escolhido fica legível (antes 45% de opacidade, reprovava no contraste) */
+.wl-role__btn { border-radius: 18px; padding: 1.5rem 1.25rem; box-shadow: none; background: rgba(255, 255, 255, .6); border: 1px solid rgba(11, 11, 12, .14); }
+.wl-role__btn:hover:not(.wl-role__btn--active) { transform: none; background: rgba(255, 255, 255, .85); border-color: rgba(11, 11, 12, .32); box-shadow: none; }
+.wl-role__btn--active { transform: none; background: #fff; border-color: var(--color-ink-dark); box-shadow: inset 0 0 0 1px var(--color-ink-dark); }
+.wl-role__btn--inactive { opacity: 1; }
+.wl-role__desc { color: var(--color-text-secondary); }
+
+/* Formulário: vidro único, campos de 52px */
+.wl-form { padding: clamp(1.25rem, .5rem + 3vw, 2.75rem); gap: 1.25rem; box-shadow: var(--glass-shadow); background: var(--glass); }
+.wl-form__label { font-size: .9375rem; font-weight: 600; color: var(--color-text-primary); }
+.wl-form__optional { color: var(--color-text-secondary); font-weight: 500; }
+.wl-form__input {
+    min-height: 52px;
+    padding: 0 1rem;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, .88);
+    border: 1px solid rgba(11, 11, 12, .16);
+    border-radius: 14px;
+}
+.wl-form__textarea { padding: .875rem 1rem; line-height: 1.55; }
+.wl-form__input::placeholder { color: #7A776D; }
+.wl-form__input:hover { border-color: rgba(11, 11, 12, .32); }
+.wl-form__input:focus,
+.wl-form__input:focus-visible { outline: none; background-color: #fff; border-color: var(--color-ink-dark); box-shadow: 0 0 0 3px rgba(11, 11, 12, .12); }
+.wl-form__select { background-position: right 1rem center; padding-right: 2.75rem; }
+.wl-form__submit { min-height: 56px; font-size: var(--font-size-lg); }
+.wl-form__error { color: #9A3412; background: rgba(154, 52, 18, .06); border-color: rgba(154, 52, 18, .18); }
+.wl-form__consent { background: none; border: 0; padding: .25rem 0 0; }
+.wl-form__consent span { font-size: var(--font-size-sm); }
+.wl-form__disclaimer { color: var(--color-text-secondary); }
+
+.wl-app-note { text-align: left; }
+.wl-app-note__store { min-height: 44px; }
+
+/* Enviado */
+.wl-success { align-items: flex-start; text-align: left; max-width: 640px; }
+.wl-success__icon { border-radius: 20px; background: var(--color-ink-dark); color: var(--color-gold); }
+.wl-success__title { font-size: var(--fs-h2); letter-spacing: -.04em; line-height: 1.04; }
+.wl-success__sub { font-size: var(--fs-lead); color: var(--color-text-secondary); }
+
+@media (max-width: 640px) {
+    .wl-main { padding: calc(var(--nav-height) + 2rem) var(--space-4) 4rem; }
+    .wl-form { padding: 1.25rem; }
+}
+.wl-card__header { align-items: flex-start; gap: 0; }

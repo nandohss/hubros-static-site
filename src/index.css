@@ -26,7 +26,7 @@
   --color-ink-dark: #0B0B0C;      /* superfícies escuras: botão, bloco Para Hosts */
   --color-ink-shadow: 11, 11, 12; /* mesmo preto para usar dentro de rgba() */
   --color-text-secondary: #615E54;
-  --color-text-muted: #9CA3AF;
+  --color-text-muted: #6B6860;   /* era #9CA3AF (2,3:1 no bege, reprovado). Agora 5:1, AA */
   /* Dourado da marca: no claro só como detalhe decorativo (não passa AA como
      texto); sobre o preto pode ser texto e botão. */
   --color-gold: #D6BB87;
@@ -188,9 +188,23 @@ body {
 
 /* Mobile: blobs maiores e blend-mode normal para iOS Safari */
 @media (max-width: 768px) {
+  /* Mais sutis que no desktop: com 0.45 o fundo do celular ficava cinza-frio
+     (#E0E0DF) e destoava da faixa do relógio, que o Safari pinta com o
+     theme-color. Assim o fundo fica perto do bege e casa com essa faixa. */
+  /* No celular as manchas de 820-900px cobrem a tela toda (no desktop ficam só
+     nos cantos) e o fundo virava cinza-frio (#E0E0DF), destoando da faixa do
+     relógio, que o Safari pinta com o theme-color. Aqui o grafite cai bem e o
+     dourado fica: o fundo volta perto do bege #F5F3ED. */
+  .bg-blobs {
+    background:
+      radial-gradient(520px 520px at 100% 0%,  rgba(43, 43, 47, 0.05) 0%, rgba(43, 43, 47, 0) 62%),
+      radial-gradient(420px 420px at 100% 4%,  rgba(214, 187, 135, 0.12) 0%, rgba(214, 187, 135, 0) 66%),
+      radial-gradient(560px 560px at 0% 70%,   rgba(43, 43, 47, 0.04) 0%, rgba(43, 43, 47, 0) 62%),
+      radial-gradient(480px 480px at 90% 90%,  rgba(214, 187, 135, 0.10) 0%, rgba(214, 187, 135, 0) 66%);
+  }
   .blob {
     filter: blur(55px);
-    opacity: 0.45;
+    opacity: 0.22;
     mix-blend-mode: normal;
   }
   .blob-1 { width: 85vw; height: 85vw; }
@@ -236,37 +250,48 @@ button {
 }
 
 .section-tag {
+  /* Mesmo rótulo da home: traço dourado + texto secundário, sem caixa-alta
+     (só visual: o texto no HTML não muda). */
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  color: var(--color-text-muted);
+  gap: .75rem;
+  color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
   margin-bottom: var(--space-4);
+}
+.section-tag::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-gold);
+  flex: none;
 }
 
 .section-title {
-  font-size: var(--font-size-4xl);
+  font-size: var(--fs-h2);
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
   margin-bottom: var(--space-4);
+  text-wrap: balance;
 }
 
 .section-subtitle {
-  font-size: var(--font-size-lg);
+  font-size: var(--fs-lead);
   color: var(--color-text-secondary);
   max-width: 560px;
-  line-height: 1.7;
+  line-height: 1.6;
+  text-wrap: pretty;
 }
 
+/* Gradiente em texto saiu da linguagem visual (cara de template). O span
+   continua no HTML, então nada muda para o Google: só a cor vira sólida. */
 .text-gradient {
-  background: var(--gradient-hero);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: inherit;
 }
 
 /* ---- Botões ---- */
@@ -373,10 +398,6 @@ button {
 
 /* ---- Responsividade base ---- */
 @media (max-width: 768px) {
-  .section-title {
-    font-size: var(--font-size-3xl);
-  }
-
   .section {
     padding: var(--space-16) 0;
   }
@@ -386,11 +407,6 @@ button {
   }
 }
 
-@media (max-width: 480px) {
-  .section-title {
-    font-size: var(--font-size-2xl);
-  }
-}
 
 /* ---- Scroll Reveal Animações Globais ---- */
 .reveal-node {

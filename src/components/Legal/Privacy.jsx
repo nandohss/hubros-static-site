@@ -11,7 +11,7 @@ export default function Privacy() {
     return (
         <div className="legal-page">
             <div className="container">
-                <main className="legal__container">
+                <article className="legal__container">
                     <header className="legal__header">
                         <div className="section-tag">Documentos Legais</div>
                         <h1 className="legal__title">Política de Privacidade</h1>
@@ -41,7 +41,7 @@ export default function Privacy() {
                             </p>
                         </div>
                     </div>
-                </main>
+                </article>
             </div>
         </div>
     )

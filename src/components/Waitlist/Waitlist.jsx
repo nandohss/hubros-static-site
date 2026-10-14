@@ -137,7 +137,7 @@ export default function Waitlist() {
 
     return (
         <div className="wl-page">
-            <main className="wl-main">
+            <div className="wl-main">
 
                 {submitted ? (
                     <div className="wl-success">
@@ -381,7 +381,7 @@ export default function Waitlist() {
                         )}
                     </div>
                 )}
-            </main>
+            </div>
         </div>
     )
 }

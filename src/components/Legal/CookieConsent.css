@@ -97,3 +97,8 @@
         padding: var(--space-4);
     }
 }
+
+/* Botões com 44px de toque e texto secundário com contraste AA sobre o vidro */
+.cookie-consent__btn { min-height: 44px; }
+.cookie-consent__btn--secondary { border-color: rgba(11, 11, 12, .2); }
+.cookie-consent { background: rgba(255, 255, 255, .92); }

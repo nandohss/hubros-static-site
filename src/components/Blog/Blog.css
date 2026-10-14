@@ -729,3 +729,27 @@
         height: 250px;
     }
 }
+/* =====================================================================
+   Linguagem nova (out/2026): escala tipográfica da home, alvos de 44px e
+   linha de leitura. Só visual: títulos, texto e marcação dos posts iguais.
+   ===================================================================== */
+.blog-featured__title { font-size: clamp(1.625rem, 1.2rem + 1.6vw, 2.5rem); letter-spacing: -.035em; line-height: 1.1; text-wrap: balance; }
+.blog-card__title { letter-spacing: -.02em; text-wrap: balance; }
+.blog-featured:hover, .blog-card:hover { transform: translateY(-2px); }
+
+.blog-post__back { display: inline-flex; align-items: center; min-height: 44px; }
+.blog-post__title {
+    font-size: clamp(2.25rem, 1.5rem + 2.8vw, 3.75rem);
+    letter-spacing: -.045em;
+    line-height: 1.04;
+    text-wrap: balance;
+}
+.blog-post__content > p,
+.blog-post__content > ul,
+.blog-post__content > ol,
+.blog-post__content > blockquote { max-width: 68ch; }
+.blog-post__content h2 { font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem); letter-spacing: -.03em; text-wrap: balance; }
+.blog-post__content h3 { letter-spacing: -.02em; text-wrap: balance; }
+.blog-post__content a { text-underline-offset: .2em; }
+.blog-search-box input { min-height: 44px; }
+.blog-post__toc-item a { display: flex; align-items: center; min-height: 44px; }

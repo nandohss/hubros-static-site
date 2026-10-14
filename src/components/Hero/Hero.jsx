@@ -11,7 +11,10 @@ const HERO_PHRASES = [
     { line1: 'Sua produtividade,', line2: 'sem contrato.' },
 ]
 
-// O h1 tem um texto fixo para leitor de tela e SEO; a troca é só visual.
+// O h1 é só a frase visível (sem cópia escondida, que o Google lia duplicada).
+// O prerender captura a primeira frase, "O espaço certo, na hora certa.", porque
+// a troca só começa depois de 3,8s. Sem região aria-live: o leitor de tela lê a
+// frase atual quando chega no título, sem ser interrompido a cada troca.
 // Com prefers-reduced-motion, fica parado na primeira frase.
 function RotatingTitle() {
     const [index, setIndex] = useState(0)
@@ -34,9 +37,8 @@ function RotatingTitle() {
 
     return (
         <h1 className="hero__title">
-            <span className="sr-only">O espaço certo, na hora certa.</span>
-            <span aria-hidden="true" className={`hero__phrase ${visible ? 'is-visible' : 'is-hidden'}`}>
-                <span className="hero__l1">{phrase.line1}</span>
+            <span className={`hero__phrase ${visible ? 'is-visible' : 'is-hidden'}`}>
+                <span className="hero__l1">{phrase.line1}</span>{' '}
                 <span className="hero__l2">{phrase.line2}</span>
             </span>
         </h1>
