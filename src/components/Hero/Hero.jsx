@@ -12,16 +12,21 @@ const HERO_PHRASES = [
 ]
 
 // O h1 é só a frase visível (sem cópia escondida, que o Google lia duplicada).
-// O prerender captura a primeira frase, "O espaço certo, na hora certa.", porque
-// a troca só começa depois de 3,8s. Sem região aria-live: o leitor de tela lê a
-// frase atual quando chega no título, sem ser interrompido a cada troca.
-// Com prefers-reduced-motion, fica parado na primeira frase.
+// Sem região aria-live: o leitor de tela lê a frase atual quando chega no título,
+// sem ser interrompido a cada troca.
+// Fica parado na primeira frase ("O espaço certo, na hora certa.") com
+// prefers-reduced-motion e para robôs: o prerender do CI (Chrome automatizado,
+// navigator.webdriver) esperava a rede ociosa por mais de 3,8s e gravava no HTML
+// uma frase qualquer da rotação; buscadores que executam JS idem.
+const isBot = () =>
+    navigator.webdriver || /bot|crawl|spider|slurp|lighthouse|headless/i.test(navigator.userAgent)
+
 function RotatingTitle() {
     const [index, setIndex] = useState(0)
     const [visible, setVisible] = useState(true)
 
     useEffect(() => {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || isBot()) return
         let swap
         const interval = setInterval(() => {
             setVisible(false)
