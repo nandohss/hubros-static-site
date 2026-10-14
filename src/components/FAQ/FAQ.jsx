@@ -1,4 +1,3 @@
-import { useScrollReveal } from '../../hooks/useScrollReveal'
 import './FAQ.css'
 
 // Fonte única: alimenta a lista renderizada e o schema FAQPage do Seo.
@@ -32,24 +31,20 @@ export const FAQ_ITEMS = [
 ]
 
 export default function FAQ() {
-    const revealRef = useScrollReveal({ threshold: 0.1 })
-
     return (
         <section className="faq" id="faq">
-            <div className="container" ref={revealRef}>
-                <div className="faq__inner">
-                <div className="faq__header reveal">
-                    <div className="section-tag">Perguntas Frequentes</div>
-                    <h2 className="faq__title">Ainda com dúvida?</h2>
+            <div className="container home-split">
+                <div className="faq__head">
+                    <p className="home-label">Perguntas frequentes</p>
+                    <h2 className="home-h2">Ainda com dúvida?</h2>
+                    <p className="faq__help">
+                        Não achou sua resposta? <a href="/ajuda">Abrir a Central de Ajuda</a>
+                    </p>
                 </div>
 
                 <div className="faq__list">
-                    {FAQ_ITEMS.map((item, i) => (
-                        <details
-                            key={i}
-                            className="faq__item reveal"
-                            style={{ transitionDelay: `${i * 0.06}s` }}
-                        >
+                    {FAQ_ITEMS.map((item) => (
+                        <details key={item.q} className="faq__item">
                             <summary className="faq__question">
                                 {item.q}
                                 <span className="faq__sign" aria-hidden="true" />
@@ -57,7 +52,6 @@ export default function FAQ() {
                             <div className="faq__answer">{item.a}</div>
                         </details>
                     ))}
-                </div>
                 </div>
             </div>
         </section>

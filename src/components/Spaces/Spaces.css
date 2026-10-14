@@ -1,131 +1,30 @@
-.spaces {
-    background: transparent;
-    position: relative;
-    z-index: 1;
-}
+.spaces { padding: 0 0 var(--section-y); }
 
-.spaces__header {
-    max-width: 680px;
-    margin: 0 auto var(--space-16) auto;
-}
+.spaces__head { position: sticky; top: calc(var(--nav-height) + 2rem); }
+.spaces__head .home-h2 { margin-top: 1.25rem; }
+.spaces__head .home-lead { margin-top: 1.25rem; }
 
-.spaces__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-6);
-    margin-bottom: var(--space-12);
+.spaces__index { border-top: 2px solid var(--color-ink-dark); }
+.spaces__index li { border-bottom: 1px solid var(--color-line); }
+.spaces__index a {
+    display: grid; grid-template-columns: 3rem 1fr auto; align-items: baseline; gap: 1rem;
+    padding: 1.5rem 0; min-height: 64px;
+    transition: padding-left .3s cubic-bezier(.2, .8, .2, 1);
 }
+.spaces__index a:hover { padding-left: .75rem; }
+.spaces__num { font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-secondary); font-variant-numeric: tabular-nums; }
+.spaces__name { font-size: clamp(1.375rem, 1rem + 1.2vw, 2rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.15; }
+.spaces__go { font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-secondary); transition: color var(--transition-base); }
+.spaces__index a:hover .spaces__go { color: var(--color-text-primary); }
+.spaces__index a:hover .spaces__num { color: var(--color-text-primary); }
 
-.spaces__card {
-    background: var(--glass);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-2xl);
-    padding: var(--space-4);
-    overflow: hidden;
-    transition: all var(--transition-base);
-    box-shadow: var(--glass-shadow);
-    color: var(--color-text-primary);
-}
-
-.spaces__card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--glass-shadow-hover);
-    border-color: #FFFFFF;
-}
-
-.spaces__card-img {
-    height: 180px;
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: var(--space-3);
-    border-radius: var(--radius-xl);
-}
-
-.spaces__card-rating {
-    background: #FFFFFF;
-    color: var(--color-text-primary);
-    font-size: var(--font-size-sm);
-    font-weight: 700;
-    padding: var(--space-1) var(--space-3);
-    border-radius: var(--radius-full);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-.spaces__card-body {
-    padding: var(--space-4) 0 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-}
-
-.spaces__card-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.spaces__card-location {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-}
-
-.spaces__card-price {
-    font-size: var(--font-size-base);
-    font-weight: 700;
-    color: var(--color-text-primary);
-}
-
-.spaces__card-name {
-    font-size: var(--font-size-lg);
-    font-weight: 700;
-}
-
-.spaces__card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-}
-
-.spaces__tag {
-    font-size: var(--font-size-xs);
-    background: rgba(255, 255, 255, 0.8);
-    color: var(--color-text-secondary);
-    padding: 3px 10px;
-    border-radius: var(--radius-full);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.spaces__card-btn {
-    width: 100%;
-    margin-top: var(--space-3);
-    background: #FFFFFF;
-    color: var(--color-text-primary);
-    border: 1px solid var(--color-border);
-    font-weight: 600;
-    box-shadow: none !important;
-}
-
-.spaces__card-btn:hover {
-    background: var(--color-surface-2);
-}
-
-.spaces__footer {
-    display: flex;
-    justify-content: center;
-}
+.spaces__all { margin-top: 2.5rem; min-height: 52px; }
 
 @media (max-width: 1024px) {
-    .spaces__grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .spaces__head { position: static; }
 }
-
-@media (max-width: 640px) {
-    .spaces__grid {
-        grid-template-columns: 1fr;
-    }
+@media (max-width: 720px) {
+    .spaces__index a { grid-template-columns: 2.25rem 1fr; padding: 1.25rem 0; }
+    .spaces__go { display: none; }
+    .spaces__all { width: 100%; }
 }

@@ -27,6 +27,14 @@
   --color-ink-shadow: 11, 11, 12; /* mesmo preto para usar dentro de rgba() */
   --color-text-secondary: #615E54;
   --color-text-muted: #9CA3AF;
+  /* Dourado da marca: no claro só como detalhe decorativo (não passa AA como
+     texto); sobre o preto pode ser texto e botão. */
+  --color-gold: #D6BB87;
+  --color-gold-hover: #E2CA9C;
+  --color-on-ink: #F5F3ED;
+  --color-on-ink-2: #B9B6AC;      /* 9,6:1 sobre #0B0B0C */
+  --color-on-ink-line: rgba(245, 243, 237, 0.14);
+  --color-line: rgba(11, 11, 12, 0.12);
 
   /* Gradientes B2B Clean & Custom Glow */
   --gradient-hero: linear-gradient(135deg, #0B0B0C 0%, #615E54 100%);
@@ -93,6 +101,13 @@
   /* Espaço ocupado pela navbar: 26px de respiro + 60px da pill.
      Serve de offset para as páginas internas e para o sticky do blog. */
   --nav-height: 86px;
+
+  /* Escala da home (versão B). Teto contido no desktop: o display para em 96px. */
+  --fs-display: clamp(2.5rem, 1.5rem + 5vw, 6rem);
+  --fs-h2: clamp(2rem, 1.3rem + 2.2vw, 3.25rem);
+  --fs-h3: clamp(1.125rem, 1.05rem + .35vw, 1.3125rem);
+  --fs-lead: clamp(1.0625rem, 1rem + .25vw, 1.1875rem);
+  --section-y: clamp(5.5rem, 3.5rem + 6vw, 9rem);
 }
 
 /* ---- Reset & Base ---- */
@@ -388,4 +403,39 @@ button {
 .reveal-node.reveal-active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ---- Foco visível (teclado) ---- */
+:focus-visible {
+  outline: 2px solid var(--color-ink-dark);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+.on-ink :focus-visible { outline-color: var(--color-gold); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* Rótulo de seção da home: traço dourado + texto secundário (AA) */
+.home-label {
+  display: flex; align-items: center; gap: .75rem;
+  font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-secondary);
+}
+.home-label::before { content: ""; width: 28px; height: 2px; border-radius: 2px; background: var(--color-gold); }
+.home-h2 { font-size: var(--fs-h2); font-weight: 800; line-height: 1.04; letter-spacing: -.04em; text-wrap: balance; }
+.home-lead { font-size: var(--fs-lead); color: var(--color-text-secondary); line-height: 1.6; max-width: 34rem; text-wrap: pretty; }
+.home-split { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+@media (max-width: 1024px) { .home-split { grid-template-columns: 1fr; } }
+
+.store-badges { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
+.store-badges a { display: inline-flex; border-radius: 10px; transition: transform var(--transition-base); }
+.store-badges a:hover { transform: translateY(-2px); }
+.store-badges img { height: 52px; width: auto; display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .blob { animation: none !important; }
+  .reveal-node { opacity: 1; transform: none; transition: none; }
 }

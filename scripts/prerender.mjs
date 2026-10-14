@@ -21,6 +21,19 @@ if (existsSync(BLOG_DIR)) {
 }
 
 // Rotas a pré-renderizar (precisa espelhar as <Route> em src/App.jsx).
+// Navegação com novas tentativas: "networkidle0" depende da rede ficar ociosa (fontes do Google
+// etc.). Um timeout isolado numa rota derrubava o deploy inteiro e só passava reexecutando.
+async function gotoWithRetry(page, url, tries = 3) {
+    for (let attempt = 1; ; attempt++) {
+        try {
+            return await page.goto(url, { waitUntil: 'networkidle0', timeout: 45000 })
+        } catch (err) {
+            if (attempt >= tries) throw err
+            console.warn(`⚠ prerender ${url}: tentativa ${attempt}/${tries} falhou (${err.name}), tentando de novo`)
+        }
+    }
+}
+
 const ROUTES = ['/', '/ajuda', '/sobre', '/cookies', '/termos', '/privacidade', '/excluir-conta', '/trabalhe-conosco', '/lista-de-espera', '/blog', ...blogRoutes]
 
 async function waitForServer(url, timeoutMs = 20000) {
@@ -55,7 +68,7 @@ async function main() {
         const page = await browser.newPage()
 
         for (const route of ROUTES) {
-            await page.goto(ORIGIN + route, { waitUntil: 'networkidle0' })
+            await gotoWithRetry(page, ORIGIN + route)
             // Garante que o React montou e o Helmet definiu o <title>.
             await page.waitForFunction(
                 () => document.querySelector('#root')?.childElementCount > 0 && !!document.title,

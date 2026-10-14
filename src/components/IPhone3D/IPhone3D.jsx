@@ -202,6 +202,9 @@ export default function IPhone3D({ screenshotSrc }) {
     });
     ro.observe(container);
 
+    // Com movimento reduzido: sem giro sozinho e sem flutuação — só o arrasto.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const animate = () => {
       rafRef.current = requestAnimationFrame(animate);
       const d = drag.current;
@@ -211,7 +214,7 @@ export default function IPhone3D({ screenshotSrc }) {
         d.rotY += d.vx * 0.007;
         d.rotX += d.vy * 0.007;
         // Idle animation
-        d.rotY += 0.001; 
+        if (!reduceMotion) d.rotY += 0.001;
       }
       
       // Limita a rotação para não mostrar a parte de trás do mockup
@@ -224,7 +227,7 @@ export default function IPhone3D({ screenshotSrc }) {
       const lf = d.active ? 1.0 : 0.07;
       phone.rotation.y += ((d.rotY + mx) - phone.rotation.y) * lf;
       phone.rotation.x += ((d.rotX + my) - phone.rotation.x) * lf;
-      phone.position.y = Math.sin(performance.now() * 0.0009) * 0.10;
+      phone.position.y = reduceMotion ? 0 : Math.sin(performance.now() * 0.0009) * 0.10;
 
       renderer.render(scene, camera);
     };
@@ -280,13 +283,18 @@ export default function IPhone3D({ screenshotSrc }) {
     <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative', minHeight: '400px' }}>
       <canvas
         ref={canvasRef}
+        role="img"
+        aria-label="Tela do app Hubros listando espaços de saúde e bem-estar com foto, bairro e preço por hora"
         onPointerDown={onPDown}
         onPointerMove={onPMove}
         onPointerUp={onPUp}
         onPointerLeave={onPUp}
+        onPointerCancel={onPUp}
         style={{
           position: 'absolute', inset: 0, width: '100%', height: '100%',
-          display: 'block', zIndex: 1, cursor: 'grab', touchAction: 'none'
+          display: 'block', zIndex: 1, cursor: 'grab',
+          // pan-y: no celular o dedo na vertical ainda rola a página; na horizontal gira o aparelho
+          touchAction: 'pan-y'
         }}
       />
       {!loaded && (
