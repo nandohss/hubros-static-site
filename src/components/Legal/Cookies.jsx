@@ -80,7 +80,7 @@ export default function Cookies() {
     return (
         <div className="legal-page">
             <div className="container">
-                <main className="legal__container">
+                <article className="legal__container">
                     <header className="legal__header">
                         <div className="section-tag">Documentos Legais</div>
                         <h1 className="legal__title">Política de Cookies</h1>
@@ -103,7 +103,7 @@ export default function Cookies() {
                             </p>
                         </div>
                     </div>
-                </main>
+                </article>
             </div>
         </div>
     )

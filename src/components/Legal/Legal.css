@@ -1,205 +1,132 @@
+/* Documentos legais — cabeçalho à esquerda, documento num vidro único com
+   linha de leitura confortável. O container é <article> (o App já tem o <main>). */
+
 .legal-page {
     background: transparent;
-    padding-top: calc(var(--nav-height, 72px) + var(--space-16));
-    padding-bottom: var(--space-20);
+    padding-top: calc(var(--nav-height, 72px) + clamp(3rem, 2rem + 4vw, 6rem));
+    padding-bottom: var(--section-y);
     min-height: 100vh;
 }
 
-.legal__container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: var(--color-surface);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: var(--radius-xl);
-    padding: var(--space-12);
-    border: 1px solid var(--color-border);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
-}
+.legal__container { max-width: 880px; margin: 0 auto; }
 
-.legal__header {
-    margin-bottom: var(--space-12);
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-    padding-bottom: var(--space-8);
-}
-
+.legal__header { margin-bottom: 2.5rem; }
 .legal__title {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: var(--fs-h2);
     font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: var(--space-4);
-    line-height: 1.2;
+    letter-spacing: -.04em;
+    line-height: 1.04;
+    margin: 1.25rem 0 .75rem;
     color: var(--color-text-primary);
+    text-wrap: balance;
 }
+.legal__updated { font-size: var(--font-size-sm); color: var(--color-text-secondary); font-variant-numeric: tabular-nums; }
 
-.legal__updated {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-}
-
-/* Content */
+/* ---- Documento ---- */
 .legal__content {
     color: var(--color-text-secondary);
-    font-size: var(--font-size-base);
-    line-height: 1.8;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--glass-shadow);
+    padding: clamp(1.25rem, .5rem + 3.5vw, 3.5rem);
 }
+.legal__content > * { max-width: 68ch; }
+.legal__content > .legal__pdf-wrapper { max-width: none; }
 
 .legal__content section {
-    margin-bottom: var(--space-8);
-    padding-bottom: var(--space-8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-line);
 }
-
-.legal__content section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
+.legal__content section:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 
 .legal__content h2 {
     color: var(--color-text-primary);
-    font-size: var(--font-size-xl);
+    font-size: var(--fs-h3);
     font-weight: 700;
-    margin-bottom: var(--space-4);
-    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+    letter-spacing: -.02em;
+    line-height: 1.3;
+    font-variant-numeric: tabular-nums;
 }
+.legal__content h3 { color: var(--color-text-primary); font-size: 1.0625rem; font-weight: 700; margin: 1.5rem 0 .5rem; }
+.legal__content p { margin-bottom: 1rem; }
+.legal__content p:last-child { margin-bottom: 0; }
+.legal__content a { color: var(--color-text-primary); font-weight: 600; text-decoration: underline; text-underline-offset: .2em; }
+.legal__content strong { color: var(--color-text-primary); }
 
-.legal__content p {
-    margin-bottom: var(--space-4);
-}
-
-.legal__content p:last-child {
-    margin-bottom: 0;
-}
-
-.legal__content ul {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-    margin-bottom: var(--space-4);
-    padding-left: 0;
-}
-
-.legal__content li {
-    display: flex;
-    gap: var(--space-3);
-    align-items: flex-start;
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-}
-
-.legal__content li::before {
+/* li em bloco (não flex): com flex, "Toque em <strong>Perfil</strong>, no menu"
+   virava três pedaços com espaço entre eles ("Perfil ,"). */
+.legal__content ul, .legal__content ol { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1rem; padding-left: 0; }
+.legal__content ol { counter-reset: passo; }
+.legal__content li { position: relative; padding-left: 1.75rem; color: var(--color-text-secondary); line-height: 1.7; }
+.legal__content ul > li::before {
     content: '';
-    display: block;
+    position: absolute;
+    left: .35rem;
+    top: .7rem;
     width: 6px;
     height: 6px;
-    min-width: 6px;
     border-radius: 50%;
-    background: var(--color-text-muted);
-    margin-top: 0.6rem;
+    background: var(--color-gold);
 }
-
-.legal__content li strong {
-    color: var(--color-text-primary);
-}
-
-/* Contact block */
-.legal__contact {
-    margin-top: var(--space-12);
-    padding: var(--space-6);
-    background: var(--color-surface-2);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--color-border);
-    text-align: center;
-}
-
-.legal__contact h3 {
-    color: var(--color-text-primary);
-    font-size: var(--font-size-xl);
+.legal__content ol > li { counter-increment: passo; }
+.legal__content ol > li::before {
+    content: counter(passo) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
     font-weight: 700;
-    margin-bottom: var(--space-3);
-    letter-spacing: -0.01em;
-}
-
-.legal__contact p {
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-}
-
-.legal__contact a {
     color: var(--color-text-primary);
-    font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    font-variant-numeric: tabular-nums;
 }
 
-/* PDF viewer */
-.legal__pdf-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
+/* ---- "Ficou com dúvidas?": fim do documento, não um card dentro do card ---- */
+.legal__contact {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--color-ink-dark);
 }
+.legal__contact h3 { color: var(--color-text-primary); font-size: var(--fs-h3); font-weight: 700; margin: 0 0 .5rem; letter-spacing: -.02em; }
+.legal__contact p { color: var(--color-text-secondary); line-height: 1.7; }
+.legal__contact a { color: var(--color-text-primary); font-weight: 600; text-decoration: underline; text-underline-offset: .2em; overflow-wrap: anywhere; }
 
+/* ---- PDF ---- */
+.legal__pdf-wrapper { display: flex; flex-direction: column; gap: 1rem; }
 .legal__pdf-frame {
     width: 100%;
     height: 78vh;
     min-height: 560px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: var(--radius-lg);
-    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(11, 11, 12, .1);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .5);
 }
-
-.legal__pdf-fallback {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-    text-align: center;
-}
-
-.legal__pdf-fallback a {
-    color: var(--color-text-primary);
-    font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-/* PDF download button */
+.legal__pdf-fallback { font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+.legal__pdf-fallback a { display: inline-flex; align-items: center; min-height: 44px; }
 .legal__pdf-download {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-2);
-    padding: var(--space-3) var(--space-6);
+    gap: .5rem;
+    min-height: 48px;
+    padding: 0 1.5rem;
+    align-self: flex-start;
     background: var(--color-ink-dark);
-    color: #FFFFFF;
+    color: #fff !important;
+    text-decoration: none !important;
     font-weight: 600;
-    font-size: var(--font-size-sm);
+    font-size: .9375rem;
     border-radius: var(--radius-full);
-    transition: all var(--transition-base);
-    align-self: center;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transition: transform var(--transition-base), background-color var(--transition-base);
 }
-
-.legal__pdf-download:hover {
-    background: #000000;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
-}
+.legal__pdf-download:hover { background: #000; transform: translateY(-1px); }
 
 @media (max-width: 768px) {
-    .legal__container {
-        padding: var(--space-8) var(--space-6);
-        border-radius: var(--radius-lg);
-    }
-
-    .legal__pdf-frame {
-        height: 60vh;
-        min-height: 400px;
-    }
-}
-
-@media (max-width: 480px) {
-    .legal__container {
-        padding: var(--space-6) var(--space-4);
-    }
+    .legal__content { border-radius: 24px; }
+    .legal__pdf-frame { height: 60vh; min-height: 400px; }
 }

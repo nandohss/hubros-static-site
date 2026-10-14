@@ -203,7 +203,7 @@ function TableOfContentsMobile({ headings, activeId }) {
         >
             <summary>
                 <span>Nesta página</span>
-                <span className="blog-post__toc-mobile-count">{headings.filter((h) => h.level === 2).length} seções</span>
+                <span className="blog-post__toc-mobile-count">{headings.length} {headings.length === 1 ? 'seção' : 'seções'}</span>
             </summary>
             <nav aria-label="Nesta página">
                 <TocList headings={headings} activeId={activeId} onPick={() => setOpen(false)} />

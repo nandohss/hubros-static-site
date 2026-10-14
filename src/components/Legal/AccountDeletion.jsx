@@ -84,7 +84,7 @@ export default function AccountDeletion() {
     return (
         <div className="legal-page">
             <div className="container">
-                <main className="legal__container">
+                <article className="legal__container">
                     <header className="legal__header">
                         <div className="section-tag">Documentos Legais</div>
                         <h1 className="legal__title">Exclusão de Conta</h1>
@@ -108,7 +108,7 @@ export default function AccountDeletion() {
                             </p>
                         </div>
                     </div>
-                </main>
+                </article>
             </div>
         </div>
     )

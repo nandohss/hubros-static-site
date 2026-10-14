@@ -151,7 +151,7 @@ export default function Careers() {
                             <textarea
                                 id="cw-message" name="message" required rows="6"
                                 value={form.message} onChange={handleChange}
-                                placeholder="Sua experiência, o que você gostaria de fazer na Hubros..."
+                                placeholder="Sua experiência, o que você gostaria de fazer na Hubros…"
                             />
                         </div>
 
@@ -175,7 +175,7 @@ export default function Careers() {
                             className="careers-form__button"
                             disabled={status === 'sending'}
                         >
-                            {status === 'sending' ? 'Enviando...' : 'Enviar meu perfil'}
+                            {status === 'sending' ? 'Enviando…' : 'Enviar meu perfil'}
                         </button>
                     </form>
                 </div>
