@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './CookieConsent.css'
+import { revokePixelConsent } from '../../lib/metaPixel'
 
 export default function CookieConsent() {
     const [isVisible, setIsVisible] = useState(false)
@@ -23,6 +24,7 @@ export default function CookieConsent() {
 
     const handleAcceptEssential = () => {
         localStorage.setItem('hubros_cookie_consent', 'essential')
+        revokePixelConsent()
         setIsVisible(false)
         setTimeout(() => setHasConsented(true), 600)
     }
