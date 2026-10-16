@@ -7,6 +7,7 @@ import {
     COGNITO_REGION, COGNITO_WEB_CLIENT_ID, HOST_SIGNUP_ENABLED, TURNSTILE_SITE_KEY,
 } from '../../config/hostSignup'
 import { confirmSignUp, resendConfirmationCode, signUp } from '../../lib/cognito'
+import { trackPixel } from '../../lib/metaPixel'
 import {
     AMBIENTES, CATEGORIES, FIELD_LIMITS, UFS, buildSignUpRequest, lookupCep, mapAuthError, maskCep, maskPhone,
     normalizeEmail, validateAccountStep, validateSpaceStep,
@@ -156,6 +157,7 @@ function HostSignupForm() {
         try {
             const request = buildSignUpRequest({ clientId: COGNITO_WEB_CLIENT_ID, form, turnstileToken })
             await signUp(request, clientOptions)
+            trackPixel('Lead', { content_name: 'cadastro-host' })
             setNotice(`Enviamos um código de 6 dígitos para ${email}.`)
             setCooldown(RESEND_COOLDOWN_SECONDS)
             setStep('code')
@@ -184,6 +186,7 @@ function HostSignupForm() {
         setApiError('')
         try {
             await confirmSignUp({ clientId: COGNITO_WEB_CLIENT_ID, email, code }, clientOptions)
+            trackPixel('CompleteRegistration', { content_name: 'cadastro-host' })
             setConfirmedHere(true)
             setStep('done')
         } catch (error) {

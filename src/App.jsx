@@ -1,5 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
+import { trackPixel } from './lib/metaPixel'
 import Seo from './components/Seo'
 import ScrollToTop from './components/ScrollToTop'
 import Navbar from './components/Navbar/Navbar'
@@ -54,6 +55,13 @@ const WEBSITE_SCHEMA = {
 
 function App() {
     const location = useLocation();
+
+    // Pixel da Meta: o PageView da primeira carga sai do /meta-pixel.js; aqui só as trocas de rota.
+    const firstRoute = useRef(true);
+    useEffect(() => {
+        if (firstRoute.current) { firstRoute.current = false; return; }
+        trackPixel('PageView');
+    }, [location.pathname]);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
