@@ -23,7 +23,7 @@
  *     dispararia PageView falso a cada deploy).
  */
 (function () {
-    var PIXEL_ID = '';
+    var PIXEL_ID = '1627570679014411';
 
     if (!PIXEL_ID) return;
     if (navigator.webdriver) return;
