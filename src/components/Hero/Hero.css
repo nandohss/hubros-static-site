@@ -86,7 +86,7 @@
 .hero__row--rev { animation-direction: reverse; margin-left: -14vw; }
 .hero__row img {
     flex: none; width: clamp(260px, 26vw, 420px); aspect-ratio: 16 / 7;
-    object-fit: cover; border-radius: 22px; opacity: .85;
+    object-fit: cover; border-radius: 22px; opacity: .45;
     box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
 }
 .hero__scrim {

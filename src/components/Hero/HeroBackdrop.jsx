@@ -1,16 +1,19 @@
+// Capas de espaços do ambiente de dev (Clinical Plus, Mind Spaces, Heability, Smilling
+// Clinicals, Office44, WeWorq), recortadas em 16:7 sem a marca d'água do Gemini.
 const PHOTOS = [
-    '/blog/clinic_room.jpg',
-    '/blog/host_room.jpg',
-    '/blog/productivity_desk.jpg',
-    '/blog/coworking_backstage.jpg',
-    '/blog/hybrid_work.jpg',
+    '/hero/clinical-plus.jpg',
+    '/hero/mind-spaces.jpg',
+    '/hero/heability.jpg',
+    '/hero/smilling-clinicals.jpg',
+    '/hero/office44.jpg',
+    '/hero/weworq.jpg',
 ]
 
 const ROWS = [
-    [0, 1, 2, 3, 4],
-    [3, 0, 4, 1, 2],
-    [2, 4, 1, 0, 3],
-    [4, 2, 3, 1, 0],
+    [0, 1, 2, 3, 4, 5],
+    [4, 5, 0, 3, 1, 2],
+    [3, 2, 5, 1, 0, 4],
+    [5, 3, 1, 4, 2, 0],
 ]
 
 export default function HeroBackdrop() {
