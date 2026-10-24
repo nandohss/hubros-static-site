@@ -31,7 +31,6 @@ export default function HeroBackdrop() {
                     )
                 })}
             </div>
-            <div className="hero__scrim" />
         </div>
     )
 }
