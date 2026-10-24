@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import screenshotSrc from '../../assets/screenshot_marketplace.png'
 import IPhone3D from '../IPhone3D/IPhone3D'
+import HeroBackdrop from './HeroBackdrop'
 import { APP_STORE_URL, GOOGLE_PLAY_URL } from '../StoreBadges/StoreBadges'
 import './Hero.css'
 
@@ -53,6 +54,7 @@ function RotatingTitle() {
 export default function Hero() {
     return (
         <section className="hero" id="hero">
+            <HeroBackdrop />
             <div className="container">
                 <p className="home-label">Disponível para iOS e Android</p>
 
