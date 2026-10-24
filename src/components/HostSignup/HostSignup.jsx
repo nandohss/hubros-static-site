@@ -9,7 +9,7 @@ import {
 import { confirmSignUp, resendConfirmationCode, signUp } from '../../lib/cognito'
 import { trackPixel } from '../../lib/metaPixel'
 import {
-    AMBIENTES, CATEGORIES, FIELD_LIMITS, UFS, buildSignUpRequest, lookupCep, mapAuthError, maskCep, maskPhone,
+    AMBIENTES, CATEGORIES, FIELD_LIMITS, SUBCATEGORIES, UFS, buildSignUpRequest, lookupCep, mapAuthError, maskCep, maskPhone,
     normalizeEmail, validateAccountStep, validateSpaceStep,
 } from '../../lib/hostSignup'
 
@@ -18,7 +18,7 @@ const RESEND_COOLDOWN_SECONDS = 30
 const STEPS = ['Seu espaço', 'Sua conta', 'Confirmação']
 
 const EMPTY_FORM = {
-    name: '', categoria: '', ambiente: '', zipCode: '', street: '', number: '', complement: '', district: '',
+    name: '', categoria: '', subcategoria: '', ambiente: '', zipCode: '', street: '', number: '', complement: '', district: '',
     city: '', state: '', fullName: '', email: '', phone: '', password: '', acceptTerms: false,
 }
 
@@ -107,6 +107,11 @@ function HostSignupForm() {
     const update = (name, value) => {
         setForm((prev) => ({ ...prev, [name]: value }))
         setErrors((prev) => (prev[name] ? { ...prev, [name]: undefined } : prev))
+    }
+    // Trocar a categoria invalida a subcategoria escolhida (cada categoria tem as suas).
+    const onCategoriaChange = (event) => {
+        update('categoria', event.target.value)
+        update('subcategoria', '')
     }
     const onChange = (event) => {
         const { name, value, type, checked } = event.target
@@ -284,12 +289,21 @@ function HostSignupForm() {
                                             maxLength={FIELD_LIMITS.name} placeholder="Como seu espaço se chama" autoComplete="organization" />
                                     </Field>
                                     <Field id="categoria" label="Categoria" error={errors.categoria}>
-                                        <select id="categoria" name="categoria" className="hs-input hs-select" value={form.categoria} onChange={onChange}>
+                                        <select id="categoria" name="categoria" className="hs-input hs-select" value={form.categoria} onChange={onCategoriaChange}>
                                             <option value="">Selecione</option>
                                             {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
                                         </select>
                                     </Field>
                                 </div>
+                                <Field id="subcategoria" label="Atividade principal"
+                                    hint="Se o espaço reúne mais de uma atividade, escolha a principal. Você pode mudar depois no app."
+                                    error={errors.subcategoria}>
+                                    <select id="subcategoria" name="subcategoria" className="hs-input hs-select" value={form.subcategoria}
+                                        onChange={onChange} disabled={!form.categoria}>
+                                        <option value="">{form.categoria ? 'Selecione' : 'Escolha a categoria primeiro'}</option>
+                                        {(SUBCATEGORIES[form.categoria] || []).map((s) => <option key={s} value={s}>{s}</option>)}
+                                    </select>
+                                </Field>
                                 <fieldset className="hs-choice" aria-describedby={errors.ambiente ? 'ambiente-error' : undefined}>
                                     <legend className="hs-label">Como é o seu espaço?</legend>
                                     <div className="hs-choice__grid">

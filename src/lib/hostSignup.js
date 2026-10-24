@@ -13,6 +13,15 @@ export const CATEGORIES = [
     'Eventos e Sociais',
 ]
 
+// Subcategorias de cada categoria ativa (SpaceCategory.swift). O Explorar dos apps só mostra
+// o espaço se a subcategoria pertence à categoria aberta; o backend só preenche a primeira da
+// categoria quando ela vem vazia, o que classificaria errado (ex.: dentista como Psicologia).
+export const SUBCATEGORIES = {
+    'Escritório e Negócios': ['Escritório privativo', 'Sala de reunião', 'Auditório', 'Coworking tradicional'],
+    'Saúde e Bem‑estar': ['Psicologia', 'Odontologia', 'Fisioterapia', 'Consultório médico'],
+    'Eventos e Sociais': ['Sala para eventos', 'Rooftop', 'Espaço gourmet'],
+}
+
 // Como o host descreve o espaço. Define como o rascunho nasce: "unico" já vem com o recurso de
 // ambiente único (é assim que os apps reconhecem um ambiente único: exatamente 1 recurso
 // fullSpace) e "multiplos" nasce sem recursos, para cadastrar cada um no app.
@@ -79,6 +88,7 @@ export function validateSpaceStep(form) {
     const errors = {}
     if (!required(form.name)) errors.name = 'Informe o nome do espaço.'
     if (!CATEGORIES.includes(form.categoria)) errors.categoria = 'Escolha uma categoria.'
+    if (!(SUBCATEGORIES[form.categoria] || []).includes(form.subcategoria)) errors.subcategoria = 'Escolha a atividade principal do espaço.'
     if (!AMBIENTES.some((a) => a.value === form.ambiente)) errors.ambiente = 'Escolha como é o seu espaço.'
     if (!isValidCep(form.zipCode)) errors.zipCode = 'Informe um CEP com 8 dígitos.'
     if (!required(form.street)) errors.street = 'Informe a rua.'
@@ -108,6 +118,7 @@ export function buildSpace(form) {
     const space = {
         name: trimTo(form.name, FIELD_LIMITS.name),
         categoria: form.categoria,
+        subcategoria: form.subcategoria,
         ambiente: form.ambiente,
         zipCode: onlyDigits(form.zipCode).slice(0, 8),
         street: trimTo(form.street, FIELD_LIMITS.street),
