@@ -283,27 +283,27 @@ function HostSignupForm() {
                         <form className="hs-card" onSubmit={goToAccount} noValidate>
                             <fieldset className="hs-group">
                                 <legend>Sobre o espaço</legend>
-                                <div className="hs-row hs-row--name">
-                                    <Field id="name" label="Nome do espaço" error={errors.name}>
-                                        <input id="name" name="name" className="hs-input" value={form.name} onChange={onChange}
-                                            maxLength={FIELD_LIMITS.name} placeholder="Como seu espaço se chama" autoComplete="organization" />
-                                    </Field>
+                                <Field id="name" label="Nome do espaço" error={errors.name}>
+                                    <input id="name" name="name" className="hs-input" value={form.name} onChange={onChange}
+                                        maxLength={FIELD_LIMITS.name} placeholder="Como seu espaço se chama" autoComplete="organization" />
+                                </Field>
+                                <div className="hs-row">
                                     <Field id="categoria" label="Categoria" error={errors.categoria}>
                                         <select id="categoria" name="categoria" className="hs-input hs-select" value={form.categoria} onChange={onCategoriaChange}>
                                             <option value="">Selecione</option>
                                             {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
                                         </select>
                                     </Field>
+                                    <Field id="subcategoria" label="Atividade principal"
+                                        hint="Se houver mais de uma atividade, escolha a principal."
+                                        error={errors.subcategoria}>
+                                        <select id="subcategoria" name="subcategoria" className="hs-input hs-select" value={form.subcategoria}
+                                            onChange={onChange} disabled={!form.categoria}>
+                                            <option value="">{form.categoria ? 'Selecione' : 'Escolha a categoria primeiro'}</option>
+                                            {(SUBCATEGORIES[form.categoria] || []).map((s) => <option key={s} value={s}>{s}</option>)}
+                                        </select>
+                                    </Field>
                                 </div>
-                                <Field id="subcategoria" label="Atividade principal"
-                                    hint="Se o espaço reúne mais de uma atividade, escolha a principal. Você pode mudar depois no app."
-                                    error={errors.subcategoria}>
-                                    <select id="subcategoria" name="subcategoria" className="hs-input hs-select" value={form.subcategoria}
-                                        onChange={onChange} disabled={!form.categoria}>
-                                        <option value="">{form.categoria ? 'Selecione' : 'Escolha a categoria primeiro'}</option>
-                                        {(SUBCATEGORIES[form.categoria] || []).map((s) => <option key={s} value={s}>{s}</option>)}
-                                    </select>
-                                </Field>
                                 <fieldset className="hs-choice" aria-describedby={errors.ambiente ? 'ambiente-error' : undefined}>
                                     <legend className="hs-label">Como é o seu espaço?</legend>
                                     <div className="hs-choice__grid">
