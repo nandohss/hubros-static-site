@@ -78,6 +78,7 @@ export default function IPhone3D({ screenshotSrc }) {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
+  const [noGL, setNoGL] = useState(false);
 
   const phoneRef = useRef(null);
   const rendererRef = useRef(null);
@@ -95,7 +96,16 @@ export default function IPhone3D({ screenshotSrc }) {
     const W = container.clientWidth;
     const H = container.clientHeight;
 
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    // Sem WebGL (navegador antigo, aceleração desligada, Chrome headless), o Three.js lança erro.
+    // Sem este try/catch o erro desmonta a página inteira; com ele, cai na imagem estática.
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    } catch (err) {
+      console.warn('IPhone3D: WebGL indisponível, usando imagem estática.', err);
+      setNoGL(true);
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(W, H, false);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -278,6 +288,18 @@ export default function IPhone3D({ screenshotSrc }) {
     drag.current.active = false;
     if (canvasRef.current) canvasRef.current.style.cursor = 'grab';
   }, []);
+
+  if (noGL) {
+    return (
+      <div style={{ width: '100%', height: '100%', position: 'relative', minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <img
+          src={screenshotSrc}
+          alt="Tela do app Hubros listando espaços de saúde e bem-estar com foto, bairro e preço por hora"
+          style={{ maxHeight: '100%', maxWidth: '62%', borderRadius: '36px', border: '8px solid #0B0B0C', boxShadow: '0 30px 60px rgba(0,0,0,.18)', objectFit: 'contain', background: '#0B0B0C' }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative', minHeight: '400px' }}>
