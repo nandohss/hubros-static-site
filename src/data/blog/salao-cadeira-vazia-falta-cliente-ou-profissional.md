@@ -44,7 +44,7 @@ Numa pesquisa da Beauty Fair com 560 clientes de salão em capitais brasileiras,
 
 Isso diz duas coisas.
 
-1. O profissional com carteira própria não precisa de cliente. Precisa de cadeira.
+1. O profissional com carteira própria não precisa que você traga cliente. Precisa de cadeira.
 2. Pra esse profissional, emprego fixo nem sempre é o que ele quer. Muitas vezes ele quer um lugar bom pra atender os clientes dele, alguns dias por semana.
 
 E você tem a cadeira parada.
