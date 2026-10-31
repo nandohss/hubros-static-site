@@ -7,7 +7,7 @@ date: "2026-10-30"
 author: "Fernando Sousa"
 category: "Nichos & Atendimento"
 image: "/blog/salao_cover.jpg"
-imageAlt: "Ilustração de cadeira de salão vazia diante de um espelho"
+imageAlt: "Salão de beleza com três estações e a cadeira do meio vazia em frente ao espelho"
 ---
 
 Toda cadeira vazia parece o mesmo problema. Não é.

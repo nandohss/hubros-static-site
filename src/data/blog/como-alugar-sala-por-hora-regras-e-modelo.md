@@ -7,7 +7,7 @@ date: "2026-10-30"
 author: "Fernando Sousa"
 category: "Dicas para Hosts"
 image: "/blog/regras_cover.jpg"
-imageAlt: "Ilustração de porta de sala com folha de regras e lista marcada"
+imageAlt: "Porta preta de sala com uma folha de regras presa por fita dourada"
 ---
 
 Alugar sala por hora parece simples até a primeira reserva.

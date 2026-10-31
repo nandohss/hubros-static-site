@@ -7,7 +7,7 @@ date: "2026-10-30"
 author: "Fernando Sousa"
 category: "Nichos & Atendimento"
 image: "/blog/odonto_cover.jpg"
-imageAlt: "Ilustração de cadeira odontológica com grade de turnos da semana"
+imageAlt: "Consultório odontológico vazio com cadeira, refletor e armário preto, à luz do fim da tarde"
 ---
 
 Quantos turnos por semana a sua cadeira fica parada?
