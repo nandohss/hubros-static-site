@@ -35,7 +35,7 @@
 
 /* ---- Cartão: um único vidro, sem cartões dentro ---- */
 .hs-card {
-    max-width: 880px; margin: 2rem auto 0;
+    max-width: 980px; margin: 2rem auto 0;
     padding: clamp(1.25rem, .5rem + 3vw, 3rem);
     background: var(--glass); border: 1px solid var(--color-border);
     border-radius: var(--radius-2xl); box-shadow: var(--glass-shadow);
@@ -60,12 +60,12 @@
 
 /* ---- Linhas: campos lado a lado no desktop ---- */
 .hs-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: start; }
-.hs-row--name { grid-template-columns: 1.4fr 1fr; }
 .hs-row--cep { grid-template-columns: 1fr .8fr 1.4fr; }
 .hs-row--street { grid-template-columns: 2fr 1fr; }
 .hs-row--city { grid-template-columns: 2fr 1fr; }
 
 /* ---- Campo ---- */
+.hs-input:disabled { opacity: .55; cursor: not-allowed; }
 .hs-field { display: flex; flex-direction: column; gap: .45rem; min-width: 0; }
 .hs-label { font-size: .9375rem; font-weight: 600; color: var(--color-text-primary); }
 .hs-optional { font-weight: 500; color: var(--color-text-secondary); }
@@ -171,7 +171,7 @@
 
 /* ---- Mobile: tudo empilhado, botão na largura toda ---- */
 @media (max-width: 760px) {
-    .hs-row, .hs-row--name, .hs-row--street { grid-template-columns: 1fr; }
+    .hs-row, .hs-row--street { grid-template-columns: 1fr; }
     .hs-row--cep { grid-template-columns: 1fr 1fr; }
     .hs-row--cep > :last-child { grid-column: 1 / -1; }
     .hs-row--city { grid-template-columns: 1fr 104px; }

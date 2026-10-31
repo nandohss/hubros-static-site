@@ -3,14 +3,14 @@ import assert from 'node:assert/strict'
 import { existsSync, readFileSync } from 'node:fs'
 
 import {
-    AMBIENTES, CATEGORIES, MAX_METADATA_BYTES, SITE_SOURCE, UFS, buildSignUpRequest, buildSpace, isValidEmail,
+    AMBIENTES, CATEGORIES, MAX_METADATA_BYTES, SITE_SOURCE, SUBCATEGORIES, UFS, buildSignUpRequest, buildSpace, isValidEmail,
     isValidPhone, lookupCep, mapAuthError, maskCep, maskPhone, onlyDigits, passwordError,
     validateAccountStep, validateSpaceStep,
 } from './hostSignup.js'
 import { CognitoError } from './cognito.js'
 
 const spaceForm = {
-    name: ' Meu Coworking ', categoria: CATEGORIES[0], ambiente: 'unico', zipCode: '01310-100', street: 'Av. Paulista',
+    name: ' Meu Coworking ', categoria: CATEGORIES[0], subcategoria: 'Sala de reunião', ambiente: 'unico', zipCode: '01310-100', street: 'Av. Paulista',
     number: '1000', complement: '', district: 'Bela Vista', city: 'São Paulo', state: 'sp',
 }
 const accountForm = {
@@ -27,6 +27,16 @@ test('as categorias são idênticas às dos apps (inclusive o hífen U+2011)', (
     const source = readFileSync(swift, 'utf8')
     for (const categoria of CATEGORIES) {
         assert.ok(source.includes(`"${categoria}"`), `${categoria} não existe no SpaceCategory.swift`)
+    }
+})
+
+test('as subcategorias são idênticas às dos apps, categoria por categoria', () => {
+    assert.deepEqual(Object.keys(SUBCATEGORIES), CATEGORIES)
+    const swift = new URL('../../../coworking_product/coworking_product/Domain/Shared/Models/SpaceCategory.swift', import.meta.url)
+    if (!existsSync(swift)) return
+    const source = readFileSync(swift, 'utf8')
+    for (const sub of Object.values(SUBCATEGORIES).flat()) {
+        assert.ok(source.includes(`"${sub}"`), `${sub} não existe no SpaceCategory.swift`)
     }
 })
 
@@ -57,8 +67,11 @@ test('validação de e-mail, telefone e senha', () => {
 test('validação dos passos devolve um erro por campo inválido', () => {
     assert.deepEqual(validateSpaceStep(spaceForm), {})
     assert.deepEqual(Object.keys(validateSpaceStep({})).sort(),
-        ['ambiente', 'categoria', 'city', 'district', 'name', 'number', 'state', 'street', 'zipCode'])
+        ['ambiente', 'categoria', 'city', 'district', 'name', 'number', 'state', 'street', 'subcategoria', 'zipCode'])
     assert.ok(validateSpaceStep({ ...spaceForm, categoria: 'Beleza e Estética' }).categoria) // inativa nos apps
+    // subcategoria de outra categoria não vale (Psicologia não é de Escritório)
+    assert.ok(validateSpaceStep({ ...spaceForm, subcategoria: 'Psicologia' }).subcategoria)
+    assert.ok(validateSpaceStep({ ...spaceForm, subcategoria: '' }).subcategoria)
     assert.ok(validateSpaceStep({ ...spaceForm, zipCode: '123' }).zipCode)
     for (const invalido of ['', 'outro', 'UNICO', undefined]) {
         assert.ok(validateSpaceStep({ ...spaceForm, ambiente: invalido }).ambiente, String(invalido))
@@ -75,7 +88,7 @@ test('validação dos passos devolve um erro por campo inválido', () => {
 test('buildSpace: só strings, só os campos do backend, telefone no formato do app', () => {
     const space = buildSpace(form)
     assert.deepEqual(space, {
-        name: 'Meu Coworking', categoria: 'Escritório e Negócios', ambiente: 'unico', zipCode: '01310100',
+        name: 'Meu Coworking', categoria: 'Escritório e Negócios', subcategoria: 'Sala de reunião', ambiente: 'unico', zipCode: '01310100',
         street: 'Av. Paulista', number: '1000', district: 'Bela Vista', city: 'São Paulo', state: 'SP',
         email: 'ana@example.com', ddd: '11', numeroTelefone: '987654321', telefoneCompleto: '11987654321',
     })

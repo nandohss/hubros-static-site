@@ -21,12 +21,14 @@ if (existsSync(BLOG_DIR)) {
 }
 
 // Rotas a pré-renderizar (precisa espelhar as <Route> em src/App.jsx).
-// Navegação com novas tentativas: "networkidle0" depende da rede ficar ociosa (fontes do Google
-// etc.). Um timeout isolado numa rota derrubava o deploy inteiro e só passava reexecutando.
+// Navegação com novas tentativas. Espera o "load" da página, não a rede ociosa: Termos e
+// Privacidade embutem PDFs de um bucket S3 cujo carregamento às vezes fica pendurado, e com
+// "networkidle0" isso estourava as três tentativas e derrubava o deploy inteiro.
+// A rede ociosa vira uma espera curta e opcional depois que o React monta (ver main()).
 async function gotoWithRetry(page, url, tries = 3) {
     for (let attempt = 1; ; attempt++) {
         try {
-            return await page.goto(url, { waitUntil: 'networkidle0', timeout: 45000 })
+            return await page.goto(url, { waitUntil: 'load', timeout: 30000 })
         } catch (err) {
             if (attempt >= tries) throw err
             console.warn(`⚠ prerender ${url}: tentativa ${attempt}/${tries} falhou (${err.name}), tentando de novo`)
@@ -63,17 +65,24 @@ async function main() {
         const browser = await puppeteer.launch({
             executablePath: CHROME,
             headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            // O Chrome do CI não tem GPU. Sem o renderizador de software liberado, as versões
+            // recentes não criam WebGL e o hero 3D (Three.js) cai no fallback estático.
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'],
         })
-        const page = await browser.newPage()
-
         for (const route of ROUTES) {
+            // Aba nova por rota: o PDF embutido em Termos e Privacidade deixa conexão pendurada,
+            // e numa aba reaproveitada isso contaminava todas as páginas seguintes.
+            const page = await browser.newPage()
             await gotoWithRetry(page, ORIGIN + route)
             // Garante que o React montou e o Helmet definiu o <title>.
             await page.waitForFunction(
                 () => document.querySelector('#root')?.childElementCount > 0 && !!document.title,
                 { timeout: 15000 }
             )
+            // Dá tempo pra fontes e imagens terminarem, sem travar em requisição pendurada.
+            await page.waitForNetworkIdle({ idleTime: 500, timeout: 8000 }).catch(() => {
+                console.warn(`⚠ prerender ${route}: rede não ficou ociosa em 8s, seguindo com o HTML já montado`)
+            })
             const html = await page.evaluate(
                 () => '<!doctype html>\n' + document.documentElement.outerHTML
             )
@@ -81,6 +90,7 @@ async function main() {
                 route === '/' ? join(DIST, 'index.html') : join(DIST, route, 'index.html')
             await mkdir(dirname(outPath), { recursive: true })
             await writeFile(outPath, html, 'utf8')
+            await page.close().catch(() => {})
             console.log(`✓ prerender ${route} → ${outPath.replace(DIST, 'dist')}`)
         }
 
