@@ -63,7 +63,9 @@ async function main() {
         const browser = await puppeteer.launch({
             executablePath: CHROME,
             headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            // O Chrome do CI não tem GPU. Sem o renderizador de software liberado, as versões
+            // recentes não criam WebGL e o hero 3D (Three.js) cai no fallback estático.
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'],
         })
         const page = await browser.newPage()
 
