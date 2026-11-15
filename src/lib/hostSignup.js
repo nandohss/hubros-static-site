@@ -84,6 +84,13 @@ export function passwordError(password = '') {
 
 const required = (value) => String(value || '').trim().length > 0
 
+// Compara nomes sem acento, caixa ou espaços extras ("Juliana  Martha" = "juliana martha").
+const sameName = (a, b) => {
+    const norm = (v) => String(v || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase().replace(/\s+/g, ' ').trim()
+    return norm(a) !== '' && norm(a) === norm(b)
+}
+
 export function validateSpaceStep(form) {
     const errors = {}
     if (!required(form.name)) errors.name = 'Informe o nome do espaço.'
@@ -102,6 +109,8 @@ export function validateSpaceStep(form) {
 export function validateAccountStep(form) {
     const errors = {}
     if (!required(form.fullName)) errors.fullName = 'Informe seu nome completo.'
+    // O preenchimento automático do navegador já pôs o nome da pessoa no "Nome do espaço".
+    else if (sameName(form.fullName, form.name)) errors.fullName = 'Está igual ao nome do espaço. Volte e coloque o nome do espaço (ex.: Consultório Juliana Martha).'
     if (!isValidEmail(form.email)) errors.email = 'Informe um e-mail válido.'
     if (!isValidPhone(form.phone)) errors.phone = 'Informe o WhatsApp com DDD.'
     const pwd = passwordError(form.password)

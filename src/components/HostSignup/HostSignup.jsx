@@ -285,7 +285,7 @@ function HostSignupForm() {
                                 <legend>Sobre o espaço</legend>
                                 <Field id="name" label="Nome do espaço" error={errors.name}>
                                     <input id="name" name="name" className="hs-input" value={form.name} onChange={onChange}
-                                        maxLength={FIELD_LIMITS.name} placeholder="Como seu espaço se chama" autoComplete="organization" />
+                                        maxLength={FIELD_LIMITS.name} placeholder="Ex.: Studio Equilíbrio, Consultório Vida" autoComplete="off" />
                                 </Field>
                                 <div className="hs-row">
                                     <Field id="categoria" label="Categoria" error={errors.categoria}>

@@ -82,6 +82,9 @@ test('validação dos passos devolve um erro por campo inválido', () => {
     assert.deepEqual(Object.keys(validateAccountStep({})).sort(),
         ['acceptTerms', 'email', 'fullName', 'password', 'phone'])
     assert.ok(validateAccountStep({ ...accountForm, acceptTerms: false }).acceptTerms)
+    // nome da pessoa igual ao do espaço (autopreenchimento do navegador)
+    assert.ok(validateAccountStep({ ...accountForm, name: 'Juliana Martha', fullName: 'juliána  martha ' }).fullName)
+    assert.equal(validateAccountStep({ ...accountForm, name: 'Consultório Juliana Martha', fullName: 'Juliana Martha' }).fullName, undefined)
     assert.ok(UFS.includes('SP') && UFS.length === 27)
 })
 
